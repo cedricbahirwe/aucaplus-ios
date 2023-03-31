@@ -1,4 +1,4 @@
-# aucaplus-ios
+# AuCA Plus iOS Client
 
 A Hub for Students at Adventist University of Central Africa
 
