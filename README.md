@@ -1,23 +1,23 @@
-# AuCA Plus iOS Client
+# Auca Plus iOS Client
 
 A Hub for Students at Adventist University of Central Africa
 
-School Announcement:
+- School Announcement: 
+    - Media Sharing: (Links, Images)
+    - News Posting
 
-Media Sharing: (Links, Images)
-News Posting
-Students Portal:
+- Students Portal: 
+    - Media Sharing: (Links, Images)
+    - Message Chatting
+    - Links 
+    - Vocals
 
-Media Sharing: (Links, Images)
-Message Chatting
-Links
-Vocals
-Student Notes Storing:
+- Student Notes Storing:
+    - PDfs
+    - Text
+    - Customized Text
 
-PDfs
-Text
-Customized Text
-Job & Opportunity Posting:
+- Job & Opportunity Posting:
+    - Media Sharing: (Links, Text)
+    - Customized Posting
 
-Media Sharing: (Links, Text)
-Customized Posting
