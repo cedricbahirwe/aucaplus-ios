@@ -9,7 +9,9 @@ import SwiftUI
 
 struct AuthenticationView: View {
     @State private var authModel = AuthModel(countryCode: "250", phone: "")
-    @State private var showingAlert = false
+    @State private var showingConfirmationAlert = false
+    @State private var showingValidationAlert = false
+    @State private var goToOTPView = false
     
     var body: some View {
         VStack {
@@ -49,8 +51,11 @@ struct AuthenticationView: View {
             Spacer()
             
             Button {
-                guard authModel.isValid() else { return }
-                showingAlert.toggle()
+                if authModel.isValid() {
+                    showingConfirmationAlert.toggle()
+                } else {
+                    showingValidationAlert.toggle()
+                }
             } label: {
                 Text("Next")
                     .bold()
@@ -59,17 +64,21 @@ struct AuthenticationView: View {
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
+            .alert("Please enter your phone number.", isPresented: $showingValidationAlert, actions: { })
 
         }
         .padding(25)
-        .alert("You entered the phone number:", isPresented: $showingAlert, actions: {
+        .alert("You entered the phone number:", isPresented: $showingConfirmationAlert, actions: {
             Button("Edit") { }
             Button("OK") {
-                // Move one next screen
+                goToOTPView.toggle()
             }
         }, message: {
             Text("**\(authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
         })
+        .navigationDestination(isPresented: $goToOTPView) {
+            OTPVerificationView(phoneNumber: authModel.formattedPhone())
+        }
     }
     
     struct AuthModel {
@@ -93,13 +102,23 @@ extension AuthenticationView {
         Text("Enter your phone number")
             .frame(maxWidth: .infinity)
             .overlay(alignment: .trailing) {
-                Image(systemName: "questionmark.circle")
-                    .contentShape(Rectangle())
+                NavigationLink {
+                    AuthHelpView()
+                } label: {
+                    Image(systemName: "questionmark.circle")
+                        .contentShape(Rectangle())
+                }
             }
             .font(.title2)
             .fontWeight(.bold)
             .foregroundColor(.accentColor)
             .padding(.vertical)
+    }
+    
+    struct AuthHelpView: View {
+        var body: some View  {
+            Text("Auth Help")
+        }
     }
 }
 struct AuthenticationView_Previews: PreviewProvider {
