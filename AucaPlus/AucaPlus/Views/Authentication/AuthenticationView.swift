@@ -96,16 +96,11 @@ struct AuthenticationView: View {
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
-                HStack {
-                    Spacer()
-                    Button("OK") {
-                        focusedField = nil
-                    }
+                Button("OK") {
+                    focusedField = nil
                 }
-                .background(Color.red)
             }
         }
-        .toolbar(.visible, for: .bottomBar)
 
     }
     struct AuthModel {

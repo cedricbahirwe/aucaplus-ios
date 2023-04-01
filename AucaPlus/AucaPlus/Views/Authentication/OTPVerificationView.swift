@@ -10,8 +10,9 @@ import SwiftUI
 struct OTPVerificationView: View {
     let phoneNumber: String
     @State private var otp = ""
+    @State private var previousOtp = ""
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    private let otpResendTime = 10 // seconds
+    private let otpResendTime = 180 // seconds
     @State private var elapsedTime: Int = 0
     
     var body: some View {
@@ -30,14 +31,16 @@ struct OTPVerificationView: View {
                     .overlay(alignment: .bottom) {
                         Color.accentColor.frame(height: 1)
                     }
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(otp.isEmpty ? .center : .leading)
                     .font(.title)
                     .opacity(0.9)
+                    .onChange(of: otp, perform: handleOTP)
+                
                 
                 Text("Enter 6-digit code")
                     .foregroundColor(.secondary)
                 
-               
+                
                 
                 Button("Did not receive code?") {
                     
@@ -46,14 +49,43 @@ struct OTPVerificationView: View {
                 
                 Text("You may request a new code in **\(counterMessage())**")
                 
-        
+                
             }
             
             Spacer()
         }
+        .toolbar(.hidden, for: .navigationBar)
         .padding()
         .onReceive(timer) { _ in
             updateCounter()
+        }
+    }
+    
+    private func handleOTP(_ newOTP: String) {
+        // Make sure they are not equal
+        guard previousOtp != newOTP else { return }
+        
+        // Make sure they are 6 digits
+        guard newOTP.count < 12 else {
+            otp = previousOtp
+            return
+        }
+        
+        // Addition
+        if newOTP.last != " " && previousOtp.count < newOTP.count {
+            print("Addition")
+            otp = newOTP + " "
+            
+            previousOtp = otp
+            
+        }
+        // Removal
+        else {
+            print("Removal")
+            previousOtp = String(newOTP.dropLast())
+            
+            otp = previousOtp
+            
         }
     }
     

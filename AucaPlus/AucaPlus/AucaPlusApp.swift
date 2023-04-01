@@ -13,7 +13,8 @@ struct AucaPlusApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OTPVerificationView(phoneNumber: "")
+//            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
