@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    enum FocusedField {
+        case countryCode, phone
+    }
     @State private var authModel = AuthModel(countryCode: "250", phone: "")
     @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
     @State private var goToOTPView = false
+    @FocusState private var focusedField: FocusedField?
     
     var body: some View {
         VStack {
@@ -26,21 +30,22 @@ struct AuthenticationView: View {
                         Text("+")
                         
                         TextField("250", text: $authModel.countryCode)
+                            .focused($focusedField, equals: .countryCode)
                             .frame(width: 40)
                             .keyboardType(.numberPad)
-                            
                     }
                     .padding(.bottom, 5)
                     .overlay(alignment: .bottom) {
-                        Color.red.frame(height: 1)
+                        Color.accentColor.frame(height: 1)
                     }
                     
                     TextField("phone number", text: $authModel.phone)
+                        .focused($focusedField, equals: .phone)
                         .keyboardType(.numberPad)
                         .textContentType(.telephoneNumber)
                         .padding(.bottom, 5)
                         .overlay(alignment: .bottom) {
-                            Color.red.frame(height: 1)
+                            Color.accentColor.frame(height: 1)
                         }
                 }
                 .padding(.horizontal, 40)
@@ -48,26 +53,36 @@ struct AuthenticationView: View {
                     .foregroundColor(.secondary)
             }
             
-            Spacer()
             
-            Button {
-                if authModel.isValid() {
-                    showingConfirmationAlert.toggle()
-                } else {
-                    showingValidationAlert.toggle()
+            VStack {
+                
+                Spacer()
+                
+                Button {
+                    if authModel.isValid() {
+                        showingConfirmationAlert.toggle()
+                    } else {
+                        showingValidationAlert.toggle()
+                    }
+                } label: {
+                    Text("Next")
+                        .bold()
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
                 }
-            } label: {
-                Text("Next")
-                    .bold()
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .alert("Please enter your phone number.", isPresented: $showingValidationAlert, actions: { })
+                
             }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.capsule)
-            .alert("Please enter your phone number.", isPresented: $showingValidationAlert, actions: { })
-
         }
         .padding(25)
+        .background(
+            Color(.systemBackground)
+                .onTapGesture {
+                    focusedField = nil
+                }
+        )
         .alert("You entered the phone number:", isPresented: $showingConfirmationAlert, actions: {
             Button("Edit") { }
             Button("OK") {
@@ -79,8 +94,20 @@ struct AuthenticationView: View {
         .navigationDestination(isPresented: $goToOTPView) {
             OTPVerificationView(phoneNumber: authModel.formattedPhone())
         }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    Button("OK") {
+                        focusedField = nil
+                    }
+                }
+                .background(Color.red)
+            }
+        }
+        .toolbar(.visible, for: .bottomBar)
+
     }
-    
     struct AuthModel {
         var countryCode: String
         var phone: String

@@ -16,22 +16,32 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
     
-    @State private var showOnBoarding = true
+    @State private var animatingOnBoarding = true
+    @State private var showingBoarding = true
 
     var body: some View {
         NavigationStack {
             ZStack {
                 AuthenticationView()
                 
-                OnboardingView()
-                    .opacity(showOnBoarding ? 1 : 0)
-                    .animation(.easeInOut(duration: 0.5), value: showOnBoarding)
-            }
-            .onAppear() {
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.85) {
-                    showOnBoarding = false
+                if showingBoarding {
+                    OnboardingView()
+                        .opacity(animatingOnBoarding ? 1 : 0)
+                        .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
+                    
+                        .onAppear() {
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.8) {
+                                animatingOnBoarding = false
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
+                                showingBoarding = false
+                            }
+                        }
+                
                 }
             }
+            
+            
 //        NavigationView {
 //            List {
 //                ForEach(items) { item in
