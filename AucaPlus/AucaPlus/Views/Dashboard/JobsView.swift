@@ -9,7 +9,8 @@ import SwiftUI
 
 struct JobsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("**JOB POSITION AT RWANDA REVENUE AUTHORITY🇷🇼**\n\nThe Rwanda Revenue Authority has begin its 2023/2024 staff recuritment\n\nInterested Applicants Must Have Educational Qualification.\n\n**Apply Here**\n\(Text("https://bit.ly/RRA-Recruitment-2023"))")
+            .padding()
     }
 }
 

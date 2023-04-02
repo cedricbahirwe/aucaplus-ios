@@ -22,7 +22,6 @@
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
 		CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */; };
 		CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */; };
-		CBE0D14229DA0CA200AD2C58 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14129DA0CA200AD2C58 /* HomeView.swift */; };
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
 		CBE0D14629DA0CB900AD2C58 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
@@ -66,7 +65,6 @@
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
-		CBE0D14129DA0CA200AD2C58 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */,
 				CBE0D14929DA0CCC00AD2C58 /* Settings.swift */,
-				CBE0D14129DA0CA200AD2C58 /* HomeView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -346,7 +343,6 @@
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,
 				CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */,
 				CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */,
-				CBE0D14229DA0CA200AD2C58 /* HomeView.swift in Sources */,
 				CBE0D14A29DA0CCC00AD2C58 /* Settings.swift in Sources */,
 				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,

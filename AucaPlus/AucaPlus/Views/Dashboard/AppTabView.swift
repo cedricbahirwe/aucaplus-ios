@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @AppStorage("appSelectedTab")
+    private var selection: AppTab = .home
+    
     var body: some View {
-        TabView {
-            HomeView()
+        TabView(selection: $selection) {
+            FeedView()
                 .tabItem {
                     Label("Feed", systemImage: "house")
                 }
@@ -31,6 +34,10 @@ struct AppTabView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+    }
+    
+    enum AppTab: String {
+        case home, chat, job, settings
     }
 }
 

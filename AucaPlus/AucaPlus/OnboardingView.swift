@@ -13,12 +13,12 @@ struct OnboardingView: View {
             Image("onboard-1")
                 .resizable()
                 .scaledToFill()
-            
+                .ignoresSafeArea(.all)
+
             Text("Powered by AUCA Devs")
                 .fontDesign(.rounded)
                 .foregroundColor(.accentColor)
         }
-        .ignoresSafeArea(.all)
     }
 }
 
