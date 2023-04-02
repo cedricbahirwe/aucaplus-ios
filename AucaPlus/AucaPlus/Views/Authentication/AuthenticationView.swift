@@ -10,8 +10,9 @@ import SwiftUI
 struct AuthenticationView: View {
     enum FocusedField {
         case countryCode, phone
+        case email, password
     }
-    @State private var authModel = AuthModel(countryCode: "250", phone: "")
+    @State private var authModel = AuthModel()
     @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
     @State private var goToOTPView = false
@@ -25,32 +26,62 @@ struct AuthenticationView: View {
                 Text("AUCA+ will need to verify your phone number.")
                     .multilineTextAlignment(.center)
                 
-                HStack {
-                    HStack {
-                        Text("+")
+                if !authModel.signingUpWithEmail {
+                    VStack(spacing: 50) {
+                        TextField("email", text: $authModel.email)
+                            .focused($focusedField, equals: .email)
+                            .keyboardType(.emailAddress)
+                            .textContentType(.emailAddress)
+                            .padding(.bottom)
+                            .overlay(alignment: .bottom) {
+                                Color.accentColor.frame(height: 1)
+                            }
                         
-                        TextField("250", text: $authModel.countryCode)
-                            .focused($focusedField, equals: .countryCode)
-                            .frame(width: 40)
-                            .keyboardType(.numberPad)
+                        SecureField("password", text: $authModel.password)
+                            .focused($focusedField, equals: .phone)
+                            .textContentType(.newPassword)
+                            .padding(.bottom)
+                            .overlay(alignment: .bottom) {
+                                Color.accentColor.frame(height: 1)
+                            }
                     }
-                    .padding(.bottom, 5)
-                    .overlay(alignment: .bottom) {
-                        Color.accentColor.frame(height: 1)
-                    }
-                    
-                    TextField("phone number", text: $authModel.phone)
-                        .focused($focusedField, equals: .phone)
-                        .keyboardType(.numberPad)
-                        .textContentType(.telephoneNumber)
+                } else {
+                    HStack {
+                        HStack {
+                            Text("+")
+                            
+                            TextField("250", text: $authModel.countryCode)
+                                .focused($focusedField, equals: .countryCode)
+                                .frame(width: 40)
+                                .keyboardType(.numberPad)
+                        }
                         .padding(.bottom, 5)
                         .overlay(alignment: .bottom) {
                             Color.accentColor.frame(height: 1)
                         }
+                        
+                        TextField("phone number", text: $authModel.phone)
+                            .focused($focusedField, equals: .phone)
+                            .keyboardType(.numberPad)
+                            .textContentType(.telephoneNumber)
+                            .padding(.bottom, 5)
+                            .overlay(alignment: .bottom) {
+                                Color.accentColor.frame(height: 1)
+                            }
+                    }
+                    .padding(.horizontal, 40)
+                    Text("Carrier charges may apply")
+                        .foregroundColor(.secondary)
                 }
-                .padding(.horizontal, 40)
-                Text("Carrier charges may apply")
-                    .foregroundColor(.secondary)
+                Button {
+                    withAnimation {
+                        authModel.signingUpWithEmail.toggle()
+                    }
+                } label: {
+                    Text("Use \(authModel.signingUpWithEmail ? "phone number" : "email") instead")
+                        .underline()
+                }
+                
             }
             
             
@@ -101,20 +132,32 @@ struct AuthenticationView: View {
                 }
             }
         }
-
+        
     }
+    
     struct AuthModel {
-        var countryCode: String
-        var phone: String
+        var countryCode = "250"
+        var phone = ""
+        
+        var email = ""
+        var password = ""
+        
+        var signingUpWithEmail = false
         
         func formattedPhone() -> String {
             return "+\(countryCode) \(phone)"
         }
         
         func isValid() -> Bool {
-            let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
-            let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
-            return isCountryValid && isPhoneValid
+            if signingUpWithEmail {
+                let isEmailValid = email.isValidEmail()
+                let isPasswordValid = password.trimmingCharacters(in: .whitespaces).count >= 6
+                return isEmailValid && isPasswordValid
+            } else {
+                let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
+                let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
+                return isCountryValid && isPhoneValid
+            }
         }
     }
 }

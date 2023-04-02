@@ -20,6 +20,7 @@
 		CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140C29D77DCC007BC45C /* AuthenticationView.swift */; };
 		CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */; };
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
+		CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		CB19140C29D77DCC007BC45C /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
+		CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CBE0D13B29DA099D00AD2C58 /* Extensions */,
 				CB19141529D78BD7007BC45C /* Views */,
 				CB19140A29D77D6C007BC45C /* OnboardingView.swift */,
 				CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */,
@@ -169,6 +172,14 @@
 				CB19141329D78BD4007BC45C /* OTPVerificationView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		CBE0D13B29DA099D00AD2C58 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +316,7 @@
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */,
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,
+				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
