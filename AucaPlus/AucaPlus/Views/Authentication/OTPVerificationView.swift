@@ -11,9 +11,12 @@ struct OTPVerificationView: View {
     let phoneNumber: String
     @State private var otp = ""
     @State private var previousOtp = ""
+    @State private var elapsedTime: Int = 0
+    @AppStorage("isLoggedIn")
+    private var isLoggedIn: Bool = false
+    
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     private let otpResendTime = 180 // seconds
-    @State private var elapsedTime: Int = 0
     
     var body: some View {
         VStack {
@@ -68,6 +71,7 @@ struct OTPVerificationView: View {
         // Make sure they are 6 digits
         guard newOTP.count < 12 else {
             otp = previousOtp
+            isLoggedIn = true
             return
         }
         

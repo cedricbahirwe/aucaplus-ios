@@ -18,6 +18,9 @@ struct AuthenticationView: View {
     @State private var goToOTPView = false
     @FocusState private var focusedField: FocusedField?
     
+    @AppStorage("isLoggedIn")
+    private var isLoggedIn: Bool = false
+    
     var alertMessage: String {
         authModel.signingUpWithEmail ?
         "Please check your email and/or password." :
@@ -37,9 +40,9 @@ struct AuthenticationView: View {
                     VStack(spacing: 50) {
                         TextField("email", text: $authModel.email)
                             .focused($focusedField, equals: .email)
+                            .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
                             .textContentType(.emailAddress)
-g                            .textInputAutocapitalization(.none)
                             .padding(.bottom)
                             .overlay(alignment: .bottom) {
                                 Color.accentColor.frame(height: 1)
@@ -82,7 +85,6 @@ g                            .textInputAutocapitalization(.none)
                         .foregroundColor(.secondary)
                 }
                 Button {
-                    
                     withAnimation(.spring()) {
                         authModel.signingUpWithEmail.toggle()
                     }
@@ -110,7 +112,11 @@ g                            .textInputAutocapitalization(.none)
                 
                 Button {
                     if authModel.isValid() {
-                        showingConfirmationAlert.toggle()
+                        if authModel.signingUpWithEmail {
+                            isLoggedIn = true
+                        } else {
+                            showingConfirmationAlert.toggle()
+                        }
                     } else {
                         showingValidationAlert.toggle()
                     }
