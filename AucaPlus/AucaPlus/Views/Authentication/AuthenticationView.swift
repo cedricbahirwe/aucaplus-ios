@@ -18,6 +18,12 @@ struct AuthenticationView: View {
     @State private var goToOTPView = false
     @FocusState private var focusedField: FocusedField?
     
+    var alertMessage: String {
+        authModel.signingUpWithEmail ?
+        "Please check your email and/or password." :
+        "Please enter your phone number."
+    }
+    
     var body: some View {
         VStack {
             titleView
@@ -25,20 +31,22 @@ struct AuthenticationView: View {
                 
                 Text("AUCA+ will need to verify your phone number.")
                     .multilineTextAlignment(.center)
-                
-                if !authModel.signingUpWithEmail {
+                    .fixedSize()
+
+                if authModel.signingUpWithEmail {
                     VStack(spacing: 50) {
                         TextField("email", text: $authModel.email)
                             .focused($focusedField, equals: .email)
                             .keyboardType(.emailAddress)
                             .textContentType(.emailAddress)
+g                            .textInputAutocapitalization(.none)
                             .padding(.bottom)
                             .overlay(alignment: .bottom) {
                                 Color.accentColor.frame(height: 1)
                             }
                         
                         SecureField("password", text: $authModel.password)
-                            .focused($focusedField, equals: .phone)
+                            .focused($focusedField, equals: .password)
                             .textContentType(.newPassword)
                             .padding(.bottom)
                             .overlay(alignment: .bottom) {
@@ -74,7 +82,8 @@ struct AuthenticationView: View {
                         .foregroundColor(.secondary)
                 }
                 Button {
-                    withAnimation {
+                    
+                    withAnimation(.spring()) {
                         authModel.signingUpWithEmail.toggle()
                     }
                 } label: {
@@ -82,6 +91,16 @@ struct AuthenticationView: View {
                         .underline()
                 }
                 
+            }
+            .onSubmit {
+                switch focusedField {
+                case .countryCode:
+                    focusedField = .phone
+                case .email:
+                    focusedField = .password
+                default:
+                    focusedField = nil
+                }
             }
             
             
@@ -103,7 +122,7 @@ struct AuthenticationView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
-                .alert("Please enter your phone number.", isPresented: $showingValidationAlert, actions: { })
+                .alert(alertMessage, isPresented: $showingValidationAlert, actions: { })
                 
             }
         }
@@ -132,9 +151,8 @@ struct AuthenticationView: View {
                 }
             }
         }
-        
     }
-    
+
     struct AuthModel {
         var countryCode = "250"
         var phone = ""
@@ -142,7 +160,7 @@ struct AuthenticationView: View {
         var email = ""
         var password = ""
         
-        var signingUpWithEmail = false
+        var signingUpWithEmail = true
         
         func formattedPhone() -> String {
             return "+\(countryCode) \(phone)"

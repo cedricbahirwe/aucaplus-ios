@@ -18,11 +18,18 @@ struct ContentView: View {
     
     @State private var animatingOnBoarding = true
     @State private var showingBoarding = true
+    
+    @AppStorage("isLoggedIn")
+    private var isLoggedIn: Bool = false
 
     var body: some View {
         NavigationStack {
             ZStack {
-                AuthenticationView()
+                AppTabView()
+                
+                if !isLoggedIn {
+                    AuthenticationView()
+                }
                 
                 if showingBoarding {
                     OnboardingView()
