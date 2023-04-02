@@ -25,7 +25,7 @@
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
 		CBE0D14629DA0CB900AD2C58 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
-		CBE0D14A29DA0CCC00AD2C58 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14929DA0CCC00AD2C58 /* Settings.swift */; };
+		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,7 @@
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
-		CBE0D14929DA0CCC00AD2C58 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +200,7 @@
 				CBE0D14329DA0CA700AD2C58 /* FeedView.swift */,
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */,
-				CBE0D14929DA0CCC00AD2C58 /* Settings.swift */,
+				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -335,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */,
 				CB1913E429D77CB7007BC45C /* Persistence.swift in Sources */,
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
@@ -343,7 +344,6 @@
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,
 				CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */,
 				CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */,
-				CBE0D14A29DA0CCC00AD2C58 /* Settings.swift in Sources */,
 				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,

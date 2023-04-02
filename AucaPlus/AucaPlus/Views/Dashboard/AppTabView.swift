@@ -29,7 +29,7 @@ struct AppTabView: View {
                     Label("Opportunities", systemImage: "bag.circle")
                 }
             
-            Settings()
+            SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
