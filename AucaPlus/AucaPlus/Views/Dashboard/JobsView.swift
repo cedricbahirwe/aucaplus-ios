@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct JobsView: View {
+    @StateObject private var jobsStore = JobsStore()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach(0..<10, id: \.self) { i in
-                    JobRowView()
+                ForEach(jobsStore.jobs) { job in
+                    JobRowView(job: job)
                         .padding()
+                    Divider()
                 }
             }
             .background(Color(.secondarySystemBackground), ignoresSafeAreaEdges: .all)
@@ -24,34 +27,42 @@ struct JobsView: View {
 
 extension JobsView  {
     struct JobRowView: View {
+        @State var job: Job
+        @State private var bookmarked = false
+    
         var body: some View {
             VStack(alignment: .leading) {
                
                 HStackLayout(alignment: .top) {
-                    Text("Investor Relations Intern")
+                    Text(job.title)
                         .font(.callout)
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Image(systemName: "bookmark")
+                    Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
+                        .onTapGesture {
+                            bookmarked.toggle()
+                        }
                 }
                 
                 
-                Text("One Acre Fund")
+                Text(job.company.name)
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
                 
-                Text("Posted: \("06/04/2023")")
+                Text("Posted: \(job.postedDate.formatted())")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
-                HStack(spacing: 2) {
-                    Image("verify")
-                    Text("Verified")
+                if job.verified {
+                    HStack(spacing: 2) {
+                        Image("verify")
+                        Text("Verified")
+                    }
+                    .font(.caption)
+                    .foregroundColor(.green)
                 }
-                .font(.caption)
-                .foregroundColor(.green)
                 //                Text("Kigali, Kigali City, Rwanda (On-site")
                 //                Text("**JOB POSITION AT RWANDA REVENUE AUTHORITY🇷🇼**\n\nThe Rwanda Revenue Authority has begin its 2023/2024 staff recuritment\n\nInterested Applicants Must Have Educational Qualification.\n\n**Apply Here**\n\(Text("https://bit.ly/RRA-Recruitment-2023"))")
             }

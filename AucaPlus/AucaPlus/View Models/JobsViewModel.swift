@@ -7,16 +7,33 @@
 
 import Foundation
 
-final class JobsViewModel: ObservableObject {
-    @Published var jobs: [Job] = []
+final class JobsStore: ObservableObject {
+    @Published var jobs: [Job] = Array(repeating: Job.example, count: 10)
 }
 
-struct Job {
-    let id: UUID
+
+typealias Codifiable = Identifiable & Codable
+struct Job: Codifiable {
+    var id: String { UUID().uuidString }
+    let title: String
     let company: Company
+    let postedDate: Date
+    
+    let verified: Bool
 }
 
-struct Company {
+extension Job {
+    static let example = Job(title: "Investor Relations Intern",
+                             company: .example,
+                             postedDate: Date(),
+                             verified: Bool.random())
+}
+
+struct Company: Codifiable {
     let id: Int
     let name: String
+}
+
+extension Company {
+    static let example = Company(id: 1, name: "One Acre Fund")
 }
