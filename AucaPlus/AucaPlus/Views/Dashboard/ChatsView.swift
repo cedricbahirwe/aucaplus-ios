@@ -13,8 +13,10 @@ struct ChatsView: View {
     }
 }
 
+#if DEBUG
 struct ChatsView_Previews: PreviewProvider {
     static var previews: some View {
         ChatsView()
     }
 }
+#endif

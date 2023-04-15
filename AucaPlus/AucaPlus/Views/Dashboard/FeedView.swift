@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct FeedView: View {
-    
+    @StateObject private var feedStore = FeedStore()
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(0 ..< 5) { item in
-                        VStack(spacing: 3) {
-                            FeedRowView(item: News.examples)
-                            Divider()
+                ScrollViewReader { proxy in
+                    VStack(spacing: 0) {
+                        ForEach(feedStore.news) { newsItem in
+                            VStack(spacing: 3) {
+                                FeedRowView(item: newsItem)
+                                Divider()
+                            }
+                            .id(newsItem.id)
                         }
                     }
-                    
-                    Button("You've reached the end for now!, Go Up\(Image(systemName: "arrow.up"))") { }
-                        .underline()
                 }
             }
             .navigationBarTitle("Feed")
@@ -42,7 +42,8 @@ struct FeedView_Previews: PreviewProvider {
 #endif
 
 struct FeedRowView: View {
-    let item: News
+    @State var item: News
+    @State private var liked = false
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
@@ -86,8 +87,13 @@ struct FeedRowView: View {
                 
                 HStack {
                     HStack(spacing: 2) {
-                        Image(systemName: "heart")
+                        Image(systemName: liked ? "heart.fill" : "heart")
+                            .foregroundColor(liked ? .red : .secondary)
                         Text("\(item.likes)")
+                    }
+                    .onTapGesture {
+                        liked ? item.dislike() : item.like()
+                        liked.toggle()
                     }
                     
                     Spacer()
@@ -144,7 +150,15 @@ struct News: Identifiable, Codable {
     
     var views: Int
     
-    static let examples = News(imageURL: "auca.logo",
+    mutating func like() {
+        likes += 1
+    }
+    
+    mutating func dislike() {
+        likes -= 1
+    }
+    
+    static let example = News(imageURL: "auca.logo",
                                schoolName: "AUCA",
                                schoolSubtitle: "Adventist University of Central Africa",
                                description: News.description1,

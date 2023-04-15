@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */; };
+		CB03EF5029EB3D6D006EC539 /* JobsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */; };
+		CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */; };
+		CB03EF5429EB3D78006EC539 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */; };
+		CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5929EB41E1006EC539 /* AucaUser.swift */; };
+		CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5B29EB41E8006EC539 /* AucaUserType.swift */; };
+		CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5D29EB41F5006EC539 /* AucaStudent.swift */; };
+		CB03EF6029EB41FC006EC539 /* AucaLecturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5F29EB41FC006EC539 /* AucaLecturer.swift */; };
+		CB03EF6229EB4209006EC539 /* AucaStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF6129EB4209006EC539 /* AucaStaff.swift */; };
 		CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */; };
 		CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913DC29D77CB6007BC45C /* ContentView.swift */; };
 		CB1913DF29D77CB7007BC45C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB1913DE29D77CB7007BC45C /* Assets.xcassets */; };
@@ -46,6 +55,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewModel.swift; sourceTree = "<group>"; };
+		CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
+		CB03EF5929EB41E1006EC539 /* AucaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaUser.swift; sourceTree = "<group>"; };
+		CB03EF5B29EB41E8006EC539 /* AucaUserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaUserType.swift; sourceTree = "<group>"; };
+		CB03EF5D29EB41F5006EC539 /* AucaStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaStudent.swift; sourceTree = "<group>"; };
+		CB03EF5F29EB41FC006EC539 /* AucaLecturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaLecturer.swift; sourceTree = "<group>"; };
+		CB03EF6129EB4209006EC539 /* AucaStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaStaff.swift; sourceTree = "<group>"; };
 		CB1913D729D77CB6007BC45C /* AucaPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AucaPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusApp.swift; sourceTree = "<group>"; };
 		CB1913DC29D77CB6007BC45C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +114,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB03EF4C29EB3CC9006EC539 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */,
+				CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */,
+				CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */,
+				CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		CB03EF5529EB4073006EC539 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CB03EF5829EB41D9006EC539 /* AucaUser */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB03EF5829EB41D9006EC539 /* AucaUser */ = {
+			isa = PBXGroup;
+			children = (
+				CB03EF5929EB41E1006EC539 /* AucaUser.swift */,
+				CB03EF5B29EB41E8006EC539 /* AucaUserType.swift */,
+				CB03EF5D29EB41F5006EC539 /* AucaStudent.swift */,
+				CB03EF5F29EB41FC006EC539 /* AucaLecturer.swift */,
+				CB03EF6129EB4209006EC539 /* AucaStaff.swift */,
+			);
+			path = AucaUser;
+			sourceTree = "<group>";
+		};
 		CB1913CE29D77CB6007BC45C = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +170,8 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CB03EF5529EB4073006EC539 /* Models */,
+				CB03EF4C29EB3CC9006EC539 /* View Models */,
 				CBE0D13B29DA099D00AD2C58 /* Extensions */,
 				CB19141529D78BD7007BC45C /* Views */,
 				CB19140A29D77D6C007BC45C /* OnboardingView.swift */,
@@ -335,15 +386,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB03EF6229EB4209006EC539 /* AucaStaff.swift in Sources */,
 				CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */,
 				CB1913E429D77CB7007BC45C /* Persistence.swift in Sources */,
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
 				CBE0D14629DA0CB900AD2C58 /* ChatsView.swift in Sources */,
+				CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */,
+				CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */,
+				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
+				CB03EF5429EB3D78006EC539 /* ChatsViewModel.swift in Sources */,
 				CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */,
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,
+				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
+				CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */,
+				CB03EF5029EB3D6D006EC539 /* JobsViewModel.swift in Sources */,
 				CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */,
 				CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */,
+				CB03EF6029EB41FC006EC539 /* AucaLecturer.swift in Sources */,
 				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
