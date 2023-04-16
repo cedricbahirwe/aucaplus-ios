@@ -21,6 +21,16 @@ struct JobsView: View {
             }
             .background(Color(.secondarySystemBackground), ignoresSafeAreaEdges: .all)
             .navigationTitle("Opportunities")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+//                        showBookmarks = true
+                    } label: {
+                        Image(systemName: "bookmark.circle")
+                    }
+
+                }
+            }
         }
     }
 }
@@ -46,7 +56,7 @@ extension JobsView  {
                 }
                 
                 
-                Text(job.company.name)
+                Text("By \(Text(job.company.name).underline())")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
@@ -63,8 +73,6 @@ extension JobsView  {
                     .font(.caption)
                     .foregroundColor(.green)
                 }
-                //                Text("Kigali, Kigali City, Rwanda (On-site")
-                //                Text("**JOB POSITION AT RWANDA REVENUE AUTHORITY🇷🇼**\n\nThe Rwanda Revenue Authority has begin its 2023/2024 staff recuritment\n\nInterested Applicants Must Have Educational Qualification.\n\n**Apply Here**\n\(Text("https://bit.ly/RRA-Recruitment-2023"))")
             }
         }
     }

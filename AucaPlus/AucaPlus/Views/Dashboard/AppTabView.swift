@@ -17,27 +17,31 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Feed", systemImage: "house")
                 }
+                .tag(AppTab.home)
             
             ChatsView()
                 .tabItem {
                     Label("Chats", systemImage: "bubble.left.and.bubble.right")
                         .symbolVariant(SwiftUI.SymbolVariants.square)
                 }
+                .tag(AppTab.chats)
             
             JobsView()
                 .tabItem {
                     Label("Opportunities", systemImage: "bag.circle")
                 }
+                .tag(AppTab.jobs)
             
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+                .tag(AppTab.settings)
         }
     }
     
     enum AppTab: String {
-        case home, chat, job, settings
+        case home, chats, jobs, settings
     }
 }
 
