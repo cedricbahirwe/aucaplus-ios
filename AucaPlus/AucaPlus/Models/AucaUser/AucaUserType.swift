@@ -9,7 +9,10 @@ import Foundation
 
 enum AucaUserType: Codable {
     case student
-    case teacher
+    
+    case lecturer
+    
     case staff
+    
     case other
 }

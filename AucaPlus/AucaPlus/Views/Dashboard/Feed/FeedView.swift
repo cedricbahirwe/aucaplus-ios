@@ -35,6 +35,7 @@ struct FeedView: View {
                     filterMenu
                     
                     addButton
+                    
                 }
             }
         }

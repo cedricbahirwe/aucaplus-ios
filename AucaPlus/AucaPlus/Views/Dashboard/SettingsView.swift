@@ -43,10 +43,22 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Button("Log Out", role: .destructive) {
-                        isLoggedIn = false
+                   
+                    
+                    
+                    NavigationLink {
+                        FeedBookmarksView()
+                    } label: {
+                        Label("Bookmarks", systemImage: "bookmark")
                     }
+                    .foregroundColor(.primary)
+                    
                 }
+                
+                Button("Sign Out", role: .destructive) {
+                    isLoggedIn = false
+                }
+                
             }
             .navigationTitle("Settings")
         }
