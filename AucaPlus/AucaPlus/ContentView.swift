@@ -13,16 +13,14 @@ struct ContentView: View {
     
     @AppStorage("isLoggedIn")
     private var isLoggedIn: Bool = false
-    
-    @StateObject private var authVM = AuthenticationViewModel()
-    
+        
     var body: some View {
         if isLoggedIn {
             AppTabView()
         } else {
             NavigationStack {
                 ZStack {
-                    AuthenticationView(authVM: authVM)
+                    AuthenticationView()
                     
                     if showingOnBoarding {
                         OnboardingView()

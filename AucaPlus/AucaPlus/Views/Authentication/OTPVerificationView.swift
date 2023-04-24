@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OTPVerificationView: View {
     @ObservedObject var authVM: AuthenticationViewModel
+    @State private var isLoggingIn = false
     @State private var otp = ""
     @State private var previousOtp = ""
     @State private var elapsedTime: Int = 0
@@ -55,12 +56,27 @@ struct OTPVerificationView: View {
                 
             }
             
+            if isLoggingIn {
+                ProgressView()
+                    .tint(.accentColor)
+            }
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding()
+        .disabled(isLoggedIn)
         .onReceive(timer) { _ in
             updateCounter()
+        }
+    }
+    
+    private func login() {
+        otp = previousOtp
+        hideKeyboard()
+        isLoggingIn = true
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            isLoggingIn = false
+            isLoggedIn = true
         }
     }
     
@@ -68,12 +84,13 @@ struct OTPVerificationView: View {
         // Make sure they are not equal
         guard previousOtp != newOTP else { return }
         
+        
+        print("The newOTP is", newOTP, newOTP.count)
+        print("The previousOtp is", previousOtp, previousOtp.count)
+        print("The currentOtp is", otp, otp.count)
+        
         // Make sure they are 6 digits
-        guard newOTP.count < 12 else {
-            otp = previousOtp
-            isLoggedIn = true
-            return
-        }
+        guard newOTP.count < 12 else { return }
         
         // Addition
         if newOTP.last != " " && previousOtp.count < newOTP.count {
@@ -86,6 +103,10 @@ struct OTPVerificationView: View {
             previousOtp = String(newOTP.dropLast())
             
             otp = previousOtp
+        }
+        
+        if previousOtp.count == 12 {
+            login()
         }
     }
     

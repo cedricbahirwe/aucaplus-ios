@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AuthenticationView: View {
-    @ObservedObject var authVM: AuthenticationViewModel
+    @StateObject private var authVM = AuthenticationViewModel()
+
+//    @ObservedObject var authVM: AuthenticationViewModel
     
     enum FocusedField {
         case countryCode, phone
@@ -195,7 +197,7 @@ extension AuthenticationView {
 #if DEBUG
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView(authVM: AuthenticationViewModel())
+        AuthenticationView()
     }
 }
 #endif

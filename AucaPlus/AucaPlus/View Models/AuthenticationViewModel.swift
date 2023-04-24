@@ -8,10 +8,10 @@
 import Foundation
 
 final class AuthenticationViewModel: ObservableObject {
-    @Published var authModel = AuthModel()
-    
+    @Published var authModel = AuthModel()    
+}
 
-    
+extension AuthenticationViewModel {
     struct AuthModel {
         var countryCode = "250"
         var phone = ""
