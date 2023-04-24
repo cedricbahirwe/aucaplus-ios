@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FeedView: View {
     @StateObject private var feedStore = FeedStore()
+    @State private var goToCreator = false
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -16,7 +18,7 @@ struct FeedView: View {
                     VStack(spacing: 0) {
                         ForEach(feedStore.news) { newsItem in
                             VStack(spacing: 3) {
-                                FeedRowView(item: newsItem)
+                                FeedRowView(itemVM: .init(item: newsItem))
                                 Divider()
                             }
                             .id(newsItem.id)
@@ -26,6 +28,43 @@ struct FeedView: View {
             }
             .navigationBarTitle("Feed")
             .toolbar(.visible, for: .navigationBar)
+            .navigationDestination(isPresented: $goToCreator) {
+                PostCreatorView()
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    filterMenu
+                    
+                    addButton
+                }
+            }
+        }
+    }
+    
+    private var filterMenu: some View {
+        Menu {
+            Button {
+                
+            } label: {
+                Label("Verified", systemImage: "checkmark.seal.fill")
+            }
+            
+            Button {
+                
+            } label: {
+                Label("For Me", systemImage: "person.badge.shield.checkmark.fill")
+            }
+            
+        } label: {
+            Image(systemName: "line.3.horizontal.decrease.circle")
+        }
+    }
+    
+    private var addButton: some View {
+        Button {
+            goToCreator.toggle()
+        } label: {
+            Image(systemName: "plus")
         }
     }
 }
@@ -33,16 +72,18 @@ struct FeedView: View {
 #if DEBUG
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            FeedView()
-        }
-        .previewLayout(SwiftUI.PreviewLayout.fixed(width: 416, height: 1000))
+        FeedView()
+            .previewLayout(SwiftUI.PreviewLayout.fixed(width: 416, height: 1000))
     }
 }
 #endif
 
 struct FeedRowView: View {
-    @State var item: News
+    @StateObject var itemVM: FeedItemViewModel
+    
+    var item: News {
+        itemVM.item
+    }
     @State private var liked = false
     var body: some View {
         VStack (alignment: .leading) {
@@ -92,7 +133,7 @@ struct FeedRowView: View {
                         Text("\(item.likes)")
                     }
                     .onTapGesture {
-                        liked ? item.dislike() : item.like()
+                        liked ? itemVM.dislike() : itemVM.like()
                         liked.toggle()
                     }
                     
@@ -176,4 +217,20 @@ struct News: Identifiable, Codable {
     }()
     
     
+}
+
+final class FeedItemViewModel: ObservableObject {
+    @Published var item: News
+    
+    init(item: News) {
+        self.item = item
+    }
+    
+    func like() {
+        item.like()
+    }
+    
+    func dislike() {
+        item.dislike()
+    }
 }
