@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var animatingOnBoarding = true
-    @State private var showingBoarding = true
+    @State private var showingOnBoarding = true
     
     @AppStorage("isLoggedIn")
     private var isLoggedIn: Bool = false
+    
+    @StateObject private var authVM = AuthenticationViewModel()
     
     var body: some View {
         if isLoggedIn {
@@ -20,9 +22,9 @@ struct ContentView: View {
         } else {
             NavigationStack {
                 ZStack {
-                    AuthenticationView()
+                    AuthenticationView(authVM: authVM)
                     
-                    if showingBoarding {
+                    if showingOnBoarding {
                         OnboardingView()
                             .opacity(animatingOnBoarding ? 1 : 0)
                             .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
@@ -31,7 +33,7 @@ struct ContentView: View {
                                     animatingOnBoarding = false
                                 }
                                 DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
-                                    showingBoarding = false
+                                    showingOnBoarding = false
                                 }
                             }
                     }

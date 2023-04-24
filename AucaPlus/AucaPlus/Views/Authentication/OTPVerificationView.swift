@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OTPVerificationView: View {
-    let phoneNumber: String
+    @ObservedObject var authVM: AuthenticationViewModel
     @State private var otp = ""
     @State private var previousOtp = ""
     @State private var elapsedTime: Int = 0
@@ -20,10 +20,10 @@ struct OTPVerificationView: View {
     
     var body: some View {
         VStack {
-            AuthenticationView().titleView
+            AuthenticationView.TitleView(title: "Verifying your number")
             
             VStack(spacing: 20) {
-                Text("Waiting to automatically detect an SMS sent\nto **\(phoneNumber)**. \(Text("Wrong number?").foregroundColor(.accentColor))")
+                Text("Waiting to automatically detect an SMS sent\nto **\(authVM.authModel.formattedPhone())**. \(Text("Wrong number?").foregroundColor(.accentColor))")
                     .multilineTextAlignment(.center)
                 
                 
@@ -77,19 +77,15 @@ struct OTPVerificationView: View {
         
         // Addition
         if newOTP.last != " " && previousOtp.count < newOTP.count {
-            print("Addition")
             otp = newOTP + " "
             
             previousOtp = otp
-            
         }
         // Removal
         else {
-            print("Removal")
             previousOtp = String(newOTP.dropLast())
             
             otp = previousOtp
-            
         }
     }
     
@@ -110,8 +106,10 @@ struct OTPVerificationView: View {
     }
 }
 
+#if DEBUG
 struct OTPVerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        OTPVerificationView(phoneNumber: "+250 782 600000")
+        OTPVerificationView(authVM: AuthenticationViewModel())
     }
 }
+#endif

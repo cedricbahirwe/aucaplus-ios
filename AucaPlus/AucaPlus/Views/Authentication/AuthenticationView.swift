@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    @ObservedObject var authVM: AuthenticationViewModel
+    
     enum FocusedField {
         case countryCode, phone
         case email, password
     }
-    @State private var authModel = AuthModel()
     @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
     @State private var goToOTPView = false
@@ -21,24 +22,25 @@ struct AuthenticationView: View {
     @AppStorage("isLoggedIn")
     private var isLoggedIn: Bool = false
     
-    var alertMessage: String {
-        authModel.signingUpWithEmail ?
+    private var alertMessage: String {
+        authVM.authModel.signingUpWithEmail ?
         "Please check your email and/or password." :
         "Please enter your phone number."
     }
     
     var body: some View {
         VStack {
-            titleView
+            TitleView(title: "Enter your phone number")
+            
             VStack(spacing: 20) {
                 
                 Text("AUCA+ will need to verify your phone number.")
                     .multilineTextAlignment(.center)
                     .fixedSize()
 
-                if authModel.signingUpWithEmail {
+                if authVM.authModel.signingUpWithEmail {
                     VStack(spacing: 50) {
-                        TextField("email", text: $authModel.email)
+                        TextField(String("email@school.com"), text: $authVM.authModel.email)
                             .focused($focusedField, equals: .email)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
@@ -48,7 +50,7 @@ struct AuthenticationView: View {
                                 Color.accentColor.frame(height: 1)
                             }
                         
-                        SecureField("password", text: $authModel.password)
+                        SecureField("password", text: $authVM.authModel.password)
                             .focused($focusedField, equals: .password)
                             .textContentType(.newPassword)
                             .padding(.bottom)
@@ -61,7 +63,7 @@ struct AuthenticationView: View {
                         HStack {
                             Text("+")
                             
-                            TextField("250", text: $authModel.countryCode)
+                            TextField("250", text: $authVM.authModel.countryCode)
                                 .focused($focusedField, equals: .countryCode)
                                 .frame(width: 40)
                                 .keyboardType(.numberPad)
@@ -71,7 +73,7 @@ struct AuthenticationView: View {
                             Color.accentColor.frame(height: 1)
                         }
                         
-                        TextField("phone number", text: $authModel.phone)
+                        TextField("phone number", text: $authVM.authModel.phone)
                             .focused($focusedField, equals: .phone)
                             .keyboardType(.numberPad)
                             .textContentType(.telephoneNumber)
@@ -86,13 +88,12 @@ struct AuthenticationView: View {
                 }
                 Button {
                     withAnimation(.spring()) {
-                        authModel.signingUpWithEmail.toggle()
+                        authVM.authModel.signingUpWithEmail.toggle()
                     }
                 } label: {
-                    Text("Use \(authModel.signingUpWithEmail ? "phone number" : "email") instead")
+                    Text("Use \(authVM.authModel.signingUpWithEmail ? "phone number" : "email") instead")
                         .underline()
                 }
-                
             }
             .onSubmit {
                 switch focusedField {
@@ -111,8 +112,8 @@ struct AuthenticationView: View {
                 Spacer()
                 
                 Button {
-                    if authModel.isValid() {
-                        if authModel.signingUpWithEmail {
+                    if authVM.authModel.isValid() {
+                        if authVM.authModel.signingUpWithEmail {
                             isLoggedIn = true
                         } else {
                             showingConfirmationAlert.toggle()
@@ -145,10 +146,10 @@ struct AuthenticationView: View {
                 goToOTPView.toggle()
             }
         }, message: {
-            Text("**\(authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
+            Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
         })
         .navigationDestination(isPresented: $goToOTPView) {
-            OTPVerificationView(phoneNumber: authModel.formattedPhone())
+            OTPVerificationView(authVM: authVM)
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
@@ -158,50 +159,30 @@ struct AuthenticationView: View {
             }
         }
     }
-
-    struct AuthModel {
-        var countryCode = "250"
-        var phone = ""
-        
-        var email = ""
-        var password = ""
-        
-        var signingUpWithEmail = true
-        
-        func formattedPhone() -> String {
-            return "+\(countryCode) \(phone)"
-        }
-        
-        func isValid() -> Bool {
-            if signingUpWithEmail {
-                let isEmailValid = email.isValidEmail()
-                let isPasswordValid = password.trimmingCharacters(in: .whitespaces).count >= 6
-                return isEmailValid && isPasswordValid
-            } else {
-                let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
-                let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
-                return isCountryValid && isPhoneValid
-            }
-        }
-    }
 }
 
 extension AuthenticationView {
-    var titleView: some View {
-        Text("Enter your phone number")
-            .frame(maxWidth: .infinity)
-            .overlay(alignment: .trailing) {
-                NavigationLink {
-                    AuthHelpView()
-                } label: {
-                    Image(systemName: "questionmark.circle")
-                        .contentShape(Rectangle())
+    struct TitleView: View {
+        let title: String
+        init(title: String) {
+            self.title = title
+        }
+        var body: some View {
+            Text(title)
+                .frame(maxWidth: .infinity)
+                .overlay(alignment: .trailing) {
+                    NavigationLink {
+                        AuthHelpView()
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                            .contentShape(Rectangle())
+                    }
                 }
-            }
-            .font(.title2)
-            .fontWeight(.bold)
-            .foregroundColor(.accentColor)
-            .padding(.vertical)
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundColor(.accentColor)
+                .padding(.vertical)
+        }
     }
     
     struct AuthHelpView: View {
@@ -210,8 +191,11 @@ extension AuthenticationView {
         }
     }
 }
+
+#if DEBUG
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView()
+        AuthenticationView(authVM: AuthenticationViewModel())
     }
 }
+#endif
