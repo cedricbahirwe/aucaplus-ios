@@ -32,6 +32,9 @@
 		CB43EF9A29F70A52000EE752 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */; };
 		CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9B29F71287000EE752 /* View+Extensions.swift */; };
 		CB43EFA029F718BB000EE752 /* PostCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */; };
+		CB43EFA329F7196A000EE752 /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA229F7196A000EE752 /* FeedRowView.swift */; };
+		CB43EFA629F7199B000EE752 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA529F7199B000EE752 /* News.swift */; };
+		CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */; };
 		CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */; };
 		CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */; };
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
@@ -87,6 +90,9 @@
 		CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		CB43EF9B29F71287000EE752 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreatorView.swift; sourceTree = "<group>"; };
+		CB43EFA229F7196A000EE752 /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
+		CB43EFA529F7199B000EE752 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 		CB03EF5529EB4073006EC539 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB43EFA429F71994000EE752 /* Post */,
 				CB03EF5829EB41D9006EC539 /* AucaUser */,
 			);
 			path = Models;
@@ -244,6 +251,24 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		CB43EFA129F71960000EE752 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CBE0D14329DA0CA700AD2C58 /* FeedView.swift */,
+				CB43EFA229F7196A000EE752 /* FeedRowView.swift */,
+				CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CB43EFA429F71994000EE752 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				CB43EFA529F7199B000EE752 /* News.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		CBE0D13B29DA099D00AD2C58 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */,
-				CBE0D14329DA0CA700AD2C58 /* FeedView.swift */,
+				CB43EFA129F71960000EE752 /* Feed */,
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */,
 				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
@@ -413,6 +438,9 @@
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
 				CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */,
 				CB03EF5029EB3D6D006EC539 /* JobsViewModel.swift in Sources */,
+				CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */,
+				CB43EFA629F7199B000EE752 /* News.swift in Sources */,
+				CB43EFA329F7196A000EE752 /* FeedRowView.swift in Sources */,
 				CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */,
 				CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */,
 				CB03EF6029EB41FC006EC539 /* AucaLecturer.swift in Sources */,
