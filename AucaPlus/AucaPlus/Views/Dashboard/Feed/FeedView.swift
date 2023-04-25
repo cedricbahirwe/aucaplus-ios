@@ -32,10 +32,8 @@ struct FeedView: View {
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    filterMenu
-                    
+                    filterMenu                    
                     addButton
-                    
                 }
             }
         }

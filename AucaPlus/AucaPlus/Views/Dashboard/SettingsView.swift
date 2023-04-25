@@ -43,16 +43,12 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                   
-                    
-                    
                     NavigationLink {
                         FeedBookmarksView()
                     } label: {
                         Label("Bookmarks", systemImage: "bookmark")
                     }
                     .foregroundColor(.primary)
-                    
                 }
                 
                 Button("Sign Out", role: .destructive) {
