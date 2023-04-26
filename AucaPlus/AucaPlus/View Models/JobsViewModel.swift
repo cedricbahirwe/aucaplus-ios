@@ -12,7 +12,6 @@ final class JobsStore: ObservableObject {
 }
 
 
-typealias Codifiable = Identifiable & Codable
 struct Job: Codifiable {
     var id: String { UUID().uuidString }
     let title: String

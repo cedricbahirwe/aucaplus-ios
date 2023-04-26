@@ -16,18 +16,27 @@ struct FeedView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: 0) {
-                        ForEach(feedStore.news) { newsItem in
+                        ForEach(feedStore.items, id: \.id) { item in
                             VStack(spacing: 3) {
-                                FeedRowView(itemVM: .init(item: newsItem))
+                                if var news = item as? News {
+                                    NewsRowView(news)
+                                } else if let resource = item as? RemoteResource {
+                                    ResourceRowView()
+                                } else if let announcement = item
+                                            as? Announcement {
+                                    AnnouncementRowView()
+                                }
+                                
                                 Divider()
                             }
-                            .id(newsItem.id)
+                            .id(item.id)
                         }
                     }
                 }
             }
             .fullScreenCover(isPresented: $goToCreator) {
                 PostCreatorView()
+                    .environmentObject(feedStore)
             }
             .navigationBarTitle("Feed")
             .toolbar {
