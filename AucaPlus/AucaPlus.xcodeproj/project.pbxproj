@@ -30,6 +30,7 @@
 		CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */; };
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
 		CB1923D929FEEE9A008873F8 /* AuthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */; };
+		CB1923DE29FF04C3008873F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923DD29FF04C3008873F8 /* Constants.swift */; };
 		CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */; };
 		CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827629F9938500F436C3 /* NewsItemViewModel.swift */; };
 		CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827829F99B4C00F436C3 /* NewsRowView.swift */; };
@@ -94,6 +95,7 @@
 		CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfoView.swift; sourceTree = "<group>"; };
+		CB1923DD29FF04C3008873F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreationViewModel.swift; sourceTree = "<group>"; };
 		CB42827629F9938500F436C3 /* NewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewModel.swift; sourceTree = "<group>"; };
 		CB42827829F99B4C00F436C3 /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
@@ -197,12 +199,11 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CB1923DA29FF04AE008873F8 /* Helper */,
 				CB03EF5529EB4073006EC539 /* Models */,
 				CB03EF4C29EB3CC9006EC539 /* View Models */,
 				CBE0D13B29DA099D00AD2C58 /* Extensions */,
 				CB19141529D78BD7007BC45C /* Views */,
-				CB19140A29D77D6C007BC45C /* OnboardingView.swift */,
-				CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */,
 				CB19141029D77FE1007BC45C /* Helper Views */,
 				CB1913DE29D77CB7007BC45C /* Assets.xcassets */,
 				CB1913E329D77CB7007BC45C /* Persistence.swift */,
@@ -248,6 +249,8 @@
 		CB19141529D78BD7007BC45C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB19140A29D77D6C007BC45C /* OnboardingView.swift */,
+				CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */,
 				CBE0D13E29DA0C8800AD2C58 /* Dashboard */,
 				CB19141629D78BDD007BC45C /* Authentication */,
 				CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */,
@@ -263,6 +266,14 @@
 				CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		CB1923DA29FF04AE008873F8 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CB1923DD29FF04C3008873F8 /* Constants.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		CB43EFA129F71960000EE752 /* Feed */ = {
@@ -472,6 +483,7 @@
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
+				CB1923DE29FF04C3008873F8 /* Constants.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

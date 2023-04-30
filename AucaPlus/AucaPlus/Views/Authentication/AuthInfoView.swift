@@ -113,6 +113,11 @@ struct AuthInfoView: View {
         }, message: {
             Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
         })
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: Delays.authFieldFocusTime) {
+                focusedField = .firstName
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 Button("OK") {
