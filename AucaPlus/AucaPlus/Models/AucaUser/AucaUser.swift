@@ -18,7 +18,7 @@ protocol AucaUser: Identifiable, Codable {
     
     var type: AucaUserType { get set }
     
-    var about: String { get set }
+    var about: String? { get set }
     
     var picture: URL? { get set }
     

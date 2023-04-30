@@ -31,11 +31,11 @@ struct SettingsView: View {
                                 Text(user.completeName())
                                     .font(.title2)
                                 
-                                Text(user.about)
-                                    .font(.callout)
-                                    .foregroundColor(.secondary)
-                                
-                              
+                                if let headline = user.about {
+                                    Text(headline)
+                                        .font(.callout)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

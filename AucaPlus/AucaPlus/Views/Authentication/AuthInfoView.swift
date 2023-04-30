@@ -12,11 +12,9 @@ struct AuthInfoView: View {
     
     enum FocusedField {
         case firstName, lastName
-        case email, type
+        case email, type, about
     }
-    @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
-    @State private var goToOTPView = false
     @FocusState private var focusedField: FocusedField?
     @State private var userModel = UIModel()
     
@@ -24,40 +22,67 @@ struct AuthInfoView: View {
     private var isLoggedIn: Bool = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             AuthenticationView.TitleView(title: "Almost there!")
-            
+
             VStack(spacing: 20) {
-                Text("Fill in the form below to get in!.")
+                Text("Fill in the form below to get in!")
                     .multilineTextAlignment(.center)
                     .fixedSize()
                     .padding(.vertical)
-                
+
                 HStack(spacing: 15) {
-                    
+
                     ZFieldStack("First Name", text: $userModel.firstName)
                         .textContentType(.givenName)
                         .focused($focusedField, equals: .firstName)
-                        .submitLabel(.next)
-                    
+
                     ZFieldStack("Last Name", text: $userModel.lastName)
                         .textContentType(.familyName)
                         .focused($focusedField, equals: .lastName)
-                        .submitLabel(.next)
                 }
-                
+                .submitLabel(.next)
+
                 ZFieldStack("Email(Optional)", text: $userModel.email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .focused($focusedField, equals: .email)
                     .submitLabel(.next)
-                
+
+                ZFieldStack("Headline(Optional)",
+                            axis: .vertical(lines: 5),
+                            text: $userModel.about)
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
+                    .focused($focusedField, equals: .about)
+                    .submitLabel(.next)
+
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Choose Account Type:")
+                        Spacer()
+                        Picker("",
+                               selection: $userModel.type) {
+                            ForEach(AucaUserType.allCases, id: \.self) { type in
+                                Text(type.rawValue.capitalized)
+                            }
+                        }
+                               .pickerStyle(.menu)
+                               .background(.regularMaterial)
+                               .cornerRadius(5)
+
+                    }
+                    Text(userModel.type.description)
+                        .font(.caption)
+                        .fontDesign(.rounded)
+                        .foregroundColor(.secondary)
+                }
             }
             .onSubmit(handleSubmission)
-            
+
             VStack {
                 Spacer()
-                
+
                 Button {
                     isLoggedIn = true
                 } label: {
@@ -68,10 +93,6 @@ struct AuthInfoView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
-                .alert("Please enter your phone number.",
-                       isPresented: $showingValidationAlert,
-                       actions: { })
-                
             }
         }
         .padding(.horizontal, 25)
@@ -83,11 +104,11 @@ struct AuthInfoView: View {
                 }
         )
         .alert("You entered the phone number:",
-               isPresented: $showingConfirmationAlert,
+               isPresented: $showingValidationAlert,
                actions: {
-            Button("Edit") { }
+            Button("Cancel", role: .cancel) { }
             Button("OK") {
-                goToOTPView.toggle()
+                
             }
         }, message: {
             Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
@@ -121,7 +142,9 @@ private extension AuthInfoView {
     struct UIModel {
         var firstName = ""
         var lastName = ""
+        var type = AucaUserType.student
         var email = ""
+        var about = ""
     }
 }
 
@@ -136,22 +159,44 @@ struct AuthInfoView_Previews: PreviewProvider {
 struct ZFieldStack: View {
     private let title: LocalizedStringKey
     private let placeholder: LocalizedStringKey
+    private let axis: Axis
     @Binding var text: String
+    
+    enum Axis {
+        case horizontal
+        case vertical(maxHeight: CGFloat? = nil, lines: Int? = nil)
+    }
     
     init(_ title: LocalizedStringKey,
          _ placeholder: LocalizedStringKey = "",
+         axis: Axis = .horizontal,
          text: Binding<String>) {
         
         self.title = title
         self.placeholder = placeholder
+        self.axis = axis
         self._text = text
+    }
+    
+    
+    @ViewBuilder
+    var fieldView: some View {
+        switch axis {
+        case .horizontal:
+            TextField("", text: $text)
+                .padding(10)
+                .frame(height: 45 )
+        case .vertical(let maxHeight, let lines):
+            TextField("", text: $text, axis: .vertical)
+                .padding(10)
+                .frame(minHeight: 45, maxHeight: maxHeight)
+                .lineLimit(lines)
+        }
     }
     
     var body: some View {
         VStack {
-            TextField("", text: $text)
-                .padding(10)
-                .frame(height: 45)
+            fieldView
                 .overlay(content: {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.secondary, lineWidth: 1)
@@ -163,7 +208,7 @@ struct ZFieldStack: View {
                         .foregroundColor(.secondary)
                         .padding(.horizontal, 8)
                         .background(.background)
-                        .offset(x: 0, y: -10)
+                        .offset(x: 0, y: -8)
                 }
         }
     }
