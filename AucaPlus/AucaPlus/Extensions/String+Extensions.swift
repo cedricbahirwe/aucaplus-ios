@@ -26,4 +26,42 @@ extension String {
             return false
         }
     }
+    
+    func removingWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
+    }
+    
+    func split(by length: Int) -> [String] {
+        var startIndex = self.startIndex
+        var results = [Substring]()
+        
+        while startIndex < self.endIndex {
+            let endIndex = self.index(startIndex, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            results.append(self[startIndex..<endIndex])
+            startIndex = endIndex
+        }
+        
+        return results.map { String($0) }
+    }
+    
+    static func formattedCDIPhoneNumber(from string: String) -> String {
+        let components: Int = 9
+        
+        let compactedSubStringNumber = string.removingWhitespaces()
+            .filter({ $0.isNumber })
+        
+        var compactedSubString: String
+        
+        if compactedSubStringNumber.count > 10 {
+            compactedSubString = String(compactedSubStringNumber.suffix(components))
+        } else {
+            compactedSubString = String(compactedSubStringNumber.prefix(components))
+        }
+        
+        let newString = String(compactedSubString)
+            .split(by: 3)
+            .joined(separator: " ")
+        
+        return newString
+    }
 }

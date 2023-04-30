@@ -12,7 +12,6 @@ struct AuthenticationView: View {
     
     enum FocusedField {
         case countryCode, phone
-        case email, password
     }
     @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
@@ -62,7 +61,7 @@ struct AuthenticationView: View {
                 
             }
         }
-        .padding(25)
+        .padding(.horizontal, 25)
         .background(
             Color(.systemBackground)
                 .onTapGesture {
@@ -94,14 +93,7 @@ struct AuthenticationView: View {
 
 private extension AuthenticationView {
     func handleSubmission() {
-        switch focusedField {
-        case .countryCode:
-            focusedField = .phone
-        case .email:
-            focusedField = .password
-        default:
-            focusedField = nil
-        }
+        focusedField = (focusedField == .countryCode) ? .phone : nil
     }
     
     var phoneFieldContainer: some View {
@@ -113,6 +105,7 @@ private extension AuthenticationView {
                     .focused($focusedField, equals: .countryCode)
                     .frame(width: 40)
                     .keyboardType(.numberPad)
+                    .disabled(true)
             }
             .padding(.bottom, 5)
             .overlay(alignment: .bottom) {
@@ -127,9 +120,13 @@ private extension AuthenticationView {
                 .overlay(alignment: .bottom) {
                     Color.accentColor.frame(height: 1)
                 }
+                .onChange(of: authVM.authModel.phone, perform: handlePhoneChange)
         }
         .padding(.horizontal, 40)
-
+    }
+    
+    private func handlePhoneChange(_ newValue: String) {
+        authVM.authModel.phone = String.formattedCDIPhoneNumber(from: newValue)
     }
 }
 
