@@ -14,9 +14,9 @@ struct AuthInfoView: View {
         case firstName, lastName
         case email, about
     }
+    
     @State private var showingValidationAlert = false
     @FocusState private var focusedField: FocusedField?
-    @State private var userModel = UIModel()
     
     @AppStorage(Storagekeys.isLoggedIn)
     private var isLoggedIn: Bool = false
@@ -33,17 +33,17 @@ struct AuthInfoView: View {
 
                 HStack(spacing: 15) {
 
-                    ZFieldStack("First Name", text: $userModel.firstName)
+                    ZFieldStack("First Name", text: $authVM.regModel.firstName)
                         .textContentType(.givenName)
                         .focused($focusedField, equals: .firstName)
 
-                    ZFieldStack("Last Name", text: $userModel.lastName)
+                    ZFieldStack("Last Name", text: $authVM.regModel.lastName)
                         .textContentType(.familyName)
                         .focused($focusedField, equals: .lastName)
                 }
                 .submitLabel(.next)
 
-                ZFieldStack("Email(Optional)", text: $userModel.email)
+                ZFieldStack("Email(Optional)", text: $authVM.regModel.email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .focused($focusedField, equals: .email)
@@ -51,7 +51,7 @@ struct AuthInfoView: View {
 
                 ZFieldStack("Headline(Optional)",
                             axis: .vertical(maxHeight: 80, lines: 5),
-                            text: $userModel.about)
+                            text: $authVM.regModel.about)
                     .focused($focusedField, equals: .about)
                     .submitLabel(.next)
 
@@ -60,7 +60,7 @@ struct AuthInfoView: View {
                         Text("Choose Account Type:")
                         Spacer()
                         Picker("",
-                               selection: $userModel.type) {
+                               selection: $authVM.regModel.type) {
                             ForEach(AucaUserType.allCases, id: \.self) { type in
                                 Text(type.rawValue.capitalized)
                             }
@@ -70,7 +70,7 @@ struct AuthInfoView: View {
                                .cornerRadius(5)
 
                     }
-                    Text(userModel.type.description)
+                    Text(authVM.regModel.type.description)
                         .font(.caption)
                         .fontDesign(.rounded)
                         .foregroundColor(.secondary)
@@ -139,18 +139,6 @@ private extension AuthInfoView {
             focusedField = nil
         case .none: break;
         }
-    }
-    
-    private func handlePhoneChange(_ newValue: String) {
-        authVM.authModel.phone = String.formattedCDIPhoneNumber(from: newValue)
-    }
-    
-    struct UIModel {
-        var firstName = ""
-        var lastName = ""
-        var type = AucaUserType.student
-        var email = ""
-        var about = ""
     }
 }
 

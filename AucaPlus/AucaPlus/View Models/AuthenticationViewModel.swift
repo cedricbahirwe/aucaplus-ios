@@ -8,7 +8,8 @@
 import Foundation
 
 final class AuthenticationViewModel: ObservableObject {
-    @Published var authModel = AuthModel()    
+    @Published var authModel = AuthModel()
+    @Published var regModel = RegisterModel()    
 }
 
 extension AuthenticationViewModel {
@@ -28,5 +29,13 @@ extension AuthenticationViewModel {
             let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
             return isCountryValid && isPhoneValid
         }
+    }
+    
+    struct RegisterModel {
+        var firstName = ""
+        var lastName = ""
+        var type = AucaUserType.student
+        var email = ""
+        var about = ""
     }
 }
