@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AuthenticationView: View {
     @StateObject private var authVM = AuthenticationViewModel()
-
-//    @ObservedObject var authVM: AuthenticationViewModel
     
     enum FocusedField {
         case countryCode, phone
@@ -39,7 +37,7 @@ struct AuthenticationView: View {
                 Text("AUCA+ will need to verify your phone number.")
                     .multilineTextAlignment(.center)
                     .fixedSize()
-
+                
                 if authVM.authModel.signingUpWithEmail {
                     VStack(spacing: 50) {
                         TextField(String("email@school.com"), text: $authVM.authModel.email)

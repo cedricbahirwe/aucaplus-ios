@@ -18,7 +18,7 @@ struct FeedView: View {
                     VStack(spacing: 0) {
                         ForEach(feedStore.items, id: \.id) { item in
                             VStack(spacing: 3) {
-                                if var news = item as? News {
+                                if let news = item as? News {
                                     NewsRowView(news)
                                 } else if let resource = item as? RemoteResource {
                                     ResourceRowView()

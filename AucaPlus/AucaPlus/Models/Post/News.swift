@@ -31,6 +31,7 @@ public struct News: FeedItem, Codifiable {
     public let views: Int
 }
 
+
 public struct NewsAuthor: Codable {
     public let name: String
     public var headline: String?
@@ -123,11 +124,11 @@ extension RemoteResource {
 }
 
 extension News {
-    static let news1 = News(imageURL: URL(string: "https://example.com/image1.jpg"),
+    static let news1 = News(imageURL: URL(string: "auca1"),
                             title: "Example News 1",
                             subtitle: "An example subtitle for News 1",
                             content: News.description1,
-                            images: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+                            images: ["auca1", "https://example.com/image2.jpg"],
                             postedDate: "2022-04-25",
                             author: NewsAuthor(name: "AUCA", headline: "Adventist University of Central Africa", type: .school),
                             tags: ["example", "news", "swift"],
