@@ -95,11 +95,6 @@ struct OTPVerificationView: View {
         // Make sure they are not equal
         guard previousOtp != newOTP else { return }
         
-        
-        print("The newOTP is", newOTP, newOTP.count)
-        print("The previousOtp is", previousOtp, previousOtp.count)
-        print("The currentOtp is", otp, otp.count)
-        
         // Make sure they are 6 digits
         guard newOTP.count < 12 else { return }
         

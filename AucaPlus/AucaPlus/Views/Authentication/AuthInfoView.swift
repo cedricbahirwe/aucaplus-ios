@@ -52,8 +52,6 @@ struct AuthInfoView: View {
                 ZFieldStack("Headline(Optional)",
                             axis: .vertical(maxHeight: 80, lines: 5),
                             text: $userModel.about)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
                     .focused($focusedField, equals: .about)
                     .submitLabel(.next)
 
