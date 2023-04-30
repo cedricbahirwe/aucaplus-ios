@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("isLoggedIn")
+    @AppStorage(Storagekeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     @StateObject private var settingsStore = SettingsStore()
     
@@ -52,6 +52,7 @@ struct SettingsView: View {
                 }
                 
                 Button("Sign Out", role: .destructive) {
+                    Storagekeys.clearAll()
                     isLoggedIn = false
                 }
                 

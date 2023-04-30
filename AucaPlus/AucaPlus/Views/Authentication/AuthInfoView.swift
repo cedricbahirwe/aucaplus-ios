@@ -18,7 +18,7 @@ struct AuthInfoView: View {
     @FocusState private var focusedField: FocusedField?
     @State private var userModel = UIModel()
     
-    @AppStorage("isLoggedIn")
+    @AppStorage(Storagekeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     
     var body: some View {
@@ -50,7 +50,7 @@ struct AuthInfoView: View {
                     .submitLabel(.next)
 
                 ZFieldStack("Headline(Optional)",
-                            axis: .vertical(lines: 5),
+                            axis: .vertical(maxHeight: 80, lines: 5),
                             text: $userModel.about)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -197,7 +197,7 @@ struct ZFieldStack: View {
         case .vertical(let maxHeight, let lines):
             TextField("", text: $text, axis: .vertical)
                 .padding(10)
-                .frame(minHeight: 45, maxHeight: maxHeight)
+                .frame(height: maxHeight, alignment: .topLeading)
                 .lineLimit(lines)
         }
     }
