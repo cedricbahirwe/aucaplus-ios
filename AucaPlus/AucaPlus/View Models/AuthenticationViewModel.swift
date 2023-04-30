@@ -18,23 +18,15 @@ extension AuthenticationViewModel {
         
         var email = ""
         var password = ""
-        
-        var signingUpWithEmail = true
-        
+                
         func formattedPhone() -> String {
             return "+\(countryCode) \(phone)"
         }
         
         func isValid() -> Bool {
-            if signingUpWithEmail {
-                let isEmailValid = email.isValidEmail()
-                let isPasswordValid = password.trimmingCharacters(in: .whitespaces).count >= 6
-                return isEmailValid && isPasswordValid
-            } else {
-                let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
-                let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
-                return isCountryValid && isPhoneValid
-            }
+            let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
+            let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
+            return isCountryValid && isPhoneValid
         }
     }
 }
