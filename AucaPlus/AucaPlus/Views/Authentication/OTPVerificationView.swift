@@ -10,11 +10,11 @@ import SwiftUI
 struct OTPVerificationView: View {
     @ObservedObject var authVM: AuthenticationViewModel
     @State private var isLoggingIn = false
+    @State private var goToUserInfo = false
+    
     @State private var otp = ""
     @State private var previousOtp = ""
     @State private var elapsedTime: Int = 0
-    @AppStorage("isLoggedIn")
-    private var isLoggedIn: Bool = false
     
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     private let otpResendTime = 180 // seconds
@@ -64,7 +64,10 @@ struct OTPVerificationView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding()
-        .disabled(isLoggedIn)
+        .disabled(isLoggingIn)
+        .navigationDestination(isPresented: $goToUserInfo) {
+            AuthInfoView(authVM: authVM)
+        }
         .onReceive(timer) { _ in
             updateCounter()
         }
@@ -76,7 +79,7 @@ struct OTPVerificationView: View {
         isLoggingIn = true
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
             isLoggingIn = false
-            isLoggedIn = true
+            goToUserInfo = true
         }
     }
     
