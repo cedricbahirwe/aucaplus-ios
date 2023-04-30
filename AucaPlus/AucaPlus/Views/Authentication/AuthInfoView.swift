@@ -12,7 +12,7 @@ struct AuthInfoView: View {
     
     enum FocusedField {
         case firstName, lastName
-        case email, type, about
+        case email, about
     }
     @State private var showingValidationAlert = false
     @FocusState private var focusedField: FocusedField?
@@ -130,8 +130,11 @@ private extension AuthInfoView {
             focusedField = .lastName
         case .lastName:
             focusedField = .email
-         default:
+        case .email:
+            focusedField = .about
+        case .about:
             focusedField = nil
+        case .none: break;
         }
     }
     

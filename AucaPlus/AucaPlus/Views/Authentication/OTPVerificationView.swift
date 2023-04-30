@@ -19,6 +19,8 @@ struct OTPVerificationView: View {
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     private let otpResendTime = 180 // seconds
     
+    @FocusState private var focusedField: Bool
+    
     var body: some View {
         VStack {
             AuthenticationView.TitleView(title: "Verifying your number")
@@ -31,6 +33,7 @@ struct OTPVerificationView: View {
                 TextField("- - -  - - -", text: $otp)
                     .keyboardType(.numberPad)
                     .textContentType(.oneTimeCode)
+                    .focused($focusedField)
                     .frame(width: 150)
                     .overlay(alignment: .bottom) {
                         Color.accentColor.frame(height: 1)
@@ -65,6 +68,11 @@ struct OTPVerificationView: View {
         .toolbar(.hidden, for: .navigationBar)
         .padding()
         .disabled(isLoggingIn)
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.05) {
+                focusedField = true
+            }
+        }
         .navigationDestination(isPresented: $goToUserInfo) {
             AuthInfoView(authVM: authVM)
         }

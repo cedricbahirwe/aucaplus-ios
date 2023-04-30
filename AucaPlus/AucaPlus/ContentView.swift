@@ -27,10 +27,10 @@ struct ContentView: View {
                             .opacity(animatingOnBoarding ? 1 : 0)
                             .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
                             .onAppear() {
-                                DispatchQueue.main.asyncAfter(deadline: .now()+0.8) {
+                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingAnimateDelay) {
                                     animatingOnBoarding = false
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
+                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingDisplayDelay) {
                                     showingOnBoarding = false
                                 }
                             }
@@ -45,4 +45,14 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+
+enum Delays {
+    static let onboardingAnimateDelay = DispatchTime.now() + 0.8
+    
+    static let onboardingDisplayDelay = DispatchTime.now() + 1.3
+    
+    /// Considering both `onboardingAnimateDelay` and `onboardingDisplayDelay`
+    static let authFieldFocusTime = DispatchTime.now() + 1.5
 }

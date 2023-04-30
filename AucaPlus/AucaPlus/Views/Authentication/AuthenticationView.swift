@@ -78,6 +78,11 @@ struct AuthenticationView: View {
         }, message: {
             Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
         })
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: Delays.authFieldFocusTime) {
+                focusedField = .phone
+            }
+        }
         .navigationDestination(isPresented: $goToOTPView) {
             OTPVerificationView(authVM: authVM)
         }
