@@ -28,7 +28,7 @@ extension String {
     }
     
     func removingWhitespaces() -> String {
-        return components(separatedBy: .whitespaces).joined()
+        return replacingOccurrences(of: " ", with: "")
     }
     
     func split(by length: Int) -> [String] {

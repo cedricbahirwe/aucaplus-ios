@@ -9,7 +9,7 @@ import Foundation
 
 final class AuthenticationViewModel: ObservableObject {
     @Published var authModel = AuthModel()
-    @Published var regModel = RegisterModel()    
+    @Published var regModel = RegisterModel()
 }
 
 extension AuthenticationViewModel {
@@ -37,5 +37,12 @@ extension AuthenticationViewModel {
         var type = AucaUserType.student
         var email = ""
         var about = ""
+        
+        func isValid() -> Bool {
+            guard firstName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
+            guard lastName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
+            guard email.isValidEmail() else { return false }
+            return true
+        }
     }
 }
