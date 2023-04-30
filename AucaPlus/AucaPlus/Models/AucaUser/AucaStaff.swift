@@ -13,6 +13,6 @@ struct AucaStaff: AucaUser {
     var lastName: String
     var phoneNumber: String
     var type: AucaUserType
-    var about: String
+    var about: String?
     var picture: URL?
 }

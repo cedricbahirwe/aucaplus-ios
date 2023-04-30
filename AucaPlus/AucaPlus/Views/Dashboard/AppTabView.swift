@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppTabView: View {
-    @AppStorage("appSelectedTab")
+    @AppStorage(Storagekeys.appSelectedTab)
     private var selection: AppTab = .home
     
     var body: some View {

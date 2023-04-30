@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var animatingOnBoarding = true
-    @State private var showingBoarding = true
+    @State private var showingOnBoarding = true
     
-    @AppStorage("isLoggedIn")
+    @AppStorage(Storagekeys.isLoggedIn)
     private var isLoggedIn: Bool = false
-    
+        
     var body: some View {
         if isLoggedIn {
             AppTabView()
@@ -22,16 +22,16 @@ struct ContentView: View {
                 ZStack {
                     AuthenticationView()
                     
-                    if showingBoarding {
+                    if showingOnBoarding {
                         OnboardingView()
                             .opacity(animatingOnBoarding ? 1 : 0)
                             .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
                             .onAppear() {
-                                DispatchQueue.main.asyncAfter(deadline: .now()+0.8) {
+                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingAnimateDelay) {
                                     animatingOnBoarding = false
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now()+1.3) {
-                                    showingBoarding = false
+                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingDisplayDelay) {
+                                    showingOnBoarding = false
                                 }
                             }
                     }
@@ -41,8 +41,10 @@ struct ContentView: View {
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+#endif

@@ -8,28 +8,32 @@
 import SwiftUI
 
 struct OTPVerificationView: View {
-    let phoneNumber: String
+    @ObservedObject var authVM: AuthenticationViewModel
+    @State private var isLoggingIn = false
+    @State private var goToUserInfo = false
+    
     @State private var otp = ""
     @State private var previousOtp = ""
     @State private var elapsedTime: Int = 0
-    @AppStorage("isLoggedIn")
-    private var isLoggedIn: Bool = false
     
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     private let otpResendTime = 180 // seconds
     
+    @FocusState private var focusedField: Bool
+    
     var body: some View {
         VStack {
-            AuthenticationView().titleView
+            AuthenticationView.TitleView(title: "Verifying your number")
             
             VStack(spacing: 20) {
-                Text("Waiting to automatically detect an SMS sent\nto **\(phoneNumber)**. \(Text("Wrong number?").foregroundColor(.accentColor))")
+                Text("Waiting to automatically detect an SMS sent\nto **\(authVM.authModel.formattedPhone())**. \(Text("Wrong number?").foregroundColor(.accentColor))")
                     .multilineTextAlignment(.center)
                 
                 
                 TextField("- - -  - - -", text: $otp)
                     .keyboardType(.numberPad)
                     .textContentType(.oneTimeCode)
+                    .focused($focusedField)
                     .frame(width: 150)
                     .overlay(alignment: .bottom) {
                         Color.accentColor.frame(height: 1)
@@ -55,12 +59,35 @@ struct OTPVerificationView: View {
                 
             }
             
+            if isLoggingIn {
+                ProgressView()
+                    .tint(.accentColor)
+            }
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding()
+        .disabled(isLoggingIn)
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.05) {
+                focusedField = true
+            }
+        }
+        .navigationDestination(isPresented: $goToUserInfo) {
+            AuthInfoView(authVM: authVM)
+        }
         .onReceive(timer) { _ in
             updateCounter()
+        }
+    }
+    
+    private func login() {
+        otp = previousOtp
+        hideKeyboard()
+        isLoggingIn = true
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            isLoggingIn = false
+            goToUserInfo = true
         }
     }
     
@@ -69,27 +96,23 @@ struct OTPVerificationView: View {
         guard previousOtp != newOTP else { return }
         
         // Make sure they are 6 digits
-        guard newOTP.count < 12 else {
-            otp = previousOtp
-            isLoggedIn = true
-            return
-        }
+        guard newOTP.count < 12 else { return }
         
         // Addition
         if newOTP.last != " " && previousOtp.count < newOTP.count {
-            print("Addition")
             otp = newOTP + " "
             
             previousOtp = otp
-            
         }
         // Removal
         else {
-            print("Removal")
             previousOtp = String(newOTP.dropLast())
             
             otp = previousOtp
-            
+        }
+        
+        if previousOtp.count == 12 {
+            login()
         }
     }
     
@@ -110,8 +133,10 @@ struct OTPVerificationView: View {
     }
 }
 
+#if DEBUG
 struct OTPVerificationView_Previews: PreviewProvider {
     static var previews: some View {
-        OTPVerificationView(phoneNumber: "+250 782 600000")
+        OTPVerificationView(authVM: AuthenticationViewModel())
     }
 }
+#endif

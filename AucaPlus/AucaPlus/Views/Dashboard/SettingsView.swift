@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("isLoggedIn")
+    @AppStorage(Storagekeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     @StateObject private var settingsStore = SettingsStore()
     
@@ -31,11 +31,11 @@ struct SettingsView: View {
                                 Text(user.completeName())
                                     .font(.title2)
                                 
-                                Text(user.about)
-                                    .font(.callout)
-                                    .foregroundColor(.secondary)
-                                
-                              
+                                if let headline = user.about {
+                                    Text(headline)
+                                        .font(.callout)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,10 +43,19 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    Button("Log Out", role: .destructive) {
-                        isLoggedIn = false
+                    NavigationLink {
+                        FeedBookmarksView()
+                    } label: {
+                        Label("Bookmarks", systemImage: "bookmark")
                     }
+                    .foregroundColor(.primary)
                 }
+                
+                Button("Sign Out", role: .destructive) {
+                    Storagekeys.clearAll()
+                    isLoggedIn = false
+                }
+                
             }
             .navigationTitle("Settings")
         }
