@@ -10,7 +10,6 @@
 		CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */; };
 		CB03EF5029EB3D6D006EC539 /* JobsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */; };
 		CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */; };
-		CB03EF5429EB3D78006EC539 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */; };
 		CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5929EB41E1006EC539 /* AucaUser.swift */; };
 		CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5B29EB41E8006EC539 /* AucaUserType.swift */; };
 		CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB03EF5D29EB41F5006EC539 /* AucaStudent.swift */; };
@@ -46,7 +45,6 @@
 		CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */; };
 		CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */; };
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
-		CBE0D14629DA0CB900AD2C58 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
 		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -72,7 +70,6 @@
 		CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewModel.swift; sourceTree = "<group>"; };
 		CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 		CB03EF5929EB41E1006EC539 /* AucaUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaUser.swift; sourceTree = "<group>"; };
 		CB03EF5B29EB41E8006EC539 /* AucaUserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaUserType.swift; sourceTree = "<group>"; };
 		CB03EF5D29EB41F5006EC539 /* AucaStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaStudent.swift; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
-		CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
 		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,7 +143,6 @@
 			children = (
 				CB03EF4D29EB3CD7006EC539 /* FeedViewModel.swift */,
 				CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */,
-				CB03EF5329EB3D78006EC539 /* ChatsViewModel.swift */,
 				CB03EF4F29EB3D6D006EC539 /* JobsViewModel.swift */,
 				CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */,
 				CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */,
@@ -324,7 +319,6 @@
 				CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */,
 				CB43EFA129F71960000EE752 /* Feed */,
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
-				CBE0D14529DA0CB900AD2C58 /* ChatsView.swift */,
 				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
 			);
 			path = Dashboard;
@@ -468,12 +462,10 @@
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
 				CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */,
-				CBE0D14629DA0CB900AD2C58 /* ChatsView.swift in Sources */,
 				CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */,
 				CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */,
 				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
-				CB03EF5429EB3D78006EC539 /* ChatsViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
 				CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */,
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,

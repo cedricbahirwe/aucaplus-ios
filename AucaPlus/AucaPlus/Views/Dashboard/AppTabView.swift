@@ -19,13 +19,6 @@ struct AppTabView: View {
                 }
                 .tag(AppTab.home)
             
-            ChatsView()
-                .tabItem {
-                    Label("Chats", systemImage: "bubble.left.and.bubble.right")
-                        .symbolVariant(SwiftUI.SymbolVariants.square)
-                }
-                .tag(AppTab.chats)
-            
             JobsView()
                 .tabItem {
                     Label("Opportunities", systemImage: "bag.circle")
@@ -41,7 +34,7 @@ struct AppTabView: View {
     }
     
     enum AppTab: String {
-        case home, chats, jobs, settings
+        case home, jobs, settings
     }
 }
 
