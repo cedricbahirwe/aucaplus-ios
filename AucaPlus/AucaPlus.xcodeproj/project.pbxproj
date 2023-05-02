@@ -194,8 +194,7 @@
 		CB1913D929D77CB6007BC45C /* AucaPlus */ = {
 			isa = PBXGroup;
 			children = (
-				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
-				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CBF8494F2A0113EC00F911DE /* App */,
 				CB1923DF29FF06C2008873F8 /* Persistence */,
 				CB1923DA29FF04AE008873F8 /* Helper */,
 				CB03EF5529EB4073006EC539 /* Models */,
@@ -322,6 +321,15 @@
 				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		CBF8494F2A0113EC00F911DE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
+				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

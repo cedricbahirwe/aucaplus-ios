@@ -29,7 +29,7 @@ struct NewsRowView: View {
                             title: news.author.name,
                             subtitle: news.author.headline,
                             verified: news.isVerified,
-                            caption: news.createdDate.formatted())
+                            caption: news.createdDate.formatted(date: .long, time: .omitted))
             
             Text(news.content)
                 .font(.callout)
