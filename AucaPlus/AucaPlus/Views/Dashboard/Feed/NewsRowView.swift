@@ -24,44 +24,12 @@ struct NewsRowView: View {
     @State private var liked = false
     var body: some View {
         VStack (alignment: .leading) {
-            HStack {
-                Group {
-                    AsyncImage(url: news.imageURL,
-                               scale: 1) {
-                        $0.resizable()
-                    } placeholder: {
-                        Image("auca.logo")
-                            .resizable()
-                    }
-                }
-                .frame(width: 50, height: 50)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 4) {
-                        HStack(spacing: 2) {
-                            Text(news.author.name).bold()
-                            if news.isVerified {
-                                Image("verify")
-                            }
-                        }
-                        
-                        HStack(spacing: 2) {
-                            Text("·").fontWeight(.black)
-                            Text(news.postedDate).font(.caption)
-                        }
-                        .foregroundColor(.secondary)
-                    }
-                    .lineLimit(1)
-                    
-                    
-                    Text(news.author.headline ?? "")
-                        .font(.caption)
-                        .opacity(0.8)
-                    
-                }
-                
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            ProfileInfoView(imageURL: news.author.imageURL,
+                            title: news.author.name,
+                            subtitle: news.author.headline,
+                            verified: news.isVerified,
+                            caption: news.createdDate.formatted(date: .long, time: .omitted))
             
             Text(news.content)
                 .font(.callout)
@@ -123,3 +91,68 @@ struct NewsRowView_Previews: PreviewProvider {
     }
 }
 #endif
+
+struct ProfileImageView: View {
+    let image: URL?
+    let placeholderImage: String
+    let size: CGFloat
+    
+    init(_ image: URL?, placeholderImage: String = "auca.logo", _ size: CGFloat = 50) {
+        self.image = image
+        self.size = size
+        self.placeholderImage = placeholderImage
+    }
+    
+    var body: some View {
+        Group {
+            AsyncImage(url: image,
+                       scale: 1) {
+                $0.resizable()
+            } placeholder: {
+                Image(placeholderImage)
+                    .resizable()
+            }
+        }
+        .frame(width: size, height: size)
+        .clipShape(Circle())
+    }
+}
+
+struct ProfileInfoView: View {
+    let imageURL: URL?
+    let title: String
+    let subtitle: String?
+    var verified: Bool = false
+    let caption: String?
+    
+    var body: some View {
+        HStack {
+            ProfileImageView(imageURL)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 4) {
+                    HStack(spacing: 2) {
+                        Text(title).bold()
+                        if verified {
+                            Image("verify")
+                        }
+                    }
+                    
+                    if let caption {
+                        HStack(spacing: 2) {
+                            Text("·").fontWeight(.black)
+                            Text(caption).font(.caption)
+                        }
+                        .foregroundColor(.secondary)
+                    }
+                }
+                .lineLimit(1)
+                
+                Text(subtitle ?? "")
+                    .font(.caption)
+                    .opacity(0.8)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}

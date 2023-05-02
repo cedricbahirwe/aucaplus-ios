@@ -11,6 +11,12 @@ public typealias Codifiable = Codable & Identifiable
 
 public protocol FeedItem {
     var id: String { get }
+    var author: NewsAuthor? { get }
+    var createdDate: Date { get }
+}
+
+public extension FeedItem {
+    var author: NewsAuthor? { nil }
 }
 
 public struct News: FeedItem, Codifiable {
@@ -22,7 +28,7 @@ public struct News: FeedItem, Codifiable {
     public let content: AttributedString
     
     public let images: [String]
-    public let postedDate: String
+    public let createdDate: Date
     public let author: NewsAuthor
     public let tags: [String]?
     
@@ -33,6 +39,7 @@ public struct News: FeedItem, Codifiable {
 
 
 public struct NewsAuthor: Codable {
+    public let imageURL: URL?
     public let name: String
     public var headline: String?
     public let type: NewsAuthorType
@@ -42,6 +49,12 @@ public struct NewsAuthor: Codable {
         case personal
         case school
     }
+}
+
+extension NewsAuthor {
+    static let school = NewsAuthor(imageURL: nil, name: "AUCA", headline: "Adventist University of Central Africa", type: .school)
+    
+    static let person = NewsAuthor(imageURL: nil, name: "Jane Doe", type: .public)
 }
 
 extension News {
@@ -57,28 +70,32 @@ extension News {
 public struct RemoteResource: FeedItem, Codifiable {
     public let id: String
     public let name: String
-    public let url: URL
     public let description: String
-    public let createdAt: Date
-    public let updatedAt: Date
+    public let fileURL: URL
+    public let createdDate: Date
+    public let updatedDate: Date?
     public let metadata: ResourceMetadata
     
     public enum CodingKeys: String, CodingKey {
         case id
         case name
-        case url
+        case fileURL = "url"
         case description
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
+        case createdDate = "created_at"
+        case updatedDate = "updated_at"
         case metadata
     }
 }
 
 public struct Announcement: FeedItem, Codifiable {
     public var id: String
-    
+    public var author: NewsAuthor
+    public var createdDate: Date = .now
+    public var externalLink: URL?
 }
-
+extension Announcement {
+    static let example = Announcement(id: UUID().uuidString, author: .person)
+}
 public struct ResourceMetadata: Codable {
     public let type: ResourceFileType
     public let size: Int
@@ -106,20 +123,18 @@ public enum ResourceFileType: String, Codable {
 extension RemoteResource {
     static let example = RemoteResource(id: "1234",
                                         name: "Remote Resource",
-                                        url: URL(string: "https://example.com/remote-resource")!,
-                                        description: "This is a remote resource that can be accessed over the internet.",
-                                        createdAt: Date(),
-                                        updatedAt: Date(),
+                                        description: "This is a remote resource that can be accessed over the internet.", fileURL: URL(string: "https://example.com/remote-resource")!,
+                                        createdDate: Date(),
+                                        updatedDate: Date(),
                                         metadata: .example)
     
     
     
     static let example2 = RemoteResource(id: "5678",
                                          name: "Mountain Photo",
-                                         url: URL(string: "https://example.com/mountain-photo.jpg")!,
-                                         description: "This is a beautiful photo of a mountain landscape.",
-                                         createdAt: Date(),
-                                         updatedAt: Date(),
+                                         description: "This is a beautiful photo of a mountain landscape.", fileURL: URL(string: "https://example.com/mountain-photo.jpg")!,
+                                         createdDate: Date(),
+                                         updatedDate: Date(),
                                          metadata: .example2)
 }
 
@@ -129,8 +144,8 @@ extension News {
                             subtitle: "An example subtitle for News 1",
                             content: News.description1,
                             images: ["auca1", "https://example.com/image2.jpg"],
-                            postedDate: "2022-04-25",
-                            author: NewsAuthor(name: "AUCA", headline: "Adventist University of Central Africa", type: .school),
+                            createdDate: Date.now,
+                            author: .school,
                             tags: ["example", "news", "swift"],
                             likes: 21,
                             views: 104)
@@ -140,8 +155,8 @@ extension News {
                             subtitle: nil,
                             content: AttributedString("This is some example content for News 2"),
                             images: ["auca1"],
-                            postedDate: "2022-04-24",
-                            author: NewsAuthor(name: "Jane Doe", type: .public),
+                            createdDate: .now,
+                            author: .person,
                             tags: nil,
                             likes: 5,
                             views: 50)
@@ -151,8 +166,8 @@ extension News {
                             subtitle: "An example subtitle for News 3",
                             content: AttributedString("This is some example content for News 3"),
                             images: [],
-                            postedDate: "2022-04-23",
-                            author: NewsAuthor(name: "Bob Smith", type: .school),
+                            createdDate: .now,
+                            author: NewsAuthor(imageURL: nil, name: "Bob Smith", type: .school),
                             tags: ["example"],
                             likes: 2,
                             views: 20)
