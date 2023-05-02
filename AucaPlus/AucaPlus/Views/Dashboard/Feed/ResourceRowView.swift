@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ResourceRowView: View {
+    let resource: RemoteResource
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, World!")
     }
 }
 
+#if DEBUG
 struct ResourceRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ResourceRowView()
+        ResourceRowView(resource: .example)
     }
 }
+#endif

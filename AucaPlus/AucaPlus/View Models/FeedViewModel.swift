@@ -11,10 +11,16 @@ final class FeedStore: ObservableObject {
     @Published var items: [ FeedItem] = Array(repeating: News.news1, count: 5)
     
     
+    init() {
+        loadItems()
+    }
+    
     func loadItems() {
-        let resources = RemoteResource.example
+        let announcements = [Announcement.example]
+        let resources = [RemoteResource.example]
         let news = Array(repeating: News.news1, count: 3)
-        items = [resources] + news
+        
+        items = announcements + resources + news
     }
     
     

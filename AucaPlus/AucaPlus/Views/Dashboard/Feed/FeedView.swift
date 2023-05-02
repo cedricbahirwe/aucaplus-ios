@@ -11,6 +11,8 @@ struct FeedView: View {
     @StateObject private var feedStore = FeedStore()
     @State private var goToCreator = false
     
+    @State private var overlay = OverlayModel<Announcement>()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -18,13 +20,17 @@ struct FeedView: View {
                     VStack(spacing: 0) {
                         ForEach(feedStore.items, id: \.id) { item in
                             VStack(spacing: 3) {
-                                if let news = item as? News {
-                                    NewsRowView(news)
+                                if let announcement = item as? Announcement {
+                                    AnnouncementRowView(announcement: announcement)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                overlay.present(announcement)
+                                            }
+                                        }
                                 } else if let resource = item as? RemoteResource {
-                                    ResourceRowView()
-                                } else if let announcement = item
-                                            as? Announcement {
-                                    AnnouncementRowView()
+                                    ResourceRowView(resource: resource)
+                                } else if let news = item as? News {
+                                    NewsRowView(news)
                                 }
                                 
                                 Divider()
@@ -34,9 +40,14 @@ struct FeedView: View {
                     }
                 }
             }
+           
             .fullScreenCover(isPresented: $goToCreator) {
                 PostCreatorView()
                     .environmentObject(feedStore)
+            }
+            .overlayListener(of: $overlay) { announcement in
+               AnnouncementRowView(announcement: announcement, isExpanded: true)
+                    .padding()
             }
             .navigationBarTitle("Feed")
             .toolbar {
@@ -84,3 +95,46 @@ struct FeedView_Previews: PreviewProvider {
     }
 }
 #endif
+
+
+struct OverlayModel<T>: Identifiable {
+    var id: UUID { .init() }
+    
+    var isShown: Bool = false
+    
+    var data: T?
+    
+    mutating func present(_ newData: T) {
+        data = newData
+        isShown = true
+    }
+    
+    mutating func dismiss() {
+        isShown = false
+        data = nil
+    }
+}
+
+extension View {
+    func overlayListener<Content, T>(
+        of overlay: Binding<OverlayModel<T>>,
+        @ViewBuilder content: (T) -> Content)
+    -> some View where Content: View {
+        self
+            .overlay {
+                ZStack {
+                        Color.black.opacity(0)
+                            .ignoresSafeArea()
+                            .background(.ultraThinMaterial.opacity(overlay.wrappedValue.isShown ? 1 :0))
+                            .onTapGesture {
+                                overlay.wrappedValue.dismiss()
+                            }
+                    
+                    if let data = overlay.wrappedValue.data {
+                        content(data)
+                            
+                    }
+                }
+            }
+    }
+}
