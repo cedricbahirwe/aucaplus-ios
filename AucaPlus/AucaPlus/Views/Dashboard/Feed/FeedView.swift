@@ -61,17 +61,38 @@ struct FeedView: View {
     
     private var filterMenu: some View {
         Menu {
-            Button {
-                
-            } label: {
-                Label("Verified", systemImage: "checkmark.seal.fill")
+            ForEach(FeedStore.FeedFilter.allCases, id:\.self) { filter in
+                Button {
+                    feedStore.setFilter(filter)
+                } label: {
+                    Label {
+                        Text(filter.rawValue.capitalized)
+                    } icon: {
+                        if filter == feedStore.filter {
+                            Image(systemName: "checkmark")
+                        } else {
+                            Image(uiImage: .init())
+                        }
+                    }
+
+//                    Label(item.rawValue.capitalized, image: String)
+//                    Label(item.rawValue.capitalized, ima: "checkmark.seal.fill")
+                    
+                    
+                }
             }
             
-            Button {
-                
-            } label: {
-                Label("For Me", systemImage: "person.badge.shield.checkmark.fill")
-            }
+//            Button {
+//
+//            } label: {
+//                Label("Verified", systemImage: "checkmark.seal.fill")
+//            }
+           
+//            Button {
+//
+//            } label: {
+//                Label("For Me", systemImage: "person.badge.shield.checkmark.fill")
+//            }
             
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")

@@ -70,16 +70,16 @@ extension News {
 public struct RemoteResource: FeedItem, Codifiable {
     public let id: String
     public let name: String
-    public let url: URL
     public let description: String
+    public let fileURL: URL
     public let createdDate: Date
-    public let updatedDate: Date
+    public let updatedDate: Date?
     public let metadata: ResourceMetadata
     
     public enum CodingKeys: String, CodingKey {
         case id
         case name
-        case url
+        case fileURL = "url"
         case description
         case createdDate = "created_at"
         case updatedDate = "updated_at"
@@ -123,8 +123,7 @@ public enum ResourceFileType: String, Codable {
 extension RemoteResource {
     static let example = RemoteResource(id: "1234",
                                         name: "Remote Resource",
-                                        url: URL(string: "https://example.com/remote-resource")!,
-                                        description: "This is a remote resource that can be accessed over the internet.",
+                                        description: "This is a remote resource that can be accessed over the internet.", fileURL: URL(string: "https://example.com/remote-resource")!,
                                         createdDate: Date(),
                                         updatedDate: Date(),
                                         metadata: .example)
@@ -133,8 +132,7 @@ extension RemoteResource {
     
     static let example2 = RemoteResource(id: "5678",
                                          name: "Mountain Photo",
-                                         url: URL(string: "https://example.com/mountain-photo.jpg")!,
-                                         description: "This is a beautiful photo of a mountain landscape.",
+                                         description: "This is a beautiful photo of a mountain landscape.", fileURL: URL(string: "https://example.com/mountain-photo.jpg")!,
                                          createdDate: Date(),
                                          updatedDate: Date(),
                                          metadata: .example2)
