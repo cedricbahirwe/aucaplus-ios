@@ -57,7 +57,7 @@ extension Internship {
         description: "Work on exciting projects in a fast-paced environment.",
         postedDate: Date(timeIntervalSinceNow: -234125),
         updatedDate: nil,
-        location: Location(city: "San Francisco")
+        location: Location(city: "Kigali")
     )
     
     static let examples = [

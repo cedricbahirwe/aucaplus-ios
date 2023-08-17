@@ -35,8 +35,6 @@ struct AppTabView: View {
         }
         .environmentObject(bookmarksVM)
     }
-    
-   
 }
 
 struct AppTabView_Previews: PreviewProvider {
