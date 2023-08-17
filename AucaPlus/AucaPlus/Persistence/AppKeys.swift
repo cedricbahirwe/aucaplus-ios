@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Storagekeys {
+enum StorageKeys {
     static let isLoggedIn = "user:isLoggedIn"
     
     static let appSelectedTab = "settings:appSelectedTab"

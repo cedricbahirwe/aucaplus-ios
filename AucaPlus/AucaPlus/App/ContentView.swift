@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var animatingOnBoarding = true
     @State private var showingOnBoarding = true
     
-    @AppStorage(Storagekeys.isLoggedIn)
+    @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
         
     var body: some View {

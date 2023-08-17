@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AppTabView: View {
-    @AppStorage(Storagekeys.appSelectedTab)
+    @AppStorage(StorageKeys.appSelectedTab)
     private var selection: AppTab = .home
+    
+    @StateObject private var bookmarksVM = BookmarkViewModel()
     
     var body: some View {
         TabView(selection: $selection) {
@@ -19,9 +21,9 @@ struct AppTabView: View {
                 }
                 .tag(AppTab.home)
             
-            JobsView()
+            InternshipsView()
                 .tabItem {
-                    Label("Opportunities", systemImage: "bag.circle")
+                    Label("Internships", systemImage: "graduationcap")
                 }
                 .tag(AppTab.jobs)
             
@@ -31,15 +33,18 @@ struct AppTabView: View {
                 }
                 .tag(AppTab.settings)
         }
+        .environmentObject(bookmarksVM)
     }
     
-    enum AppTab: String {
-        case home, jobs, settings
-    }
+   
 }
 
 struct AppTabView_Previews: PreviewProvider {
     static var previews: some View {
         AppTabView()
     }
+}
+
+fileprivate enum AppTab: String {
+    case home, jobs, settings
 }

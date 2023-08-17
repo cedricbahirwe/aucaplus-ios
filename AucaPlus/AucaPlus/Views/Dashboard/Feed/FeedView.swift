@@ -18,7 +18,7 @@ struct FeedView: View {
             ScrollView {
                 ScrollViewReader { proxy in
                     VStack(spacing: 0) {
-                        ForEach(feedStore.items, id: \.id) { item in
+                        ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
                                 if let announcement = item as? Announcement {
                                     AnnouncementRowView(announcement: announcement)

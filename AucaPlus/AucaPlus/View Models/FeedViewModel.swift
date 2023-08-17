@@ -9,7 +9,10 @@ import Foundation
 import Combine
 
 final class FeedStore: ObservableObject {
-    @Published var items: [FeedItem] = Array(repeating: News.news1, count: 5)
+    @Published private var items: [FeedItem] = Array(repeating: News.news1, count: 5)
+    var sortedItems: [FeedItem] {
+        items.sorted { $0.createdDate > $1.createdDate }
+    }
     @Published var filter: FeedFilter = .all
     
     private var cancellables = Set<AnyCancellable>()

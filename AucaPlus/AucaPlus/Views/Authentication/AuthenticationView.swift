@@ -18,7 +18,7 @@ struct AuthenticationView: View {
     @State private var goToOTPView = false
     @FocusState private var focusedField: FocusedField?
     
-    @AppStorage(Storagekeys.isLoggedIn)
+    @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     
     var body: some View {

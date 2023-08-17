@@ -20,7 +20,7 @@ struct JobsView: View {
                 }
             }
             .background(Color(.secondarySystemBackground), ignoresSafeAreaEdges: .all)
-            .navigationTitle("Opportunities")
+            .navigationTitle("Internships")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

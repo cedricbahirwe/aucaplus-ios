@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage(Storagekeys.isLoggedIn)
+    @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     @StateObject private var settingsStore = SettingsStore()
     
@@ -44,7 +44,7 @@ struct SettingsView: View {
                 
                 Section {
                     NavigationLink {
-                        FeedBookmarksView()
+                        BookmarksView()
                     } label: {
                         Label("Bookmarks", systemImage: "bookmark")
                     }
@@ -52,7 +52,7 @@ struct SettingsView: View {
                 }
                 
                 Button("Sign Out", role: .destructive) {
-                    Storagekeys.clearAll()
+                    StorageKeys.clearAll()
                     isLoggedIn = false
                 }
                 

@@ -18,7 +18,7 @@ struct AuthInfoView: View {
     @State private var showingValidationAlert = false
     @FocusState private var focusedField: FocusedField?
     
-    @AppStorage(Storagekeys.isLoggedIn)
+    @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     
     var body: some View {
@@ -49,7 +49,7 @@ struct AuthInfoView: View {
                     .focused($focusedField, equals: .email)
                     .submitLabel(.next)
 
-                ZFieldStack("Headline(Optional)",
+                ZFieldStack("Intro(Optional)",
                             axis: .vertical(maxHeight: 80, lines: 5),
                             text: $authVM.regModel.about)
                     .focused($focusedField, equals: .about)
