@@ -62,6 +62,48 @@ struct SettingsView: View {
                 }
                 
                 Section {
+                    
+                    NavigationLink {
+                        BookmarksView()
+                    } label: {
+                        Label {
+                            Text("Post an internship or a job")
+                        } icon: {
+                            Image(systemName: "paperplane.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(5)
+                                .frame(width: 28, height: 28)
+                                .background(Color.mint)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .foregroundColor(.primary)
+                    
+                    
+                    NavigationLink {
+                        BookmarksView()
+                    } label: {
+                        Label {
+                            Text("Bookmarks")
+                        } icon: {
+                            Image(systemName: "bookmark.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(5)
+                                .frame(width: 28, height: 28)
+                                .background(Color.indigo)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .foregroundColor(.primary)
+                } header: {
+                    sectionHeader("Info")
+                }
+                
+                Section {
                     NavigationLink {
                         BookmarksView()
                     } label: {
@@ -98,28 +140,7 @@ struct SettingsView: View {
                             .imageScale(.small)
                     }
                     
-                    NavigationLink {
-                        BookmarksView()
-                    } label: {
-                        Label {
-                            Text("Bookmarks")
-                        } icon: {
-                            Image(systemName: "bookmark.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .frame(width: 28, height: 28)
-                                .background(Color.indigo)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
-                    }
-                    .foregroundColor(.primary)
-                } header: {
-                    sectionHeader("Info")
-                }
-                
-                Section {
+                    
                     NavigationLink {
                         BookmarksView()
                     } label: {
@@ -148,13 +169,13 @@ struct SettingsView: View {
                         Text("Log out")
                             .bold()
                             .frame(maxWidth: .infinity)
-                            .frame(height: 45)
+                            .frame(height: 48)
                             .background(.red.opacity(0.15))
                             .cornerRadius(15)
                             .foregroundColor(.red)
                     }
                     
-                    Text("1.1.0 (100)")
+                    Text("\(UIApplication.appVersion) (\(UIApplication.buildVersion)")
                         .foregroundColor(.secondary)
                         .font(.caption)
                         .padding()
@@ -181,3 +202,15 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 #endif
+
+
+extension UIApplication {
+    
+    static var appVersion: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
+    
+    static var buildVersion: String {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    }
+}
