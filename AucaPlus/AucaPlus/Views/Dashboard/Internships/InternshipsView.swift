@@ -68,6 +68,7 @@ struct InternshipRowView: View {
                         Text(title)
                             .fontWeight(.medium)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.primary)
                     }
                     
                     if let description = internship.description {
@@ -99,7 +100,6 @@ struct InternshipRowView: View {
                 
                 DotView()
                 
-                
                 HStack(spacing: 2) {
                     if internship.verified {
                         Image("verify")
@@ -113,8 +113,14 @@ struct InternshipRowView: View {
             .font(.callout)
             
             HStack {
-                Text("Posted: \(internship.postedDate.timeAgo)")
+                Text("Posted \(internship.postedDate.timeAgo)")
                     .foregroundColor(.secondary)
+                
+                if internship.views != 0 {
+                    DotView()
+
+                    Text("^[\(Int.random(in: 100...1_000)) \("view")](inflect: true)")
+                }
             }
             .font(.callout)
         }

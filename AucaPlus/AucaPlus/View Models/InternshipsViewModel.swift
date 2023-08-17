@@ -44,6 +44,7 @@ struct Internship: Hashable, Codifiable {
     
     var location: Location
     
+    var views: Int = 0
 }
 
 #if DEBUG
