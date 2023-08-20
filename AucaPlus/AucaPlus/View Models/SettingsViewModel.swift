@@ -8,5 +8,5 @@
 import Foundation
 
 final class SettingsStore: ObservableObject {
-    @Published var currentUser: (any AucaUser)? = AucaStudent.example
+    @Published var currentUser: (any AucaUser)? = AucaStudent.example1
 }
