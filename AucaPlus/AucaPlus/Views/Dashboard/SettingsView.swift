@@ -91,30 +91,24 @@ struct SettingsView: View {
                     SectionHeaderText("Application")
                 }
                 
-                VStack {
-                    Button {
-                        StorageKeys.clearAll()
-                        isLoggedIn = false
-                    } label: {
-                        Text("Log out")
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 48)
-                            .background(.red.opacity(0.15))
-                            .cornerRadius(15)
-                            .foregroundColor(.red)
-                    }
-                    
-                    Text(AppMetaData.fullVersion)
-                        .foregroundColor(.secondary)
-                        .font(.caption)
-                        .padding()
-                }
-                .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .listRowBackground(Color.clear)
+                VersionLabel()
+                
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+extension SettingsView {
+    struct VersionLabel: View {
+        var body: some View {
+            Text(AppMetaData.fullVersion)
+                .foregroundColor(.secondary)
+                .font(.caption)
+                .padding()
+                .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .listRowBackground(Color.clear)
         }
     }
 }

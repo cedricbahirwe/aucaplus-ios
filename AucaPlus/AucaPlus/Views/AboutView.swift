@@ -34,13 +34,7 @@ struct AboutView: View {
                 FormLabel(.privacy).asLink(ExternalLinks.privacy)
             }
             
-            Text(AppMetaData.fullVersion)
-                .foregroundColor(.secondary)
-                .font(.caption)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .listRowBackground(Color.clear)
+            SettingsView.VersionLabel()
         }
         .navigationBarTitle("About Auca Plus")
         .navigationBarTitleDisplayMode(.inline)
