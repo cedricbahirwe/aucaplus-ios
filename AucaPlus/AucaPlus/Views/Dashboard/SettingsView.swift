@@ -42,123 +42,53 @@ struct SettingsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                         NavigationLink {
-                            BookmarksView()
+                            AccountSettingsView()
                         } label: {
-                            Label {
-                                Text("Acccount Settings")
-                            } icon: {
-                                Image(systemName: "person.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(5)
-                                    .background(Color.green.opacity(0.8))
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                            }
+                            FormLabel(.account)
                         }
                     }
                 } header: {
-                    sectionHeader("Account")
+                    SectionHeaderText("Account")
                 }
                 
                 Section {
                     
-                    NavigationLink {
-                        BookmarksView()
-                    } label: {
-                        Label {
-                            Text("Post an internship or a job")
-                        } icon: {
-                            Image(systemName: "paperplane.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .frame(width: 28, height: 28)
-                                .background(Color.mint)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
+                    Group {
+                        FormLabel(.posting)
+                            .asLink(ExternalLinks.opportunityPostingURL)
+
+                        FormLabel(.whatsapp)
+                            .asLink(ExternalLinks.whatsAppDMLink)
                     }
-                    .foregroundColor(.primary)
-                    
                     
                     NavigationLink {
                         BookmarksView()
                     } label: {
-                        Label {
-                            Text("Bookmarks")
-                        } icon: {
-                            Image(systemName: "bookmark.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .frame(width: 28, height: 28)
-                                .background(Color.indigo)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
+                        FormLabel(.bookmarks)
                     }
-                    .foregroundColor(.primary)
                 } header: {
-                    sectionHeader("Info")
+                    SectionHeaderText("Info")
                 }
                 
                 Section {
                     NavigationLink {
-                        BookmarksView()
+                        AboutView()
                     } label: {
-                        Label {
-                            Text("About AucaPlus")
-                        } icon: {
-                            Image(systemName: "info.circle")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
+                        FormLabel(.about)
                     }
-                    .foregroundColor(.primary)
-                    
-                    HStack {
-                        Label {
-                            Text("Rate this App")
-                        } icon: {
-                            Image(systemName: "info.circle")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .background(Color.yellow)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
-                        Spacer()
-                        
-                        Image(systemName: "arrow.up.forward")
-                            .foregroundColor(.secondary)
-                            .imageScale(.small)
-                    }
+
+                    FormLabel(.rating, type: .external)
+                        .asLink(ExternalLinks.appStoreReview)
                     
                     
                     NavigationLink {
                         BookmarksView()
                     } label: {
-                        Label {
-                            Text("Appearance")
-                        } icon: {
-                            Image(systemName: "moon.stars.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .padding(5)
-                                .background(Color.accentColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        }
+                        FormLabel(.appearance)
                     }
-                   
+                    
                 } header: {
-                    sectionHeader("Application")
+                    SectionHeaderText("Application")
                 }
                 
                 VStack {
@@ -175,7 +105,7 @@ struct SettingsView: View {
                             .foregroundColor(.red)
                     }
                     
-                    Text("\(UIApplication.appVersion) (\(UIApplication.buildVersion)")
+                    Text(AppMetaData.fullVersion)
                         .foregroundColor(.secondary)
                         .font(.caption)
                         .padding()
@@ -187,12 +117,6 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-    
-    func sectionHeader(_ title: String) -> some View {
-        Text(title)
-            .fontWeight(.semibold)
-            .textCase(nil)
-    }
 }
 
 #if DEBUG
@@ -202,15 +126,3 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 #endif
-
-
-extension UIApplication {
-    
-    static var appVersion: String {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    }
-    
-    static var buildVersion: String {
-        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-    }
-}
