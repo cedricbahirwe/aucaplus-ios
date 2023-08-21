@@ -31,7 +31,7 @@ struct InternshipsView: View {
                 CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
             }
             .navigationDestination(for: Internship.self) { internship in
-                WebView(url: internship.link.url)
+                WebView(url: internship.link)
             }
             .navigationDestination(isPresented: $showBookmarks, destination: {
                 BookmarksView()

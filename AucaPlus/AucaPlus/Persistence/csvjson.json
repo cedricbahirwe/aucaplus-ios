@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "link_url": "https://example.com/internship1",
+    "verified": true,
+    "source": "Internship Hub",
+    "title": "Software Engineering Intern",
+    "description": "Join us for an exciting software engineering internship opportunity. Develop real-world skills while working on innovative projects.",
+    "posted_at": "2023-08-21 09:00:00+00",
+    "updated_at": "2023-08-21 09:00:00+00",
+    "location": "San Francisco, CA",
+    "views": 500,
+    "bookmarks": 20,
+    "user_id": "fffc4aef-870a-4bfb-9300-99e658cbd1b1"
+  },
+  {
+    "id": 2,
+    "link_url": "https://example.com/internship2",
+    "verified": false,
+    "source": "Tech Innovators",
+    "title": "Data Science Internship",
+    "description": "Explore the realm of data science through our hands-on internship program. Gain experience in data analysis and machine learning.",
+    "posted_at": "2023-08-22 10:30:00+00",
+    "updated_at": "2023-08-22 10:30:00+00",
+    "location": "New York, NY",
+    "views": 350,
+    "bookmarks": 15,
+    "user_id": "fffc4aef-870a-4bfb-9300-99e658cbd1b1"
+  },
+  {
+    "id": 3,
+    "link_url": "https://example.com/internship3",
+    "verified": true,
+    "source": "Marketing Wizards",
+    "title": "Digital Marketing Intern",
+    "description": "Elevate your marketing skills as a digital marketing intern. Learn about social media, SEO, and online advertising strategies.",
+    "posted_at": "2023-08-23 11:45:00+00",
+    "updated_at": "2023-08-23 11:45:00+00",
+    "location": "Los Angeles, CA",
+    "views": 280,
+    "bookmarks": 10,
+    "user_id": "fffc4aef-870a-4bfb-9300-99e658cbd1b1"
+  }
+]

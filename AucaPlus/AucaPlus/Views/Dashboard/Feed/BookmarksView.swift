@@ -125,10 +125,10 @@ extension BookmarkViewModel {
 }
 
 struct Bookmark: Equatable, Codifiable {
-    var id: String {
+    var id: Int {
         switch type {
         case .internship(let item):
-            return item.id
+            return item.id!
         case .news(let item):
             return item.id
         }

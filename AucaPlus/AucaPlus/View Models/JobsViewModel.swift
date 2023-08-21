@@ -13,7 +13,9 @@ final class JobsStore: ObservableObject {
 
 
 struct Job: Opportunity {
-    var id: String
+    var id: Int?
+    
+    var userID: UUID
     
     var verified: Bool
     
@@ -21,13 +23,13 @@ struct Job: Opportunity {
     
     var description: String?
     
-    var link: OpportunityLink
+    var link: URL
 
     var postedDate: Date
     
     var updatedDate: Date?
     
-    var location: Location
+    var location: String
     
     var views: Int
     
@@ -38,14 +40,15 @@ struct Job: Opportunity {
 }
 
 extension Job {
-    static let example = Job(id: "123456",
+    static let example = Job(id: 123456,
+                             userID: UUID(),
                              verified: Bool.random(),
                              title: "Software Engineer",
                              description: "Join our team as a software engineer and work on cutting-edge projects.",
-                             link: OpportunityLink(url: URL(string: "https://example.com/job/software-engineer")!),
+                             link: URL(string: "https://example.com/job/software-engineer")!,
                              postedDate: Date(),
-                             updatedDate: nil,
-                             location: .init(city: "Kigali"),
+                             updatedDate: Date(),
+                             location: "Kigali",
                              views: 1200,
                              bookmarks: 450,
                              company: .example)

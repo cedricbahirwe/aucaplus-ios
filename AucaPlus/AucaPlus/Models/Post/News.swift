@@ -10,7 +10,7 @@ import Foundation
 typealias Codifiable = Codable & Identifiable
 
 protocol FeedItem {
-    var id: String { get set }
+    var id: Int { get set }
     var author: NewsAuthor? { get }
     var createdDate: Date { get }
 }
@@ -20,8 +20,8 @@ extension FeedItem {
         
         var item = self
 
-        return (0..<count).map {_ in
-            item.id = UUID().uuidString
+        return (0..<count).map { i in
+            item.id = i
             return item
         }
     }
@@ -32,7 +32,7 @@ extension FeedItem {
 }
 
 struct News: FeedItem, Codifiable {
-    var id: String
+    var id: Int
     
     var imageURL: URL?
     var title: String
@@ -70,7 +70,7 @@ extension NewsAuthor {
 }
 
 struct RemoteResource: FeedItem, Codifiable {
-    var id: String
+    var id: Int
     let name: String
     let description: String
     let fileURL: URL
@@ -90,13 +90,13 @@ struct RemoteResource: FeedItem, Codifiable {
 }
 
 struct Announcement: FeedItem, Codifiable {
-    var id: String
+    var id: Int
     var author: NewsAuthor
     var createdDate: Date = .now
     var externalLink: URL?
 }
 extension Announcement {
-    static let example = Announcement(id: UUID().uuidString, author: .person)
+    static let example = Announcement(id: 12345, author: .person)
 }
 struct ResourceMetadata: Codable {
     let type: ResourceFileType
@@ -123,7 +123,7 @@ enum ResourceFileType: String, Codable {
 
 
 extension RemoteResource {
-    static let example = RemoteResource(id: "1234",
+    static let example = RemoteResource(id: 1234,
                                         name: "Remote Resource",
                                         description: "This is a remote resource that can be accessed over the internet.", fileURL: URL(string: "https://example.com/remote-resource")!,
                                         createdDate: Date(),
@@ -132,7 +132,7 @@ extension RemoteResource {
     
     
     
-    static let example2 = RemoteResource(id: "5678",
+    static let example2 = RemoteResource(id: 5678,
                                          name: "Mountain Photo",
                                          description: "This is a beautiful photo of a mountain landscape.", fileURL: URL(string: "https://example.com/mountain-photo.jpg")!,
                                          createdDate: Date(),
@@ -141,7 +141,7 @@ extension RemoteResource {
 }
 
 extension News {
-    static let news1 = News(id: UUID().uuidString,
+    static let news1 = News(id: 1212,
                             imageURL: URL(string: "auca1"),
                             title: "Example News 1",
                             subtitle: "An example subtitle for News 1",
@@ -153,7 +153,7 @@ extension News {
                             bookmarks: 21,
                             views: 104)
     
-    static let news2 = News(id: UUID().uuidString,
+    static let news2 = News(id: 1212,
                             imageURL: URL(string: "jpg"),
                             title: "Example News 2",
                             subtitle: nil,
@@ -165,7 +165,7 @@ extension News {
                             bookmarks: 5,
                             views: 50)
     
-    static let news3 = News(id: UUID().uuidString,
+    static let news3 = News(id: 234,
                             imageURL: nil,
                             title: "Example News 3",
                             subtitle: "An example subtitle for News 3",
