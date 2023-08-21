@@ -22,6 +22,16 @@ protocol AucaUser: Identifiable, Codable {
     
     var picture: URL? { get set }
     
+    var createdAt: Date { get set }
+    
+    var updatedAt: Date { get set }
+    
+}
+
+extension AucaUser {
+    var createdAt: Date { .now }
+    
+    var updatedAt: Date { .now }
 }
 
 extension AucaUser {

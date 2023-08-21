@@ -15,4 +15,8 @@ struct AucaLecturer: AucaUser {
     var type: AucaUserType
     var about: String?
     var picture: URL?
+    
+    var createdAt: Date = .now
+    
+    var updatedAt: Date = .now
 }

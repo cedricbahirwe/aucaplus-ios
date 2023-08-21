@@ -15,4 +15,8 @@ struct AucaStaff: AucaUser {
     var type: AucaUserType
     var about: String?
     var picture: URL?
+    
+    var createdAt: Date
+    
+    var updatedAt: Date
 }
