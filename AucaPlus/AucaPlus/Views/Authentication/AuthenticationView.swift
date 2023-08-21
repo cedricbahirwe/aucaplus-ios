@@ -79,7 +79,7 @@ struct AuthenticationView: View {
             Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
         })
         .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: Delays.authFieldFocusTime) {
+            DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.authFieldFocusTime) {
                 focusedField = .phone
             }
         }

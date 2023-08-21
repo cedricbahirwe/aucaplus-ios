@@ -1,13 +1,13 @@
 //
-//  Constants.swift
+//  OnboardingConstants.swift
 //  AucaPlus
 //
-//  Created by Cédric Bahirwe on 30/04/2023.
+//  Created by Cédric Bahirwe on 21/08/2023.
 //
 
 import Foundation
 
-enum Delays {
+enum OnboardingConstants {
     static let onboardingAnimateDelay = DispatchTime.now() + 0.8
     
     static let onboardingDisplayDelay = DispatchTime.now() + 1.3
