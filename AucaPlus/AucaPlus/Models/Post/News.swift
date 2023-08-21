@@ -10,9 +10,21 @@ import Foundation
 typealias Codifiable = Codable & Identifiable
 
 protocol FeedItem {
-    var id: String { get }
+    var id: String { get set }
     var author: NewsAuthor? { get }
     var createdDate: Date { get }
+}
+extension FeedItem {
+    func replicate(_ count: Int) -> [Self] {
+        guard count > 1 else { return [self] }
+        
+        var item = self
+
+        return (0..<count).map {_ in
+            item.id = UUID().uuidString
+            return item
+        }
+    }
 }
 
 extension FeedItem {
@@ -20,18 +32,18 @@ extension FeedItem {
 }
 
 struct News: FeedItem, Codifiable {
-    var id: String { UUID().uuidString }
+    var id: String
     
     var imageURL: URL?
     var title: String
     var subtitle: String?
     var content: AttributedString
-
+    
     var images: [String]
     var createdDate: Date
     var author: NewsAuthor
     var tags: [String]?
-
+    
     var isVerified: Bool = true
     var bookmarks: Int
     var views: Int
@@ -58,7 +70,7 @@ extension NewsAuthor {
 }
 
 struct RemoteResource: FeedItem, Codifiable {
-    let id: String
+    var id: String
     let name: String
     let description: String
     let fileURL: URL
@@ -129,7 +141,8 @@ extension RemoteResource {
 }
 
 extension News {
-    static let news1 = News(imageURL: URL(string: "auca1"),
+    static let news1 = News(id: UUID().uuidString,
+                            imageURL: URL(string: "auca1"),
                             title: "Example News 1",
                             subtitle: "An example subtitle for News 1",
                             content: News.description1,
@@ -140,7 +153,8 @@ extension News {
                             bookmarks: 21,
                             views: 104)
     
-    static let news2 = News(imageURL: URL(string: "jpg"),
+    static let news2 = News(id: UUID().uuidString,
+                            imageURL: URL(string: "jpg"),
                             title: "Example News 2",
                             subtitle: nil,
                             content: AttributedString("This is some example content for News 2"),
@@ -151,7 +165,8 @@ extension News {
                             bookmarks: 5,
                             views: 50)
     
-    static let news3 = News(imageURL: nil,
+    static let news3 = News(id: UUID().uuidString,
+                            imageURL: nil,
                             title: "Example News 3",
                             subtitle: "An example subtitle for News 3",
                             content: AttributedString("This is some example content for News 3"),

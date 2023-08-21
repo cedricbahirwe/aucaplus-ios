@@ -19,12 +19,9 @@ struct InternshipsView: View {
                     NavigationLink(value: internship) {
                         InternshipRowView(
                             internship: internship,
-                            isBookmarked: bookmarksVM.isBookmarked(internship), onBookmarked: {
-                                if bookmarksVM.isBookmarked(internship) {
-                                    bookmarksVM.removeBookmark(.init(type: .internship(internship)))
-                                } else {
-                                    bookmarksVM.addNewBookmark(.init(type: .internship(internship)))
-                                }
+                            isBookmarked: bookmarksVM.isBookmarked(internship),
+                            onBookmarked: {
+                                bookmarksVM.toggleBookmarking(.init(type: .internship($0)))
                             }).padding(.horizontal)
                     }
                     
@@ -57,7 +54,7 @@ struct InternshipsView: View {
 struct InternshipRowView: View {
     var internship: Internship
     var isBookmarked: Bool
-    var onBookmarked: () -> Void
+    var onBookmarked: (Internship) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -85,7 +82,13 @@ struct InternshipRowView: View {
                 
                 Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
                     .onTapGesture {
-                        onBookmarked()
+                        var newValue = self.internship
+                        if isBookmarked {
+                            newValue.bookmarks -= 1
+                        } else {
+                            newValue.bookmarks += 1
+                        }
+                        onBookmarked(newValue)
                     }
             }
             

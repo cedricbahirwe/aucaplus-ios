@@ -19,7 +19,7 @@ struct BookmarksView: View {
                             news,
                             isBookmarked: bookmarksVM.isBookmarked(news),
                             onBookmarked: {
-                                bookmarksVM.toggleBookmarking(.init(type: .news(news)))
+                                bookmarksVM.toggleBookmarking(.init(type: .news($0)))
                             }
                         )
                     case .internship(let internship):
@@ -28,7 +28,7 @@ struct BookmarksView: View {
                                 internship: internship,
                                 isBookmarked: bookmarksVM.isBookmarked(internship))
                             {
-                                bookmarksVM.addNewBookmark(.init(type: .internship(internship)))
+                                bookmarksVM.addNewBookmark(.init(type: .internship($0)))
                             }
                             .padding(.horizontal)
                         }
@@ -71,10 +71,8 @@ final class BookmarkViewModel: ObservableObject {
     
     init() {
         let b1 = Bookmark(type: .internship(.example))
-        let b2 = Bookmark(type: .news(.news1))
         
         bookmarks.append(b1)
-        bookmarks.append(b2)
     }
     
 }
@@ -103,17 +101,17 @@ extension BookmarkViewModel {
     
     func toggleBookmarking(_ bookmark: Bookmark) {
         if isBookmarked(bookmark) {
+//            bookmark.b
             removeBookmark(bookmark)
+
         } else {
             addNewBookmark(bookmark)
         }
     }
     
     func addNewBookmark(_ bookmark: Bookmark) {
-        guard !isBookmarked(bookmark) else { return }
         self.bookmarks.append(bookmark)
     }
-    
     
     func removeBookmark(_ bookmark: Bookmark) {
         if let index = bookmarks.firstIndex(of: bookmark) {

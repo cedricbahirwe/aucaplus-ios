@@ -18,9 +18,9 @@ struct NewsRowView: View {
     @EnvironmentObject private var feedVM: FeedStore
     
     private var isBookmarked: Bool
-    private var onBookmarked: () -> Void
+    private var onBookmarked: (News) -> Void
 
-    init(_ news: News, isBookmarked: Bool, onBookmarked: @escaping () -> Void) {
+    init(_ news: News, isBookmarked: Bool, onBookmarked: @escaping (News) -> Void) {
         _itemVM = StateObject(wrappedValue: { NewsItemViewModel(news) }())
         self.isBookmarked = isBookmarked
         self.onBookmarked = onBookmarked
@@ -57,7 +57,8 @@ struct NewsRowView: View {
                     HStack(spacing: 2) {
                         Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
                             .onTapGesture {
-                                onBookmarked()
+                                itemVM.bookmark(!isBookmarked)
+                                onBookmarked(itemVM.item)
                             }
                         if news.bookmarks > 0 {
                             Text("\(news.bookmarks)")
@@ -88,7 +89,7 @@ struct NewsRowView: View {
 #if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRowView(.news1, isBookmarked: false) { }
+        NewsRowView(.news1, isBookmarked: false) { _ in }
             .environmentObject(FeedStore())
     }
 }

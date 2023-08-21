@@ -34,7 +34,7 @@ struct FeedView: View {
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
                                         onBookmarked: {
-                                            bookmarksVM.toggleBookmarking(.init(type: .news(news)))
+                                            bookmarksVM.toggleBookmarking(.init(type: .news($0)))
                                         }
                                     )
                                 }
