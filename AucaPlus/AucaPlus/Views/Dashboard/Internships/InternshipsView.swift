@@ -28,7 +28,10 @@ struct InternshipsView: View {
                     Divider()
                 }
                 
-                CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
+                if internshipsVM.sortedInternships.count > 10 {
+                    
+                    CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
+                }
             }
             .navigationDestination(for: Internship.self) { internship in
                 WebView(url: internship.link)
@@ -36,16 +39,52 @@ struct InternshipsView: View {
             .navigationDestination(isPresented: $showBookmarks, destination: {
                 BookmarksView()
             })
+            .task {
+                try? await internshipsVM.fetchInternships()
+            }
+            .task {
+                await internshipsVM.isUserAuthenticated()
+            }
+            .frame(maxWidth: .infinity)
             .background(Color(.secondarySystemBackground), ignoresSafeAreaEdges: .all)
             .navigationTitle("Internships")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         showBookmarks = true
                     } label: {
                         Image(systemName: "bookmark.circle")
                     }
                     
+                    if internshipsVM.isAuthenticated {
+                        Button("Create") {
+                            Task {
+                                try? await internshipsVM.createInternship()
+                                try? await internshipsVM.fetchInternships()
+                            }
+                        }
+                    }
+                }
+                
+                if internshipsVM.isAuthenticated {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Sign Out") {
+                            Task {
+                                try? await internshipsVM.signOut()
+                            }
+                        }
+                        
+                    }
+                } else {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Log In") {
+                            Task {
+                                try? await internshipsVM.signIn()
+                                await internshipsVM.isUserAuthenticated()
+                            }
+                        }
+                        
+                    }
                 }
             }
         }
@@ -99,7 +138,7 @@ struct InternshipRowView: View {
                 
                 Divider()
                 
-                Text(internship.location.city)
+                Text(internship.location)
                 
                 DotView()
                 

@@ -19,7 +19,8 @@ extension Bundle {
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom { decoder in
-            let dateString = try decoder.singleValueContainer().decode(String.self)
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
             let isoDateString = dateString.replacingOccurrences(of: " ", with: "T")
             
             let isoFormatter = ISO8601DateFormatter()
@@ -28,7 +29,7 @@ extension Bundle {
             if let date = isoFormatter.date(from: isoDateString) {
                 return date
             } else {
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Date string does not match expected format."))
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Date string does not match expected format.")
             }
         }
 

@@ -70,9 +70,9 @@ final class BookmarkViewModel: ObservableObject {
     }
     
     init() {
-        let b1 = Bookmark(type: .internship(.example))
+//        let b1 = Bookmark(type: .internship(.example))
         
-        bookmarks.append(b1)
+//        bookmarks.append(b1)
     }
     
 }
