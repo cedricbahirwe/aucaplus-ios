@@ -54,6 +54,42 @@ final class InternshipsViewModel: ObservableObject {
             .execute()
     }
     
+    func update(_ old: Internship, with new: Internship) async {
+        guard let id = old.id else {
+            print("❌Can not update \(old)")
+            return
+        }
+        
+        var toUpdate = old
+        toUpdate = new
+        toUpdate.postedDate = old.postedDate
+        toUpdate.updatedDate = .now
+        
+        
+        do {
+            try await supabaseClient.database
+                .from(DBTable.internships)
+                .update(values: toUpdate )
+                .eq(column: "id", value: id)
+                .execute()
+        } catch {
+            print("❌Error: \(error)")
+        }
+    }
+    
+    func deleteInternship(withID id: Int) async {
+        do {
+            try await supabaseClient.database
+                .from(DBTable.internships)
+                .delete()
+                .eq(column: "id", value: id)
+                .execute()
+        } catch {
+            print("❌Error: \(error)")
+        }
+        
+    }
+    
     func loadInternships() {
         let items =  Array(repeating: Internship.example, count: 10)
         
