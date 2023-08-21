@@ -89,6 +89,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-# ignore the file literally named AppSecrets.swift
+# Ignore the file literally named AppSecrets.swift
 
 AppSecrets.swift

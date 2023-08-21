@@ -49,6 +49,7 @@
 		CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA929F71CF2000EE752 /* BookmarksView.swift */; };
 		CB8592DA2A93B9B2004D2B95 /* OnboardingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */; };
 		CB8592DD2A93BE45004D2B95 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = CB8592DC2A93BE45004D2B95 /* Supabase */; };
+		CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E02A93E15E004D2B95 /* AppSecrets.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
@@ -126,6 +127,7 @@
 		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CB43EFA929F71CF2000EE752 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
 		CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConstants.swift; sourceTree = "<group>"; };
+		CB8592E02A93E15E004D2B95 /* AppSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CB8592E02A93E15E004D2B95 /* AppSecrets.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
 				CB079D6E2A8E3299005C9654 /* WebView.swift in Sources */,
+				CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */,
 				CBDC65DB2A92B574006074B3 /* AboutView.swift in Sources */,
 				CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */,
 				CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */,
