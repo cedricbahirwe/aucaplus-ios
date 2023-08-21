@@ -9,10 +9,10 @@ import SwiftUI
 
 struct FeedView: View {
     @StateObject private var feedStore = FeedStore()
-    @State private var goToCreator = false
     
     @State private var overlay = OverlayModel<Announcement>()
-    
+    @EnvironmentObject private var bookmarksVM: BookmarkViewModel
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -30,7 +30,13 @@ struct FeedView: View {
                                 } else if let resource = item as? RemoteResource {
                                     ResourceRowView(resource: resource)
                                 } else if let news = item as? News {
-                                    NewsRowView(news)
+                                    NewsRowView(
+                                        news,
+                                        isBookmarked: bookmarksVM.isBookmarked(news),
+                                        onBookmarked: {
+                                            bookmarksVM.toggleBookmarking(.init(type: .news(news)))
+                                        }
+                                    )
                                 }
                                 
                                 Divider()
@@ -40,11 +46,6 @@ struct FeedView: View {
                     }
                 }
             }
-           
-            .fullScreenCover(isPresented: $goToCreator) {
-                PostCreatorView()
-                    .environmentObject(feedStore)
-            }
             .overlayListener(of: $overlay) { announcement in
                AnnouncementRowView(announcement: announcement, isExpanded: true)
                     .padding()
@@ -53,7 +54,6 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     filterMenu                    
-                    addButton
                 }
             }
         }
@@ -61,7 +61,7 @@ struct FeedView: View {
     
     private var filterMenu: some View {
         Menu {
-            ForEach(FeedStore.FeedFilter.allCases, id:\.self) { filter in
+            ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
                 Button {
                     feedStore.setFilter(filter)
                 } label: {
@@ -70,40 +70,12 @@ struct FeedView: View {
                     } icon: {
                         if filter == feedStore.filter {
                             Image(systemName: "checkmark")
-                        } else {
-                            Image(uiImage: .init())
                         }
                     }
-
-//                    Label(item.rawValue.capitalized, image: String)
-//                    Label(item.rawValue.capitalized, ima: "checkmark.seal.fill")
-                    
-                    
                 }
             }
-            
-//            Button {
-//
-//            } label: {
-//                Label("Verified", systemImage: "checkmark.seal.fill")
-//            }
-           
-//            Button {
-//
-//            } label: {
-//                Label("For Me", systemImage: "person.badge.shield.checkmark.fill")
-//            }
-            
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")
-        }
-    }
-    
-    private var addButton: some View {
-        Button {
-            goToCreator.toggle()
-        } label: {
-            Image(systemName: "plus")
         }
     }
 }

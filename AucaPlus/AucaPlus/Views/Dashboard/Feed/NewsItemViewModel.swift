@@ -14,11 +14,4 @@ final class NewsItemViewModel: ObservableObject {
         self.item = item
     }
     
-    func like() {
-        item.like()
-    }
-    
-    func dislike() {
-        item.dislike()
-    }
 }

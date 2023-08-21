@@ -17,11 +17,15 @@ struct NewsRowView: View {
     
     @EnvironmentObject private var feedVM: FeedStore
     
-    init(_ news: News) {
+    private var isBookmarked: Bool
+    private var onBookmarked: () -> Void
+
+    init(_ news: News, isBookmarked: Bool, onBookmarked: @escaping () -> Void) {
         _itemVM = StateObject(wrappedValue: { NewsItemViewModel(news) }())
+        self.isBookmarked = isBookmarked
+        self.onBookmarked = onBookmarked
     }
     
-    @State private var liked = false
     var body: some View {
         VStack (alignment: .leading) {
             
@@ -42,24 +46,22 @@ struct NewsRowView: View {
                 
                 HStack {
                     HStack(spacing: 2) {
-                        Image(systemName: liked ? "heart.fill" : "heart")
-                            .foregroundColor(liked ? .red : .secondary)
-                        Text("\(news.likes)")
-                    }
-                    .onTapGesture {
-                        liked ? itemVM.dislike() : itemVM.like()
-                        liked.toggle()
-                    }
-                    
-                    Spacer()
-                    HStack(spacing: 2) {
                         Image(systemName: "chart.bar.xaxis")
-                        Text("\(news.views)")
+                        if news.views > 0 {
+                            Text("\(news.views)")
+                        }
                     }
+                    
                     Spacer()
                     
                     HStack(spacing: 2) {
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
+                            .onTapGesture {
+                                onBookmarked()
+                            }
+                        if news.bookmarks > 0 {
+                            Text("\(news.bookmarks)")
+                        }
                     }
                 }
                 .foregroundColor(.secondary)
@@ -86,7 +88,7 @@ struct NewsRowView: View {
 #if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRowView(.news1)
+        NewsRowView(.news1, isBookmarked: false) { }
             .environmentObject(FeedStore())
     }
 }

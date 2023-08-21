@@ -29,15 +29,31 @@ final class InternshipsViewModel: ObservableObject {
     }
 }
 
-struct Internship: Hashable, Codifiable {
+protocol Opportunity: Identifiable, Codable {
+    var id: String { get set }
+    var verified: Bool { get set }
+    var title: String { get set }
+    var description: String? { get set }
+    var link: OpportunityLink { get set }
+    var postedDate: Date { get set }
+    var updatedDate: Date? { get set }
+
+    
+    var location: Location { get set }
+
+    var views: Int { get set }
+    var bookmarks: Int { get set }
+}
+
+struct Internship: Hashable, Opportunity {
     
     var id: String
-    let link: InternshipLink
+    var link: OpportunityLink
     
     var verified: Bool
     var source: InternshipSource
     
-    var title: String?
+    var title: String
     var description: String?
     var postedDate: Date
     var updatedDate: Date?
@@ -45,13 +61,14 @@ struct Internship: Hashable, Codifiable {
     var location: Location
     
     var views: Int = 0
+    var bookmarks: Int = 0
 }
 
 #if DEBUG
 extension Internship {
     static let example = Internship(
         id: "123",
-        link: InternshipLink(url: URL(string: "https://example.com/internship1")!),
+        link: OpportunityLink(url: URL(string: "https://example.com/internship1")!),
         verified: Bool.random(),
         source: .company("TechCo"),
         title: "Software Engineering Intern",
@@ -65,7 +82,7 @@ extension Internship {
         example,
         Internship(
             id: "456",
-            link: InternshipLink(url: URL(string: "https://example.com/internship2")!),
+            link: OpportunityLink(url: URL(string: "https://example.com/internship2")!),
             verified: false,
             source: .other,
             title: "Marketing Intern",
@@ -78,7 +95,7 @@ extension Internship {
 }
 #endif
 
-struct InternshipLink: Hashable, Codable {
+struct OpportunityLink: Hashable, Codable {
     let url: URL
 }
 

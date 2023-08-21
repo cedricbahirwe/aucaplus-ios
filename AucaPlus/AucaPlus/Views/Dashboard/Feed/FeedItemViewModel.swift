@@ -14,11 +14,7 @@ final class FeedItemViewModel: ObservableObject {
         self.item = item
     }
     
-    func like() {
-        item.like()
-    }
-    
-    func dislike() {
-        item.dislike()
+    func view() {
+        item.views += 0
     }
 }

@@ -15,7 +15,13 @@ struct BookmarksView: View {
                 ForEach(bookmarksVM.sortedBookmarks) { bookmark in
                     switch bookmark.type {
                     case .news(let news):
-                        NewsRowView(news)
+                        NewsRowView(
+                            news,
+                            isBookmarked: bookmarksVM.isBookmarked(news),
+                            onBookmarked: {
+                                bookmarksVM.toggleBookmarking(.init(type: .news(news)))
+                            }
+                        )
                     case .internship(let internship):
                         NavigationLink(value: internship) {
                             InternshipRowView(
@@ -91,8 +97,20 @@ extension BookmarkViewModel {
         bookmarks.contains { $0.id == news.id }
     }
     
+    func isBookmarked(_ bookmark: Bookmark) -> Bool {
+        bookmarks.contains(where: { $0.id == bookmark.id })
+    }
+    
+    func toggleBookmarking(_ bookmark: Bookmark) {
+        if isBookmarked(bookmark) {
+            removeBookmark(bookmark)
+        } else {
+            addNewBookmark(bookmark)
+        }
+    }
+    
     func addNewBookmark(_ bookmark: Bookmark) {
-        guard !bookmarks.contains(where: { $0.id == bookmark.id }) else { return }
+        guard !isBookmarked(bookmark) else { return }
         self.bookmarks.append(bookmark)
     }
     

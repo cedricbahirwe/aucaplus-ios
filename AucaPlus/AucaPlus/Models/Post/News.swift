@@ -7,44 +7,44 @@
 
 import Foundation
 
-public typealias Codifiable = Codable & Identifiable
+typealias Codifiable = Codable & Identifiable
 
-public protocol FeedItem {
+protocol FeedItem {
     var id: String { get }
     var author: NewsAuthor? { get }
     var createdDate: Date { get }
 }
 
-public extension FeedItem {
+extension FeedItem {
     var author: NewsAuthor? { nil }
 }
 
-public struct News: FeedItem, Codifiable {
-    public var id: String { UUID().uuidString }
+struct News: FeedItem, Codifiable {
+    var id: String { UUID().uuidString }
     
-    public let imageURL: URL?
-    public let title: String
-    public let subtitle: String?
-    public let content: AttributedString
-    
-    public let images: [String]
-    public let createdDate: Date
-    public let author: NewsAuthor
-    public let tags: [String]?
-    
-    public var isVerified: Bool = true
-    public var likes: Int
-    public let views: Int
+    var imageURL: URL?
+    var title: String
+    var subtitle: String?
+    var content: AttributedString
+
+    var images: [String]
+    var createdDate: Date
+    var author: NewsAuthor
+    var tags: [String]?
+
+    var isVerified: Bool = true
+    var bookmarks: Int
+    var views: Int
 }
 
 
-public struct NewsAuthor: Codable {
-    public let imageURL: URL?
-    public let name: String
-    public var headline: String?
-    public let type: NewsAuthorType
+struct NewsAuthor: Codable {
+    let imageURL: URL?
+    let name: String
+    var headline: String?
+    let type: NewsAuthorType
     
-    public enum NewsAuthorType: String, Codable {
+    enum NewsAuthorType: String, Codable {
         case `public`
         case personal
         case school
@@ -57,26 +57,16 @@ extension NewsAuthor {
     static let person = NewsAuthor(imageURL: nil, name: "Jane Doe", type: .public)
 }
 
-extension News {
-    mutating func like() {
-        likes += 1
-    }
+struct RemoteResource: FeedItem, Codifiable {
+    let id: String
+    let name: String
+    let description: String
+    let fileURL: URL
+    let createdDate: Date
+    let updatedDate: Date?
+    let metadata: ResourceMetadata
     
-    mutating func dislike() {
-        likes -= 1
-    }
-}
-
-public struct RemoteResource: FeedItem, Codifiable {
-    public let id: String
-    public let name: String
-    public let description: String
-    public let fileURL: URL
-    public let createdDate: Date
-    public let updatedDate: Date?
-    public let metadata: ResourceMetadata
-    
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case fileURL = "url"
@@ -87,20 +77,20 @@ public struct RemoteResource: FeedItem, Codifiable {
     }
 }
 
-public struct Announcement: FeedItem, Codifiable {
-    public var id: String
-    public var author: NewsAuthor
-    public var createdDate: Date = .now
-    public var externalLink: URL?
+struct Announcement: FeedItem, Codifiable {
+    var id: String
+    var author: NewsAuthor
+    var createdDate: Date = .now
+    var externalLink: URL?
 }
 extension Announcement {
     static let example = Announcement(id: UUID().uuidString, author: .person)
 }
-public struct ResourceMetadata: Codable {
-    public let type: ResourceFileType
-    public let size: Int
-    public let author: String
-    public let keywords: [String]
+struct ResourceMetadata: Codable {
+    let type: ResourceFileType
+    let size: Int
+    let author: String
+    let keywords: [String]
 }
 
 extension ResourceMetadata {
@@ -113,7 +103,7 @@ extension ResourceMetadata {
     
 }
 
-public enum ResourceFileType: String, Codable {
+enum ResourceFileType: String, Codable {
     case pdf
     case jpg
     case other
@@ -147,7 +137,7 @@ extension News {
                             createdDate: Date.now,
                             author: .school,
                             tags: ["example", "news", "swift"],
-                            likes: 21,
+                            bookmarks: 21,
                             views: 104)
     
     static let news2 = News(imageURL: URL(string: "jpg"),
@@ -158,7 +148,7 @@ extension News {
                             createdDate: .now,
                             author: .person,
                             tags: nil,
-                            likes: 5,
+                            bookmarks: 5,
                             views: 50)
     
     static let news3 = News(imageURL: nil,
@@ -169,7 +159,7 @@ extension News {
                             createdDate: .now,
                             author: NewsAuthor(imageURL: nil, name: "Bob Smith", type: .school),
                             tags: ["example"],
-                            likes: 2,
+                            bookmarks: 2,
                             views: 20)
     
     static var description1: AttributedString = {
