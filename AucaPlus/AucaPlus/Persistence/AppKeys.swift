@@ -12,6 +12,10 @@ enum StorageKeys {
     
     static let appSelectedTab = "settings:appSelectedTab"
     
+    // Review
+    static let appStartUpsCountKey = "appStartUpsCountKey"
+    static let lastVersionPromptedForReviewKey = "lastVersionPromptedForReviewKey"
+    
     static func clearAll() {
         let defaults = UserDefaults.standard
         if let bundID = Bundle.main.bundleIdentifier {

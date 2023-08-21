@@ -50,7 +50,6 @@
 		CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */; };
 		CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA929F71CF2000EE752 /* BookmarksView.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
-		CBDC65CF2A92A5CA006074B3 /* UserDefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
 		CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D82A92B1A6006074B3 /* AccountSettingsView.swift */; };
@@ -129,7 +128,6 @@
 		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CB43EFA929F71CF2000EE752 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
-		CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
 		CBDC65D82A92B1A6006074B3 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 			children = (
 				CB1923DD29FF04C3008873F8 /* Constants.swift */,
 				CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */,
-				CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */,
 				CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */,
 			);
 			path = Helper;
@@ -578,7 +575,6 @@
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
 				CB1923DE29FF04C3008873F8 /* Constants.swift in Sources */,
-				CBDC65CF2A92A5CA006074B3 /* UserDefaultsHandler.swift in Sources */,
 				CB079D762A8EB7D5005C9654 /* OverlayModel.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,
 			);
