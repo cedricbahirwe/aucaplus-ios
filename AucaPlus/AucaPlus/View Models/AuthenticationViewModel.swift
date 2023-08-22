@@ -52,7 +52,7 @@ extension AuthenticationViewModel {
             isSendingOTP = false
             goToOTPView = true
         } catch {
-            print("### Sign Up Error: \(error)")
+            print("✅ Sign Up Error: \(error)")
             isSendingOTP = false
         }
     }
@@ -66,12 +66,12 @@ extension AuthenticationViewModel {
                 type: .sms)
             
             let session = try await client.auth.session
-            print("### Session Info: \(session)")
+            print("✅Session Info: \(session)")
             isValidatingOTP = false
             goToUserDetails = true
         } catch {
             isValidatingOTP = false
-            print("### Sign Up Error: \(error)")
+            print("❌ Sign Up Error: \(error)")
         }
     }
     
@@ -95,12 +95,12 @@ extension AuthenticationViewModel {
                         
             let user = try await client.auth.update(user: attributes)
             
-            print("### Updated Info: \(user)")
+            print("✅ Updated Info: \(user)")
             isSavingUserInfo = false
             isLoggedIn = true
         } catch {
             isSavingUserInfo = false
-            print("### Sign Up Error: \(error)")
+            print("❌ Sign Up Error: \(error)")
         }
     }
     

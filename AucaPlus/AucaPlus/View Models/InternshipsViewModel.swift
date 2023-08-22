@@ -90,11 +90,9 @@ extension InternshipsViewModel {
     func isUserAuthenticated() async {
         do {
             _ = try await authClient.auth.session.user
-            print("isAuthenticated")
             isAuthenticated = true
         } catch {
             isAuthenticated = false
-            print("isNotAuthenticated")
         }
     }
 }

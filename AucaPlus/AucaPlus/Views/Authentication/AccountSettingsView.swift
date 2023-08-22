@@ -105,9 +105,8 @@ struct AccountSettingsView: View {
             .toolbar {
                 if settingsStore.shouldUpdate {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Update") {
-                            print("Nope!")
-                        }.bold()
+                        Button("Update") {}
+                            .bold()
                     }
                 }
             }

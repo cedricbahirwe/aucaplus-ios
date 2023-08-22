@@ -89,17 +89,12 @@ class AuthClient: APIClient, ObservableObject {
         }
     }
 
-    func printer() {
-        print("starting")
-    }
     func isUserAuthenticated() async {
         do {
             _ = try await auth.session.user
-            print("isAuthenticated")
             isAuthenticated = true
         } catch {
             isAuthenticated = false
-            print("isNotAuthenticated")
         }
     }
     
