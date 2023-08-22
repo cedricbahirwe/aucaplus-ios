@@ -12,9 +12,11 @@ struct InternshipsView: View {
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
         
     @State var showBookmarks = false
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
+                
                 ForEach(internshipsVM.sortedInternships) { internship in
                     NavigationLink(value: internship) {
                         InternshipRowView(
@@ -32,6 +34,12 @@ struct InternshipsView: View {
                     CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
                 }
             }
+//            .frame(maxWidth: .infinity)
+//            .overlay {
+//                if internshipsVM.isFetchingInternships {
+//                    SpinnerView()
+//                }
+//            }
             .navigationDestination(for: Internship.self) { internship in
                 WebView(url: internship.link)
             }
@@ -85,6 +93,11 @@ struct InternshipsView: View {
                         
                     }
                 }
+            }
+        }
+        .overlay {
+            if internshipsVM.isFetchingInternships {
+                SpinnerView()
             }
         }
     }
@@ -170,5 +183,6 @@ struct InternshipRowView: View {
 struct InternshipsView_Previews: PreviewProvider {
     static var previews: some View {
         InternshipsView()
+            .environmentObject(BookmarkViewModel())
     }
 }

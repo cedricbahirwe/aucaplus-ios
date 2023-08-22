@@ -25,7 +25,9 @@ final class InternshipsViewModel: ObservableObject {
 
     // MARK: - Database
     func fetchInternships() async throws {
-        isFetchingInternships = true
+        if internships.isEmpty {
+            isFetchingInternships = true
+        }
         let internships = try await internshipClient.fetchInternships()
         isFetchingInternships = false
         self.internships = internships

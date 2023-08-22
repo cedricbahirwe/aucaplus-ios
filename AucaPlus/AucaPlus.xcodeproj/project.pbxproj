@@ -56,6 +56,7 @@
 		CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */; };
 		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
 		CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */; };
+		CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED402A94BC6A00C69441 /* SpinnerView.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
@@ -140,6 +141,7 @@
 		CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
+		CB8DED402A94BC6A00C69441 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				CB079D6D2A8E3299005C9654 /* WebView.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
+				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */,
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
 				CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */,
+				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
 				CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */,
 				CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */,
 				CB079D6C2A8E1AA1005C9654 /* InternshipsView.swift in Sources */,
