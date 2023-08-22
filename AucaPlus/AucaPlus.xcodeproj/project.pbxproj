@@ -57,6 +57,7 @@
 		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
 		CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */; };
 		CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED402A94BC6A00C69441 /* SpinnerView.swift */; };
+		CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
@@ -142,6 +143,7 @@
 		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		CB8DED402A94BC6A00C69441 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				CB079D692A8E1782005C9654 /* InternshipsViewModel.swift */,
 				CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */,
 				CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */,
+				CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
+				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
 				CB079D762A8EB7D5005C9654 /* OverlayModel.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,

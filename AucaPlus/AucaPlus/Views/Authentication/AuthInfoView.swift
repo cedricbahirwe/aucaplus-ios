@@ -22,78 +22,87 @@ struct AuthInfoView: View {
     private var isLoggedIn: Bool = false
     
     var body: some View {
-        VStack(spacing: 0) {
-            AuthenticationView.TitleView(title: "Almost there!")
-
-            VStack(spacing: 20) {
-                Text("Fill in the form below to get in!")
-                    .multilineTextAlignment(.center)
-                    .fixedSize()
-                    .padding(.vertical)
-
-                HStack(spacing: 15) {
-
-                    ZFieldStack("First Name", text: $authVM.regModel.firstName)
-                        .textContentType(.givenName)
-                        .focused($focusedField, equals: .firstName)
-
-                    ZFieldStack("Last Name", text: $authVM.regModel.lastName)
-                        .textContentType(.familyName)
-                        .focused($focusedField, equals: .lastName)
-                }
-                .submitLabel(.next)
-
-                ZFieldStack("Email(Optional)", text: $authVM.regModel.email)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .focused($focusedField, equals: .email)
+        ZStack {
+            
+            VStack(spacing: 0) {
+                AuthenticationView.TitleView(title: "Almost there!")
+                
+                VStack(spacing: 20) {
+                    Text("Fill in the form below to get in!")
+                        .multilineTextAlignment(.center)
+                        .fixedSize()
+                        .padding(.vertical)
+                    
+                    HStack(spacing: 15) {
+                        
+                        ZFieldStack("First Name", text: $authVM.regModel.firstName)
+                            .textContentType(.givenName)
+                            .focused($focusedField, equals: .firstName)
+                        
+                        ZFieldStack("Last Name", text: $authVM.regModel.lastName)
+                            .textContentType(.familyName)
+                            .focused($focusedField, equals: .lastName)
+                    }
                     .submitLabel(.next)
-
-                ZFieldStack("Intro(Optional)",
-                            axis: .vertical(maxHeight: 80, lines: 5),
-                            text: $authVM.regModel.about)
+                    
+                    ZFieldStack("Email(Optional)", text: $authVM.regModel.email)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .focused($focusedField, equals: .email)
+                        .submitLabel(.next)
+                    
+                    ZFieldStack("Intro(Optional)",
+                                axis: .vertical(maxHeight: 80, lines: 5),
+                                text: $authVM.regModel.about)
                     .focused($focusedField, equals: .about)
                     .submitLabel(.next)
-
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Choose Account Type:")
-                        Spacer()
-                        Picker("",
-                               selection: $authVM.regModel.type) {
-                            ForEach(AucaUserType.allCases, id: \.self) { type in
-                                Text(type.rawValue.capitalized)
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Choose Account Type:")
+                            Spacer()
+                            Picker("",
+                                   selection: $authVM.regModel.type) {
+                                ForEach(AucaUserType.allCases, id: \.self) { type in
+                                    Text(type.rawValue.capitalized)
+                                }
                             }
+                                   .pickerStyle(.menu)
+                                   .background(.regularMaterial)
+                                   .cornerRadius(5)
+                            
                         }
-                               .pickerStyle(.menu)
-                               .background(.regularMaterial)
-                               .cornerRadius(5)
-
+                        Text(authVM.regModel.type.description)
+                            .font(.caption)
+                            .fontDesign(.rounded)
+                            .foregroundColor(.secondary)
                     }
-                    Text(authVM.regModel.type.description)
-                        .font(.caption)
-                        .fontDesign(.rounded)
-                        .foregroundColor(.secondary)
+                }
+                .onSubmit(handleSubmission)
+                
+                VStack {
+                    Spacer()
+                    
+                    Button {
+                        Task {
+                            await authVM.saveUserInfo()
+                        }
+                    } label: {
+                        Text("Finish")
+                            .bold()
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
                 }
             }
-            .onSubmit(handleSubmission)
-
-            VStack {
-                Spacer()
-
-                Button {
-                    isLoggedIn = true
-                } label: {
-                    Text("Finish")
-                        .bold()
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
+            .padding(.horizontal, 25)
+            
+            if authVM.isSavingUserInfo {
+                SpinnerView()
             }
         }
-        .padding(.horizontal, 25)
         .toolbar(.hidden)
         .background(
             Color(.systemBackground)

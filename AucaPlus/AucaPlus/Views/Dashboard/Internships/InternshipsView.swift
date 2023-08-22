@@ -34,12 +34,6 @@ struct InternshipsView: View {
                     CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
                 }
             }
-//            .frame(maxWidth: .infinity)
-//            .overlay {
-//                if internshipsVM.isFetchingInternships {
-//                    SpinnerView()
-//                }
-//            }
             .navigationDestination(for: Internship.self) { internship in
                 WebView(url: internship.link)
             }
@@ -70,27 +64,6 @@ struct InternshipsView: View {
                                 try? await internshipsVM.fetchInternships()
                             }
                         }
-                    }
-                }
-                
-                if internshipsVM.isAuthenticated {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Sign Out") {
-                            Task {
-                                try? await internshipsVM.signOut()
-                            }
-                        }
-                        
-                    }
-                } else {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Log In") {
-                            Task {
-                                try? await internshipsVM.signIn()
-                                await internshipsVM.isUserAuthenticated()
-                            }
-                        }
-                        
                     }
                 }
             }

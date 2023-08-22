@@ -86,13 +86,6 @@ final class InternshipsViewModel: ObservableObject {
 
 // MARK: - Authentication
 extension InternshipsViewModel {
-    func signUp() async throws {
-        let response = try await authClient.auth.signUp(email: "cedric1@test.com", password: "password")
-    }
-    
-    func signIn() async throws {
-        let session = try await authClient.auth.signIn(email: "cedric@test.com", password: "password")
-    }
     
     func isUserAuthenticated() async {
         do {
@@ -103,11 +96,5 @@ extension InternshipsViewModel {
             isAuthenticated = false
             print("isNotAuthenticated")
         }
-    }
-    
-    func signOut() async throws {
-        try await authClient.auth.signOut()
-        print("isNotAuthenticated")
-        isAuthenticated = false
     }
 }

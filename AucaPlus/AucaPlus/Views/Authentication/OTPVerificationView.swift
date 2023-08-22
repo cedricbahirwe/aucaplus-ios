@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OTPVerificationView: View {
     @ObservedObject var authVM: AuthenticationViewModel
-    @State private var isLoggingIn = false
+//    @State private var isLoggingIn = false
     @State private var goToUserInfo = false
     
     @State private var otp = ""
@@ -59,7 +59,7 @@ struct OTPVerificationView: View {
                 
             }
             
-            if isLoggingIn {
+            if authVM.isValidatingOTP {
                 ProgressView()
                     .tint(.accentColor)
             }
@@ -67,13 +67,13 @@ struct OTPVerificationView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding()
-        .disabled(isLoggingIn)
+        .disabled(authVM.isValidatingOTP)
         .onAppear() {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.05) {
                 focusedField = true
             }
         }
-        .navigationDestination(isPresented: $goToUserInfo) {
+        .navigationDestination(isPresented: $authVM.goToUserDetails) {
             AuthInfoView(authVM: authVM)
         }
         .onReceive(timer) { _ in
@@ -84,14 +84,18 @@ struct OTPVerificationView: View {
     private func login() {
         otp = previousOtp
         hideKeyboard()
-        isLoggingIn = true
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            isLoggingIn = false
-            goToUserInfo = true
+        
+        
+        let cleanOTP = otp.replacingOccurrences(of: " ", with: "")
+        
+        guard cleanOTP.count == 6 else { return }
+        Task {
+            await authVM.verifyOTP(cleanOTP)
         }
     }
     
     private func handleOTP(_ newOTP: String) {
+        print("Blessed with", newOTP, previousOtp)
         // Make sure they are not equal
         guard previousOtp != newOTP else { return }
         
