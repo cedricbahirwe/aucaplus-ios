@@ -47,8 +47,6 @@ struct OTPVerificationView: View {
                 Text("Enter 6-digit code")
                     .foregroundColor(.secondary)
                 
-                
-                
                 Button("Did not receive code?") {
                     
                 }
@@ -84,8 +82,7 @@ struct OTPVerificationView: View {
     private func login() {
         otp = previousOtp
         hideKeyboard()
-        
-        
+
         let cleanOTP = otp.replacingOccurrences(of: " ", with: "")
         
         guard cleanOTP.count == 6 else { return }
@@ -95,7 +92,11 @@ struct OTPVerificationView: View {
     }
     
     private func handleOTP(_ newOTP: String) {
-        print("Blessed with", newOTP, previousOtp)
+        if previousOtp.count == 0 && newOTP.count == 6 {
+            previousOtp = newOTP
+            login()
+            return
+        }
         // Make sure they are not equal
         guard previousOtp != newOTP else { return }
         

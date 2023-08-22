@@ -78,7 +78,9 @@ struct AuthenticationView: View {
                actions: {
             Button("Edit") { }
             Button("OK") {
+                hideKeyboard()
                 Task {
+                    
                     await authVM.authorize()
                 }
             }

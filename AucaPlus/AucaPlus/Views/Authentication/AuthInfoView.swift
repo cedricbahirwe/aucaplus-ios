@@ -48,6 +48,7 @@ struct AuthInfoView: View {
                     ZFieldStack("Email(Optional)", text: $authVM.regModel.email)
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
                         .focused($focusedField, equals: .email)
                         .submitLabel(.next)
                     

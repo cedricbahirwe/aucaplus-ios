@@ -51,8 +51,11 @@ struct AccountSettingsView: View {
             }
           
             Button {
-                StorageKeys.clearAll()
-                isLoggedIn = false
+                Task {
+                    try await AuthClient.shared.signOut()
+                    isLoggedIn = false
+                    StorageKeys.clearAll()
+                }
             } label: {
                 Text("Log out")
                     .bold()
@@ -69,8 +72,10 @@ struct AccountSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
             Button {
-                StorageKeys.clearAll()
-                isLoggedIn = false
+                Task {
+                    await AuthClient.shared.deleteAccount()
+                    StorageKeys.clearAll()
+                }
             } label: {
                 Text("Delete account")
                     .bold()

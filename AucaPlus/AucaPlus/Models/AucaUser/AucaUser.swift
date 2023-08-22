@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AucaUser: Identifiable, Codable {
-    var id: Int { get set }
+    var id: UUID? { get set }
     
     var firstName: String { get set }
     

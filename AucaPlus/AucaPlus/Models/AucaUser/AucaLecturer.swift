@@ -8,7 +8,7 @@
 import Foundation
 
 struct AucaLecturer: AucaUser {
-    var id: Int
+    var id: UUID?
     var firstName: String
     var lastName: String
     var phoneNumber: String

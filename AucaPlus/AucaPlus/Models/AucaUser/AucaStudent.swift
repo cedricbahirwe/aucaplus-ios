@@ -8,7 +8,7 @@
 import Foundation
 
 struct AucaStudent: AucaUser {
-    var id: Int
+    var id: UUID?
     var firstName: String
     var lastName: String
     var phoneNumber: String
@@ -22,7 +22,7 @@ struct AucaStudent: AucaUser {
 }
 
 extension AucaStudent {
-    static let example = AucaStudent(id: 1, firstName: "Cédric", lastName: "Bahirwe", phoneNumber: "+250788123450", type: .student, about: "Software Engineering student at AUCA.", picture: URL(string: "https://picsum.photos/200"))
+    static let example = AucaStudent(id: .init(), firstName: "Cédric", lastName: "Bahirwe", phoneNumber: "+250788123450", type: .student, about: "Software Engineering student at AUCA.", picture: URL(string: "https://picsum.photos/200"))
 
-    static let example1 = AucaStudent(id: 1, firstName: "Grace", lastName: "Uwase", phoneNumber: "+250788123456", type: .student, about: "I'm a software engineering student at AUCA.", picture: URL(string: "https://picsum.photos/200"))
+    static let example1 = AucaStudent(id: .init(), firstName: "Grace", lastName: "Uwase", phoneNumber: "+250788123456", type: .student, about: "I'm a software engineering student at AUCA.", picture: URL(string: "https://picsum.photos/200"))
 }

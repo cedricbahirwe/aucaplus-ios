@@ -73,13 +73,43 @@ fileprivate enum DBTable {
 }
 
 
-class AuthClient: APIClient {
+class AuthClient: APIClient, ObservableObject {
     static let shared = AuthClient()
     
-    private override init() { }
-    
+    @Published private(set) var isAuthenticated = false
+
     var auth: GoTrueClient  {
         client.auth
     }
     
+    private override init() {
+        super.init()
+        Task {
+            await isUserAuthenticated()
+        }
+    }
+
+    func printer() {
+        print("starting")
+    }
+    func isUserAuthenticated() async {
+        do {
+            _ = try await auth.session.user
+            print("isAuthenticated")
+            isAuthenticated = true
+        } catch {
+            isAuthenticated = false
+            print("isNotAuthenticated")
+        }
+    }
+    
+    
+    func deleteAccount() async {
+    }
+    
+    func signOut() async throws {
+        try await auth.signOut()
+        await isUserAuthenticated()
+    }
 }
+

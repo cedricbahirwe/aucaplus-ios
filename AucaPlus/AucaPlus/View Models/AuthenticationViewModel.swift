@@ -91,10 +91,12 @@ extension AuthenticationViewModel {
             
             let attributes = UserAttributes(
                 email: regModel.email,
-                phone: authModel.formattedPhone(),
                 data: metadata
             )
             
+            print("Finish", attributes)
+            
+            print("meta", metadata)
             let user = try await client.auth.update(user: attributes)
             
             print("### Updated Info: \(user)")
