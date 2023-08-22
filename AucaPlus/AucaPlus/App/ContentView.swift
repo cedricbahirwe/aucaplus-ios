@@ -16,7 +16,7 @@ struct ContentView: View {
     
     
     var body: some View {
-        if AuthClient.shared.isAuthenticated && isLoggedIn  {
+        if  isLoggedIn || AuthClient.shared.isAuthenticated  {
             AppTabView()
         } else {
             NavigationStack {

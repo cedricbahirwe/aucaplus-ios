@@ -12,6 +12,7 @@ struct AucaStaff: AucaUser {
     var firstName: String
     var lastName: String
     var phoneNumber: String
+    var email: String
     var type: AucaUserType
     var about: String?
     var picture: URL?

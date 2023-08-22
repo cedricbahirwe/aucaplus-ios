@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#warning("Needs validation")
 struct AuthInfoView: View {
     @ObservedObject var authVM: AuthenticationViewModel
     

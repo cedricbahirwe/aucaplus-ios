@@ -46,7 +46,6 @@ extension AuthenticationViewModel {
     
     func authorize() async {
         do {
-            print("Sending to", phone)
             isSendingOTP = true
             try await client.auth.signInWithOTP(
                 phone: phone)
@@ -76,27 +75,24 @@ extension AuthenticationViewModel {
         }
     }
     
-    
     func saveUserInfo() async {
         do {
+            #warning("should create steps to come back to in the auth flow")
             isSavingUserInfo = true
             _ = try await client.auth.session.user
             
             let metadata: [String : AnyJSON] = [
                 "first_name" : .string(regModel.firstName),
-                "last_name" : .string(regModel.firstName),
+                "last_name" : .string(regModel.lastName),
                 "account_type" : .string(regModel.type.rawValue),
-                "about": .string(regModel.about)
+                "about": .string(regModel.about.trimmingCharacters(in: .whitespaces))
             ]
             
             let attributes = UserAttributes(
                 email: regModel.email,
                 data: metadata
             )
-            
-            print("Finish", attributes)
-            
-            print("meta", metadata)
+                        
             let user = try await client.auth.update(user: attributes)
             
             print("### Updated Info: \(user)")

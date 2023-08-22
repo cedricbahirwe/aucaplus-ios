@@ -18,17 +18,17 @@ struct SettingsView: View {
                 
                 Section {
                     if let user = settingsStore.currentUser {
-                        HStack(spacing: 8) {
+                        HStack(alignment: .center, spacing: 8) {
                             AsyncImage(url: user.picture) { image in
                                 image
                                     .resizable()
                             } placeholder: {
                                 Color.secondary
                             }
-                            .frame(width: 60, height: 60)
+                            .frame(width: 65, height: 65)
                             .clipShape(Circle())
                             
-                            VStackLayout(alignment: .leading) {
+                            VStack(alignment: .leading) {
                                 Text(user.completeName())
                                     .font(.title2)
                                 
@@ -38,11 +38,15 @@ struct SettingsView: View {
                                         .foregroundColor(.secondary)
                                 }
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .redacted(reason: user == .example1 ? .placeholder : .init())
+                        .animation(.easeInOut, value: user == .example1)
                         
                         NavigationLink {
-                            AccountSettingsView()
+                            AccountSettingsView(settingsStore: settingsStore)
                         } label: {
                             FormLabel(.account)
                         }
@@ -93,6 +97,9 @@ struct SettingsView: View {
                 
                 VersionLabel()
                 
+            }
+            .task {
+                await settingsStore.getUser()
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
