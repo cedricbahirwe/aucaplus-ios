@@ -29,7 +29,6 @@ struct InternshipsView: View {
                 }
                 
                 if internshipsVM.sortedInternships.count > 10 {
-                    
                     CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
                 }
             }

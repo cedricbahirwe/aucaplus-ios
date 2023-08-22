@@ -6,11 +6,6 @@
 //
 
 import Foundation
-import Supabase
-
-enum DBTable {
-    static let internships = "Internships"
-}
 
 @MainActor
 final class InternshipsViewModel: ObservableObject {
@@ -18,29 +13,26 @@ final class InternshipsViewModel: ObservableObject {
     
     @Published private(set) var isAuthenticated = false
     
+    @Published private(set) var isFetchingInternships = false
+    
     var sortedInternships: [Internship] {
         internships.sorted { $0.postedDate > $1.postedDate }
     }
     
-    let supabaseClient = SupabaseClient(supabaseURL: AppSecrets.projectURL,
-                                        supabaseKey: AppSecrets.apiKey)
-    
+    private let internshipClient: InternshipClient = APIClient()
+
+    private let authClient: AuthClient = AuthClient.shared
+
     // MARK: - Database
     func fetchInternships() async throws {
-//        self.internships = Bundle.main.decode([Internship].self, from: "csvjson.json")
-        
-        let internships: [Internship] = try await supabaseClient.database
-            .from(DBTable.internships)
-            .select()
-            .order(column: "posted_at", ascending: false)
-            .execute()
-            .value
-        
+        isFetchingInternships = true
+        let internships = try await internshipClient.fetchInternships()
+        isFetchingInternships = false
         self.internships = internships
     }
     
     func createInternship() async throws {
-        let user = try await supabaseClient.auth.session.user
+        let user = try await authClient.auth.session.user
         
         var internship = Internship.example
         internship.id = nil
@@ -48,10 +40,7 @@ final class InternshipsViewModel: ObservableObject {
         internship.updatedDate = .now
         internship.userID = user.id
         
-        try await supabaseClient.database
-            .from(DBTable.internships)
-            .insert(values: internship)
-            .execute()
+        try await internshipClient.createInternship(internship)
     }
     
     func update(_ old: Internship, with new: Internship) async {
@@ -65,13 +54,8 @@ final class InternshipsViewModel: ObservableObject {
         toUpdate.postedDate = old.postedDate
         toUpdate.updatedDate = .now
         
-        
         do {
-            try await supabaseClient.database
-                .from(DBTable.internships)
-                .update(values: toUpdate )
-                .eq(column: "id", value: id)
-                .execute()
+            try await internshipClient.updateInternship(with: id, with: toUpdate)
         } catch {
             print("❌Error: \(error)")
         }
@@ -79,15 +63,10 @@ final class InternshipsViewModel: ObservableObject {
     
     func deleteInternship(withID id: Int) async {
         do {
-            try await supabaseClient.database
-                .from(DBTable.internships)
-                .delete()
-                .eq(column: "id", value: id)
-                .execute()
+            try await internshipClient.deleteInternship(with: id)
         } catch {
             print("❌Error: \(error)")
         }
-        
     }
     
     func loadInternships() {
@@ -106,19 +85,16 @@ final class InternshipsViewModel: ObservableObject {
 // MARK: - Authentication
 extension InternshipsViewModel {
     func signUp() async throws {
-        let response = try await supabaseClient.auth.signUp(email: "cedric1@test.com", password: "password")
-        
+        let response = try await authClient.auth.signUp(email: "cedric1@test.com", password: "password")
     }
     
     func signIn() async throws {
-        let session = try await supabaseClient.auth.signIn(email: "cedric@test.com", password: "password")
-        
-        
+        let session = try await authClient.auth.signIn(email: "cedric@test.com", password: "password")
     }
     
     func isUserAuthenticated() async {
         do {
-            _ = try await supabaseClient.auth.session.user
+            _ = try await authClient.auth.session.user
             print("isAuthenticated")
             isAuthenticated = true
         } catch {
@@ -128,9 +104,8 @@ extension InternshipsViewModel {
     }
     
     func signOut() async throws {
-        try await supabaseClient.auth.signOut()
+        try await authClient.auth.signOut()
         print("isNotAuthenticated")
         isAuthenticated = false
     }
-
 }
