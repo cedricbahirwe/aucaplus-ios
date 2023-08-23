@@ -116,6 +116,8 @@ struct InternshipRowView: View {
                     }
             }
             
+            LinkPreviewer(url: internship.link)
+            
             HStack {
                 
                 Text(internship.source.name)
@@ -150,6 +152,7 @@ struct InternshipRowView: View {
                 }
             }
             .font(.callout)
+            
         }
     }
 }

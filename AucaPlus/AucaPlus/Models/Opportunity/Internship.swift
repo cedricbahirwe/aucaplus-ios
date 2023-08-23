@@ -92,9 +92,16 @@ enum InternshipSource: Codable, Hashable {
 
 #if DEBUG
 extension Internship {
+    static let urls = [
+        "https://developer.apple.com/news/?id=8sntwknb",
+        "https://github.com/appcoda/LinkPresentationDemo",
+        "https://www.youtube.com/watch?v=TOmxDvCz7e4&ab_channel=MikeMikina",
+        "https://form.jotform.com/232037292556558"
+    ].compactMap(URL.init(string:))
+    
     static let example = Internship(
         id: Int.random(in: 1...1000),
-        link: URL(string: "https://example.com/internship1")!,
+        link: urls.randomElement()!,
         verified: Bool.random(), userID: UUID(),
         source: .company("TechCo"),
         title: "Software Engineering Intern",
@@ -108,7 +115,7 @@ extension Internship {
         example,
         Internship(
             id: 456,
-            link: URL(string: "https://example.com/internship2")!,
+            link: urls.randomElement()!,
             verified: false, userID: UUID(),
             source: .other,
             title: "Marketing Intern",
