@@ -37,7 +37,6 @@ struct InternshipRowView: View {
             LinkPreviewer(url: internship.link)
                 .disabled(true)
             
-            
             HStack(spacing: 5) {
                 
                 Text("Posted \(internship.postedDate.timeAgo)")

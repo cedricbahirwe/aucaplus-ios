@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct InternshipsView: View {
-    @StateObject private var internshipsVM = InternshipsViewModel()
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
-        
-    @State var showBookmarks = false
+    @StateObject private var internshipsVM = InternshipsViewModel()
+    @State private var showBookmarks = false
 
     var body: some View {
         NavigationStack {
