@@ -42,6 +42,7 @@
 		CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827829F99B4C00F436C3 /* NewsRowView.swift */; };
 		CB42827B29F99B8600F436C3 /* ResourceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827A29F99B8600F436C3 /* ResourceRowView.swift */; };
 		CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827C29F99B9100F436C3 /* AnnouncementRowView.swift */; };
+		CB436CD72A9761F9000EE8C3 /* InternshipRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */; };
 		CB43EF9A29F70A52000EE752 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */; };
 		CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9B29F71287000EE752 /* View+Extensions.swift */; };
 		CB43EFA629F7199B000EE752 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA529F7199B000EE752 /* News.swift */; };
@@ -58,6 +59,9 @@
 		CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */; };
 		CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED402A94BC6A00C69441 /* SpinnerView.swift */; };
 		CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */; };
+		CBCC0C3C2A961F8100B9A34E /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3B2A961F8100B9A34E /* TestingView.swift */; };
+		CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */; };
+		CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
@@ -129,6 +133,7 @@
 		CB42827829F99B4C00F436C3 /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
 		CB42827A29F99B8600F436C3 /* ResourceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRowView.swift; sourceTree = "<group>"; };
 		CB42827C29F99B9100F436C3 /* AnnouncementRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRowView.swift; sourceTree = "<group>"; };
+		CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipRowView.swift; sourceTree = "<group>"; };
 		CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		CB43EF9B29F71287000EE752 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		CB43EFA529F7199B000EE752 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -144,6 +149,9 @@
 		CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
 		CB8DED402A94BC6A00C69441 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		CBCC0C3B2A961F8100B9A34E /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
+		CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksPreviewModel.swift; sourceTree = "<group>"; };
+		CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewer.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 				CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */,
 				CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */,
 				CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */,
+				CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 			children = (
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CB079D6B2A8E1AA1005C9654 /* InternshipsView.swift */,
+				CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */,
 			);
 			path = Internships;
 			sourceTree = "<group>";
@@ -307,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				CB079D6D2A8E3299005C9654 /* WebView.swift */,
+				CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
 			);
@@ -434,6 +445,7 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CBCC0C3B2A961F8100B9A34E /* TestingView.swift */,
 				CB8592E02A93E15E004D2B95 /* AppSecrets.swift */,
 				CB8DED3B2A94B29B00C69441 /* Networking */,
 			);
@@ -586,11 +598,13 @@
 				CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */,
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
+				CB436CD72A9761F9000EE8C3 /* InternshipRowView.swift in Sources */,
 				CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */,
 				CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */,
 				CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */,
 				CBDC65DE2A92B764006074B3 /* SectionHeaderText.swift in Sources */,
 				CBDC65E02A92B773006074B3 /* FormLabel.swift in Sources */,
+				CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */,
 				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
 				CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */,
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
@@ -609,6 +623,7 @@
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
 				CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */,
 				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
+				CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */,
 				CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */,
 				CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */,
 				CB079D6C2A8E1AA1005C9654 /* InternshipsView.swift in Sources */,
@@ -618,6 +633,7 @@
 				CB42827B29F99B8600F436C3 /* ResourceRowView.swift in Sources */,
 				CB079D742A8EB718005C9654 /* Date+Extensions.swift in Sources */,
 				CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */,
+				CBCC0C3C2A961F8100B9A34E /* TestingView.swift in Sources */,
 				CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */,
 				CB43EFA629F7199B000EE752 /* News.swift in Sources */,
 				CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */,

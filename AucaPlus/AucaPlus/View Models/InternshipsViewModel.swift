@@ -24,13 +24,19 @@ final class InternshipsViewModel: ObservableObject {
     private let authClient: AuthClient = AuthClient.shared
 
     // MARK: - Database
-    func fetchInternships() async throws {
+    func fetchInternships() async {
         if internships.isEmpty {
             isFetchingInternships = true
         }
-        let internships = try await internshipClient.fetchInternships()
-        isFetchingInternships = false
-        self.internships = internships
+        
+        do {
+            let internships = try await internshipClient.fetchInternships()
+            isFetchingInternships = false
+            self.internships = internships
+        } catch {
+            print("❌\(error.localizedDescription)")
+            isFetchingInternships = false
+        }
     }
     
     func createInternship() async throws {

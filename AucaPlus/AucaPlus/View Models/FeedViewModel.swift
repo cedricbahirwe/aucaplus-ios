@@ -46,7 +46,8 @@ final class FeedStore: ObservableObject {
         case .announcements:
             result = announcements
         }
-        items = result.shuffled()
+        
+        items = news
     }
     
     public enum FeedFilter: String, CaseIterable {
