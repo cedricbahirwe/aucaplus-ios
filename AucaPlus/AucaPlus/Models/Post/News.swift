@@ -179,7 +179,7 @@ extension News {
     
     static var description1: AttributedString = {
         var str = AttributedString("@Bridge2Rwanda")
-        str.link = URL(string: "https://github.com/AUCA-DEVELOPERS")
+        str.link = URL(string: "https://github.com/aucaplus")
         str.foregroundColor = .accentColor
         
         return "Today, AUCA & " + str + "'s Bridge Talent Services, signed a MoU in areas of career devpt for students/graduates. The partnership will enhance education-to-employment approach, thus enabling students to learn, apply skills to build career mobility via job readiness workshops."

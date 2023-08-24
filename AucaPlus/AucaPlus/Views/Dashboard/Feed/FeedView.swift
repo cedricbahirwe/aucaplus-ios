@@ -53,13 +53,14 @@ struct FeedView: View {
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    filterMenu                    
+                    filterButton
+                    notificationButton
                 }
             }
         }
     }
     
-    private var filterMenu: some View {
+    private var filterButton: some View {
         Menu {
             ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
                 Button {
@@ -75,7 +76,14 @@ struct FeedView: View {
                 }
             }
         } label: {
-            Image(systemName: "line.3.horizontal.decrease.circle")
+            Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+        }
+    }
+    
+    private var notificationButton: some View {
+        Button {
+        } label: {
+            Label("Notifications", systemImage: "bell.badge")
         }
     }
 }
@@ -84,7 +92,7 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
-            .previewLayout(SwiftUI.PreviewLayout.fixed(width: 416, height: 1000))
+            .environmentObject(BookmarkViewModel())
     }
 }
 #endif

@@ -25,8 +25,8 @@ struct Internship: Hashable, Opportunity {
     
     var location: String
     
-    var views: Int = 0
-    var bookmarks: Int = 0
+    var views: Int = 100
+    var bookmarks: Int = 12
 }
 
 extension Internship {
@@ -101,14 +101,16 @@ extension Internship {
     
     static let example = Internship(
         id: Int.random(in: 1...1000),
-        link: urls.randomElement()!,
+        link: URL(string: "https://developer.apple.com/news/?id=8sntwknb")!,
         verified: Bool.random(), userID: UUID(),
         source: .company("TechCo"),
         title: "Software Engineering Intern",
         description: "Work on exciting projects in a fast-paced environment.",
         postedDate: Date(timeIntervalSinceNow: -234125),
         updatedDate: nil,
-        location: "Kigali"
+        location: "Kigali",
+        views: Int.random(in: 1...1000),
+        bookmarks: 100
     )
     
     static let examples = [
@@ -122,7 +124,9 @@ extension Internship {
             description: "Assist in creating and implementing marketing campaigns.",
             postedDate: Date(timeIntervalSinceNow: -23523),
             updatedDate: Date(timeIntervalSinceNow: -234125),
-            location: "New York"
+            location: "New York",
+            views: Int.random(in: 1...1000),
+            bookmarks: 100
         )
     ]
 }
