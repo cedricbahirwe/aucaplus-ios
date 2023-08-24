@@ -13,8 +13,8 @@ struct LinkPreviewer: UIViewRepresentable {
 
     var url: URL
     
-    func makeUIView(context: Context) -> LPLinkView {
-        let linkView = LPLinkView()
+    func makeUIView(context: Context) -> AucaLinkView {
+        let linkView = AucaLinkView()
         Task {
             await generateLinkPreview(linkView: linkView)
         }
@@ -22,13 +22,12 @@ struct LinkPreviewer: UIViewRepresentable {
         return linkView
     }
 
-    func updateUIView(_ uiView: LPLinkView, context: Context) {
+    func updateUIView(_ uiView: AucaLinkView, context: Context) {
 
     }
     
-    private func generateLinkPreview(linkView: LPLinkView) async {
+    private func generateLinkPreview(linkView: AucaLinkView) async {
         if let previewData = linkVM.getLinkPreview(for: url.absoluteString)?.metadata {
-            print("Found cache")
             DispatchQueue.main.async {
                 linkView.metadata = previewData
             }
@@ -37,9 +36,8 @@ struct LinkPreviewer: UIViewRepresentable {
         
         let metadataProvider = LPMetadataProvider()
         do {
-            print("Starting", Date.now)
             let metadata = try await metadataProvider.startFetchingMetadata(for: url)
-            print("Ending", Date.now)
+
             DispatchQueue.main.async {
                 linkView.metadata = metadata
                 if let originalURL = metadata.originalURL {
@@ -47,7 +45,9 @@ struct LinkPreviewer: UIViewRepresentable {
                 }
             }
         } catch {
-            print("Error fetching metadata: \(error.localizedDescription)")
+            print("❌Error fetching metadata: \(error.localizedDescription)")
         }
     }
 }
+
+typealias AucaLinkView = LPLinkView

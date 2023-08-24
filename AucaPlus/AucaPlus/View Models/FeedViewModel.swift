@@ -35,19 +35,19 @@ final class FeedStore: ObservableObject {
         let resources = RemoteResource.example.replicate(2)
         let news = News.news1.replicate(4)
         
-//        var result = [FeedItem] ()
-//        switch filter {
-//        case .all:
-//            result = announcements + resources + news
-//        case .news:
-//            result = news
-//        case .resources:
-//            result = resources
-//        case .announcements:
-//            result = announcements
-//        }
+        var result = [FeedItem] ()
+        switch filter {
+        case .all:
+            result = announcements + resources + news
+        case .news:
+            result = news
+        case .resources:
+            result = resources
+        case .announcements:
+            result = announcements
+        }
         
-        items = news // result.shuffled()
+        items = news
     }
     
     public enum FeedFilter: String, CaseIterable {

@@ -28,6 +28,8 @@ struct InternshipsView: View {
                     }
                     
                     Divider()
+                        .frame(height: 0.65)
+                        .overlay(.gray)
                 }
                 
                 if internshipsVM.sortedInternships.count > 10 {
@@ -41,7 +43,7 @@ struct InternshipsView: View {
                 BookmarksView()
             })
             .task {
-                try? await internshipsVM.fetchInternships()
+                await internshipsVM.fetchInternships()
             }
             .task {
                 await internshipsVM.isUserAuthenticated()

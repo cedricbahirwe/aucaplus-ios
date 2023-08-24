@@ -11,8 +11,8 @@ import WebKit
 struct WebView: View {
     let url: URL
     var body: some View {
-        WebViewRepresentation("Auca Web", url: url)
-//            .navigationTitle("Something")
+        WebViewRepresentation(url: url)
+            .navigationTitle("\(Image(systemName: "house.fill"))Auca Web")
             .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -24,13 +24,8 @@ struct WebView_Previews: PreviewProvider {
 }
 
 fileprivate struct WebViewRepresentation: UIViewControllerRepresentable {
-    private let title: String?
-    private let url: URL
     
-    init(_ title: String? = nil, url: URL) {
-        self.title = title
-        self.url = url
-    }
+    let url: URL
     
     func makeUIViewController(context: Context) -> AucaWebViewController {
         let viewController = AucaWebViewController()
@@ -38,7 +33,6 @@ fileprivate struct WebViewRepresentation: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: AucaWebViewController, context: Context) {
-        uiViewController.setTitle(title)
         uiViewController.loadURL(url)
     }
 }
@@ -84,7 +78,7 @@ fileprivate class AucaWebViewController: UIViewController {
         ])
     }
     
-    func setTitle(_ pageTitle: String?) {
+    private func setTitle(_ pageTitle: String?) {
         parent?.navigationItem.title = pageTitle
     }
     
