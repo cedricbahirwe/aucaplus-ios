@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OTPVerificationView: View {
     @ObservedObject var authVM: AuthenticationViewModel
-//    @State private var isLoggingIn = false
     @State private var goToUserInfo = false
     
     @State private var otp = ""

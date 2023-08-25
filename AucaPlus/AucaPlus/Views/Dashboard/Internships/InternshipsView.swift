@@ -31,6 +31,7 @@ struct InternshipsView: View {
                                 }
                             }).padding(.horizontal)
                     }
+                    .animation(nil)
                     
                     Divider()
                         .frame(height: 0.65)

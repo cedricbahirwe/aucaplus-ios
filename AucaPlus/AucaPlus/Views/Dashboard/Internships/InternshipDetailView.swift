@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// Will pass the internship object when needed
 struct InternshipDetailView: View {
     let internship: Internship
     

@@ -15,14 +15,13 @@ final class InternshipsViewModel: ObservableObject {
     
     @Published private(set) var isFetchingInternships = false
     
-    //    var sortedInternships: [Internship] {
-    //        internships.sorted { $0.postedDate > $1.postedDate }
-    //    }
-    
     private let internshipClient: InternshipClient = APIClient()
     
     private let authClient: AuthClient = AuthClient.shared
-    
+
+    init() {
+        internships = TemporaryStorage.shared.retrieve(forKey: "internships")
+    }
     
 }
 
@@ -36,6 +35,7 @@ extension InternshipsViewModel {
         do {
             let internships = try await internshipClient.fetchInternships()
             isFetchingInternships = false
+            TemporaryStorage.shared.save(object: internships, forKey: "internships")
             self.internships = internships
         } catch {
             print("❌\(error.localizedDescription)")
