@@ -164,19 +164,8 @@ class AuthClient: APIClient, ObservableObject {
         }
     }
     
-    func isExistingUser() async throws -> Bool {
-        fatalError()
-//        client.database
-//            .from(DBTable.aucaUsers)
-//            .select()
-//            .eq(column: "id", value: user.id)
-//            .single()
-//            .execute()
-//            .value
-    }
-    
-    
     func deleteAccount() async {
+        fatalError()
     }
     
     func signOut() async throws {

@@ -44,13 +44,7 @@ extension BookmarkViewModel {
     
     func toggleBookmarking(_ bookmark: Bookmark) {
         fatalError()
-//        if isBookmarked(bookmark) {
-//            removeBookmark(bookmark)
-//        } else {
-//            addNewBookmark(bookmark)
-//        }
     }
-    
     
     func addToBookmarks(_ internship: Internship) {
         let bookmark = Bookmark(type: .internship(internship))
