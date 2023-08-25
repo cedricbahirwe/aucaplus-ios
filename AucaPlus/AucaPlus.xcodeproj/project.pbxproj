@@ -54,6 +54,7 @@
 		CB8592E52A93E733004D2B95 /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = CB8592E42A93E733004D2B95 /* csvjson.json */; };
 		CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E72A93FB57004D2B95 /* Internship.swift */; };
 		CB8592EA2A93FB7C004D2B95 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E92A93FB7C004D2B95 /* Opportunity.swift */; };
+		CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */; };
 		CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */; };
 		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
 		CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */; };
@@ -144,6 +145,7 @@
 		CB8592E42A93E733004D2B95 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
 		CB8592E72A93FB57004D2B95 /* Internship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internship.swift; sourceTree = "<group>"; };
 		CB8592E92A93FB7C004D2B95 /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
+		CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipDetailView.swift; sourceTree = "<group>"; };
 		CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 		CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CB079D6B2A8E1AA1005C9654 /* InternshipsView.swift */,
+				CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */,
 				CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */,
 			);
 			path = Internships;
@@ -648,6 +651,7 @@
 				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
 				CB079D762A8EB7D5005C9654 /* OverlayModel.swift in Sources */,
+				CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

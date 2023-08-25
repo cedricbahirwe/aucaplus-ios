@@ -39,7 +39,7 @@ struct InternshipRowView: View {
             
             HStack(spacing: 5) {
                 
-                Text("Posted \(internship.postedDate.timeAgo)")
+                Text(internship.postedDate.timeAgo)
                     .opacity(0.6)
 
                 if internship.views != 0 {
@@ -67,6 +67,8 @@ struct InternshipRowView: View {
             }
             .foregroundColor(.primary)
             .font(.callout)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
             
             Divider()
             
