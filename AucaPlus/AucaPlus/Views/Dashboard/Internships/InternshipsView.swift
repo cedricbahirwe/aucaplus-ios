@@ -59,7 +59,10 @@ struct InternshipsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        showBookmarks = true
+                        Task {
+                            await internshipsVM.doSomething()
+                        }
+//                        showBookmarks = true
                     } label: {
                         Image(systemName: "bookmark.circle")
                     }

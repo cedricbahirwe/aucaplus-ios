@@ -39,6 +39,7 @@ struct InternshipRowView: View {
             
             if let metadata = linkPreview?.metadata {
                 LinkPreviewer(metadata: metadata)
+                    .disabled(true)
             } else {
                 EmptyView()
             }

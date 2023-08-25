@@ -27,6 +27,17 @@ final class InternshipsViewModel: ObservableObject {
 
 // MARK: - Database
 extension InternshipsViewModel {
+    func doSomething() async {
+        Task {
+            do {
+                let intern = internships.first!
+                try await internshipClient.updateInternship(with: intern.id, with: intern)
+            } catch {
+                print("error", error.localizedDescription)
+            }
+        }
+    }
+    
     func fetchInternships() async {
         if internships.isEmpty {
             isFetchingInternships = true
