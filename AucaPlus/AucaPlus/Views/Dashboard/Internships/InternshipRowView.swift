@@ -11,7 +11,10 @@ struct InternshipRowView: View {
     var internship: Internship
     var isBookmarked: Bool
     var onBookmarking: (Bool) -> Void
+    @EnvironmentObject var linkVM: LinksPreviewModel
     
+    @State private var linkPreview: LinkPreview?
+
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
@@ -34,8 +37,11 @@ struct InternshipRowView: View {
                 }
             }
             
-            LinkPreviewer(url: internship.link)
-                .disabled(true)
+            if let metadata = linkPreview?.metadata {
+                LinkPreviewer(metadata: metadata)
+            } else {
+                EmptyView()
+            }
             
             HStack(spacing: 5) {
                 
@@ -105,6 +111,9 @@ struct InternshipRowView: View {
                 
             }
             .font(.callout)
+        }
+        .task {
+            self.linkPreview = await  linkVM.getLinkPreview(for: internship.link)
         }
     }
 }

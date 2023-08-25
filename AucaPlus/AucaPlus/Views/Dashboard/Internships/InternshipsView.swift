@@ -11,7 +11,9 @@ struct InternshipsView: View {
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
     @StateObject private var internshipsVM = InternshipsViewModel()
     @State private var showBookmarks = false
-
+    
+    @EnvironmentObject var linkVM: LinksPreviewModel
+    
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
@@ -31,7 +33,6 @@ struct InternshipsView: View {
                                 }
                             }).padding(.horizontal)
                     }
-                    .animation(nil)
                     
                     Divider()
                         .frame(height: 0.65)
@@ -43,9 +44,9 @@ struct InternshipsView: View {
                 }
             }
             .navigationDestination(for: Internship.self, destination: InternshipDetailView.init)
-            .navigationDestination(isPresented: $showBookmarks, destination: {
+            .navigationDestination(isPresented: $showBookmarks) {
                 BookmarksView()
-            })
+            }
             .task {
                 await internshipsVM.fetchInternships()
             }

@@ -20,29 +20,10 @@ struct TestingView: View {
         ScrollView {
         }
     }
-
-
 }
 
 struct TestingView_Previews: PreviewProvider {
     static var previews: some View {
         TestingView()
-    }
-}
-
-
-struct LinkView: UIViewRepresentable {
-    typealias UIViewType = LPLinkView
-    
-    var metadata: LPLinkMetadata?
-    
-    func makeUIView(context: Context) -> LPLinkView {
-        guard let metadata = metadata else { return LPLinkView() }
-        let linkView = LPLinkView(metadata: metadata)
-        return linkView
-    }
-
-    func updateUIView(_ uiView: LPLinkView, context: Context) {
-
     }
 }
