@@ -55,6 +55,7 @@ struct FeedView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     filterButton
                     notificationButton
+                        .hidden()
                 }
             }
         }

@@ -16,7 +16,7 @@ struct ContentView: View {
     
     
     var body: some View {
-//        TestingView()
+        //        TestingView()
         if  isLoggedIn || AuthClient.shared.isAuthenticated  {
             AppTabView()
             
@@ -24,7 +24,7 @@ struct ContentView: View {
             NavigationStack {
                 ZStack {
                     AuthenticationView()
-
+                    
                     if showingOnBoarding {
                         OnboardingView()
                             .opacity(animatingOnBoarding ? 1 : 0)

@@ -21,15 +21,7 @@ final class SettingsStore: ObservableObject {
     func getUser() async {
         guard let user  = try? await AuthClient.shared.auth.session.user else { return }
         
-        currentUser = AucaStudent(id: user.id,
-                                  firstName: user.userMetadata["first_name"]?.value as? String ?? "",
-                                  lastName: user.userMetadata["last_name"]?.value as? String ?? "",
-                                  phoneNumber: user.phone ?? "",
-                                  email: user.email ?? "",
-                                  type: .init(rawValue: user.userMetadata["account_type"]?.value as? String ?? "") ?? .other,
-                                  about: user.userMetadata["about"]?.value as? String,
-                                  createdAt: user.createdAt,
-                                  updatedAt: user.updatedAt)
+        currentUser = user.toAucaStudent()
         fetchedUser = currentUser
     }
 }

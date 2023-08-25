@@ -10,8 +10,11 @@ import SwiftUI
 struct InternshipRowView: View {
     var internship: Internship
     var isBookmarked: Bool
-    var onBookmarked: (Internship) -> Void
+    var onBookmarking: (Bool) -> Void
+    @EnvironmentObject var linkVM: LinksPreviewModel
     
+    @State private var linkPreview: LinkPreview?
+
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
@@ -34,12 +37,15 @@ struct InternshipRowView: View {
                 }
             }
             
-            LinkPreviewer(url: internship.link)
-                .disabled(true)
+            if let metadata = linkPreview?.metadata {
+                LinkPreviewer(metadata: metadata)
+            } else {
+                EmptyView()
+            }
             
             HStack(spacing: 5) {
                 
-                Text("Posted \(internship.postedDate.timeAgo)")
+                Text(internship.postedDate.timeAgo)
                     .opacity(0.6)
 
                 if internship.views != 0 {
@@ -67,6 +73,8 @@ struct InternshipRowView: View {
             }
             .foregroundColor(.primary)
             .font(.callout)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
             
             Divider()
             
@@ -98,17 +106,14 @@ struct InternshipRowView: View {
                     .frame(width: 20)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        var newValue = self.internship
-                        if isBookmarked {
-                            newValue.bookmarks -= 1
-                        } else {
-                            newValue.bookmarks += 1
-                        }
-                        onBookmarked(newValue)
+                        onBookmarking(!isBookmarked)
                     }
                 
             }
             .font(.callout)
+        }
+        .task {
+            self.linkPreview = await  linkVM.getLinkPreview(for: internship.link)
         }
     }
 }
@@ -117,7 +122,7 @@ struct InternshipRowView_Previews: PreviewProvider {
     static var previews: some View {
         InternshipRowView(internship: .example,
                           isBookmarked: true,
-                          onBookmarked: { _ in })
+                          onBookmarking: { _ in })
         .environmentObject(LinksPreviewModel())
         .padding()
         

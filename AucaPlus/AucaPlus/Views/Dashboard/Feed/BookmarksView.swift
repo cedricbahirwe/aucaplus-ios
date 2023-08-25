@@ -25,10 +25,12 @@ struct BookmarksView: View {
                     NavigationLink(value: internship) {
                         InternshipRowView(
                             internship: internship,
-                            isBookmarked: bookmarksVM.isBookmarked(internship))
-                        {
-                            bookmarksVM.addNewBookmark(.init(type: .internship($0)))
-                        }
+                            isBookmarked: bookmarksVM.isBookmarked(internship),
+                            onBookmarking: { _ in
+                                var oldBookmark = internship
+                                oldBookmark.bookmarks -= 1
+                                bookmarksVM.removeFromBookmarks(oldBookmark)
+                            })
                         .padding(.horizontal)
                     }
                     

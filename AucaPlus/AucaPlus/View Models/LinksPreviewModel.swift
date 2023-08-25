@@ -8,24 +8,39 @@
 import Foundation
 import LinkPresentation
 
-@MainActor
+
 final class LinksPreviewModel: ObservableObject {
-    @Published var links = [LinkPreview]()
+    var links = [LinkPreview]()
     private let linksPathComponent = "links"
     init() {
+        
         loadAllLinks()
     }
     
-    func getLinkPreview(for urlID: String) -> LinkPreview? {
-        links.first(where: { $0.id == urlID })
+    func getLinkPreview(for url: URL) async -> LinkPreview? {
+        if let previewData = links.first(where: { $0.id == url.absoluteString }) {
+            return previewData
+        }
+        
+        let metadataProvider = LPMetadataProvider()
+        do {
+            let metadata = try await metadataProvider.startFetchingMetadata(for: url)
+
+            return createLink(with: metadata, for: url.absoluteString)
+        } catch {
+            print("❌Error fetching metadata: \(error.localizedDescription)")
+            return nil
+        }
     }
     
-    func createLink(with metadata: LPLinkMetadata, for urldID: String) {
+    @discardableResult
+    func createLink(with metadata: LPLinkMetadata, for urldID: String) -> LinkPreview {
         let link = LinkPreview()
         link.id = urldID
         link.metadata = metadata
         links.append(link)
         saveAllLinks()
+        return link
     }
 
     private func saveAllLinks() {
@@ -54,6 +69,23 @@ final class LinksPreviewModel: ObservableObject {
             }
         }
     }
+    
+    private func removeSavedLinks() {
+        do {
+            guard let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            let linksURL = docDirURL.appendingPathComponent(linksPathComponent)
+            
+            if FileManager.default.fileExists(atPath: linksURL.path) {
+                try FileManager.default.removeItem(at: linksURL)
+                print("Removed saved Links at:", linksURL)
+            } else {
+                print("No saved Links file found.")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
     
     class func fetchMetadata(for url: URL) async throws -> LPLinkMetadata {
         let metadataProvider = LPMetadataProvider()
