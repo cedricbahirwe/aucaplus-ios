@@ -16,13 +16,19 @@ struct InternshipsView: View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 
-                ForEach(internshipsVM.sortedInternships) { internship in
+                ForEach($internshipsVM.internships) { $internship in
                     NavigationLink(value: internship) {
                         InternshipRowView(
                             internship: internship,
                             isBookmarked: bookmarksVM.isBookmarked(internship),
-                            onBookmarked: {
-                                bookmarksVM.toggleBookmarking(.init(type: .internship($0)))
+                            onBookmarking: { isBookmarking in
+                                if isBookmarking {
+                                    internship.bookmarks += 1
+                                    bookmarksVM.addToBookmarks(internship)
+                                } else {
+                                    internship.bookmarks -= 1
+                                    bookmarksVM.removeFromBookmarks(internship)
+                                }
                             }).padding(.horizontal)
                     }
                     
@@ -31,7 +37,7 @@ struct InternshipsView: View {
                         .overlay(.gray)
                 }
                 
-                if internshipsVM.sortedInternships.count > 10 {
+                if internshipsVM.internships.count > 10 {
                     CaughtUpView("You're all caught up🎉", "You've seen all recent internships.")
                 }
             }

@@ -14,7 +14,8 @@ enum AucaUserType: String, CaseIterable, Codable {
     
     case staff
     
-    case other
+    case visitor
+        
 }
 
 extension AucaUserType {
@@ -26,7 +27,7 @@ extension AucaUserType {
             return "A user who is a lecturer or teacher at the institution."
         case .staff:
             return "A user who is a staff member or employee at the institution, but not a lecturer or student."
-        case .other:
+        case .visitor:
             return "A user who doesn't fit into any of the available categories."
         }
     }

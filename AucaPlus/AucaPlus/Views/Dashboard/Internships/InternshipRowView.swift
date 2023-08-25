@@ -10,7 +10,7 @@ import SwiftUI
 struct InternshipRowView: View {
     var internship: Internship
     var isBookmarked: Bool
-    var onBookmarked: (Internship) -> Void
+    var onBookmarking: (Bool) -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -98,13 +98,7 @@ struct InternshipRowView: View {
                     .frame(width: 20)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        var newValue = self.internship
-                        if isBookmarked {
-                            newValue.bookmarks -= 1
-                        } else {
-                            newValue.bookmarks += 1
-                        }
-                        onBookmarked(newValue)
+                        onBookmarking(!isBookmarked)
                     }
                 
             }
@@ -117,7 +111,7 @@ struct InternshipRowView_Previews: PreviewProvider {
     static var previews: some View {
         InternshipRowView(internship: .example,
                           isBookmarked: true,
-                          onBookmarked: { _ in })
+                          onBookmarking: { _ in })
         .environmentObject(LinksPreviewModel())
         .padding()
         

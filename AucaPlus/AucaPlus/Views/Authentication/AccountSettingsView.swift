@@ -71,13 +71,13 @@ struct AccountSettingsView: View {
                 Button {
                     Task {
                         isSigningOut = true
-//                        try await AuthClient.shared.signOut()
-//                        isSigningOut = false
-//                        isLoggedIn = false
-//                        StorageKeys.clearAll()
+                        try await AuthClient.shared.signOut()
+                        isSigningOut = false
+                        StorageKeys.clearAll()
+                        isLoggedIn = false
                     }
                 } label: {
-                    Text("Log out")
+                    Text("Sign out")
                         .bold()
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)

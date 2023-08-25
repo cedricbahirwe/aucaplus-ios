@@ -12,7 +12,7 @@ struct WebView: View {
     let url: URL
     var body: some View {
         WebViewRepresentation(url: url)
-            .navigationTitle("\(Image(systemName: "house.fill"))Auca Web")
+            .navigationTitle("Auca Web")
             .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -11,10 +11,14 @@ final class BookmarkViewModel: ObservableObject {
     
     @Published private var bookmarks = [Bookmark]()
     
+    private let bookmarkClient: BookmarkClient = AuthClient.shared
+    
     var sortedBookmarks: [Bookmark] {
         bookmarks.sorted { $0.bookmarkDate > $1.bookmarkDate }
     }
+    
 }
+
 
 extension BookmarkViewModel {
     
@@ -39,10 +43,29 @@ extension BookmarkViewModel {
     }
     
     func toggleBookmarking(_ bookmark: Bookmark) {
-        if isBookmarked(bookmark) {
-            removeBookmark(bookmark)
-        } else {
-            addNewBookmark(bookmark)
+        fatalError()
+//        if isBookmarked(bookmark) {
+//            removeBookmark(bookmark)
+//        } else {
+//            addNewBookmark(bookmark)
+//        }
+    }
+    
+    
+    func addToBookmarks(_ internship: Internship) {
+        let bookmark = Bookmark(type: .internship(internship))
+        addNewBookmark(bookmark)
+        Task {
+            await self.bookmark(internship, isBookmarking: true)
+        }
+    }
+    
+    func removeFromBookmarks(_ internship: Internship) {
+        let bookmark = Bookmark(type: .internship(internship))
+        
+        removeBookmark(bookmark)
+        Task {
+            await self.bookmark(internship, isBookmarking: false)
         }
     }
     
@@ -58,6 +81,39 @@ extension BookmarkViewModel {
     
     func getBookmarks(by type: BookmarkType) -> [Bookmark] {
         bookmarks.filter { $0.type == type }
+    }
+}
+
+// MARK: - Bookmarking
+extension BookmarkViewModel {
+    func view(internship: Internship) async {
+        guard let id = internship.id else {
+            print("❌Can not update \(internship)")
+            return
+        }
+        
+        do {
+            try await bookmarkClient.viewInternship(id)
+        } catch {
+            print("❌Error: \(error)")
+        }
+    }
+    
+    func bookmark(_ internship: Internship, isBookmarking: Bool) async {
+        guard let id = internship.id else {
+            print("❌Can not update \(internship)")
+            return
+        }
+        
+        do {
+            if isBookmarking {
+                try await bookmarkClient.bookmarkInternship(id)
+            } else {
+                try await bookmarkClient.unBookmarkIntership(id)
+            }
+        } catch {
+            print("❌Error: \(error.localizedDescription)")
+        }
     }
 }
 
@@ -98,3 +154,4 @@ enum BookmarkType: Equatable, Codable {
         }
     }
 }
+

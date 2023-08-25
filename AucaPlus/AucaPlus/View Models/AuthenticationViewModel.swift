@@ -67,11 +67,39 @@ extension AuthenticationViewModel {
             
             let session = try await client.auth.session
             print("✅Session Info: \(session)")
-            isValidatingOTP = false
-            goToUserDetails = true
+            await verifyExistingUser()
         } catch {
             isValidatingOTP = false
             print("❌ Sign Up Error: \(error)")
+        }
+    }
+    
+    private func verifyExistingUser() async {
+        do {
+            let user = try await client.auth.session.user
+            
+            isValidatingOTP = false
+            
+            print("All user", user)
+            print("Hoping", user.toAucaStudent())
+            
+            print("More meta", user.userMetadata)
+            
+            print("App meta", user.appMetadata)
+            
+            print("Final", user.aud)
+
+            // User exist with information
+            if user.toAucaStudent().type != .visitor {
+                isLoggedIn = true
+            } else {
+                goToUserDetails = true
+            }
+            
+        } catch {
+            isValidatingOTP = false
+            goToUserDetails = true
+            print("❌ Unable to verify existing user: \(error)")
         }
     }
     
