@@ -31,27 +31,28 @@ final class FeedStore: ObservableObject {
     }
     
     func getFeed(for filter: FeedFilter) {
-//        let announcements = Announcement.example.replicate(2)
-//        let resources = RemoteResource.example.replicate(2)
+        let announcements = Announcement.example.replicate(2)
+        let resources = RemoteResource.example.replicate(2)
         let news = News.news1.replicate(4)
         
-//        var result = [any FeedItem] ()
-//        switch filter {
-//        case .all:
-//            result = announcements + resources + news
-//        case .news:
-//            result = news
-//        case .resources:
-//            result = resources
-//        case .announcements:
-//            result = announcements
-//        }
+        var result = [any FeedItem] ()
+        switch filter {
+        case .all:
+            result = announcements + resources + news
+        case .news:
+            result = news
+        case .resources:
+            result = resources
+        case .announcements:
+            result = announcements
+        }
         
-//        feed.news = news
+        items = result
+        
         items = news
     }
     
-    public enum FeedFilter: String, CaseIterable {
+    enum FeedFilter: String, CaseIterable {
         case all
         case news
         case announcements

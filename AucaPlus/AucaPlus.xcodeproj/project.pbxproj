@@ -79,6 +79,7 @@
 		CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */; };
 		CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */; };
 		CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */; };
+		CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
 		CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFieldStack.swift; sourceTree = "<group>"; };
 		CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusImageView.swift; sourceTree = "<group>"; };
+		CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedItem+Preview.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				CB1913E129D77CB7007BC45C /* Preview Assets.xcassets */,
+				CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
 				CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */,
 				CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */,
+				CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */,
 				CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */,
 				CB079D6C2A8E1AA1005C9654 /* InternshipsView.swift in Sources */,
 				CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */,

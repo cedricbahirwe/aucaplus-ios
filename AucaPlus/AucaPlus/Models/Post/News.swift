@@ -78,55 +78,55 @@ struct News: FeedItem, Codifiable {
     }
 }
 
-//struct RemoteResource: FeedItem, Codifiable {
-//
-//    var id: Int?
-//
-//    var title: String
-//
-//    var subtitle: String?
-//
-//    var link: URL?
-//
-//    var source: FeedSource?
-//
-//    var type: FeedType = .resource
-//
-//    var postedDate: Date
-//
-//    var updatedDate: Date?
-//
-//    var content: ResourceMetadata
-//
-//    var keywords: [String]?
-//
-//    var bookmarks: Int = 0
-//    var views: Int = 0
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case title, subtitle, link
-//        case source, type
-//        case postedDate = "posted_at"
-//        case updatedDate = "updated_at"
-//        case content
-//        case keywords
-//        case bookmarks
-//        case views
-//    }
-//
-//    struct ResourceMetadata: Codable {
-//        let type: ResourceFileType
-//        let size: Int?
-//        let owner: String?
-//    }
-//
-//    enum ResourceFileType: String, Codable {
-//        case pdf
-//        case jpg
-//        case other
-//    }
-//}
+struct RemoteResource: FeedItem, Codifiable {
+
+    var id: Int?
+
+    var title: String
+
+    var subtitle: String?
+
+    var link: URL?
+
+    var source: FeedSource?
+
+    var type: FeedType = .resource
+
+    var postedDate: Date
+
+    var updatedDate: Date?
+
+    var content: RemoteResource.Metadata
+
+    var keywords: [String]?
+
+    var bookmarks: Int = 0
+    var views: Int = 0
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title, subtitle, link
+        case source, type
+        case postedDate = "posted_at"
+        case updatedDate = "updated_at"
+        case content
+        case keywords
+        case bookmarks
+        case views
+    }
+
+    struct Metadata: Codable {
+        let type: ResourceFileType
+        let size: Int?
+        let owner: String?
+    }
+
+    enum ResourceFileType: String, Codable {
+        case pdf
+        case jpg
+        case other
+    }
+}
 
 struct Announcement: FeedItem, Codifiable {
     var id: Int?
@@ -162,42 +162,7 @@ struct Announcement: FeedItem, Codifiable {
     }
 }
 
-
-extension Announcement {
-    static let example = Announcement(title: "Exams timetable is updated",
-                                      source: .person,
-                                      postedDate: .now,
-                                      content: AttributedString())
-}
-
-//extension ResourceMetadata {
-//    static let example = ResourceMetadata(type: .pdf,
-//                                          size: 1024,
-//                                          author: "John Doe",
-//                                          keywords: ["remote", "resource", "internet"])
-//
-//    static let example2 = ResourceMetadata(type: .jpg, size: 2048, author: "Jane Doe", keywords: ["photo", "landscape", "mountain"])
-//
-//}
-
-
-//extension RemoteResource {
-//    static let example = RemoteResource(id: 1234,
-//                                        name: "Remote Resource",
-//                                        description: "This is a remote resource that can be accessed over the internet.", fileURL: URL(string: "https://example.com/remote-resource")!,
-//                                        createdDate: Date(),
-//                                        updatedDate: Date(),
-//                                        metadata: .example)
-//
-//
-//
-//    static let example2 = RemoteResource(id: 5678,
-//                                         name: "Mountain Photo",
-//                                         description: "This is a beautiful photo of a mountain landscape.", fileURL: URL(string: "https://example.com/mountain-photo.jpg")!,
-//                                         createdDate: Date(),
-//                                         updatedDate: Date(),
-//                                         metadata: .example2)
-//}
+#if DEBUG
 
 extension News {
     static let news1 = News(
@@ -220,17 +185,38 @@ extension News {
     }()
 }
 
-#if DEBUG
+extension RemoteResource {
+    static let example  = RemoteResource(id: 3121,
+                                         title: "Remote Resourece",
+                                         link: URL(string: "https://example.com/remote-resource")!, source: .person,
+                                         postedDate: .now,
+                                         content: .example)
+}
+
+extension Announcement {
+    static let example = Announcement(title: "Exams timetable is updated",
+                                      source: .person,
+                                      postedDate: .now,
+                                      content: AttributedString())
+}
+
+
+extension RemoteResource.Metadata {
+    static let example = Self.init(type: .pdf,
+                                   size: 1024,
+                                   owner: "John Doe")
+}
+
 extension FeedItem {
     func replicate(_ count: Int) -> [Self] {
         guard count > 1 else { return [self] }
         
-        var item = self
-
-        return (0..<count).map { i in
+        let newItems = (0..<count-1).map { i in
+            var item = self
             item.id = i
             return item
         }
+        return [self] + newItems
     }
 }
 

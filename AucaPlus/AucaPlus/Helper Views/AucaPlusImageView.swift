@@ -45,9 +45,11 @@ struct AucaPlusImageView: View {
         .frame(width: layout.dimensions?.width, height: layout.dimensions?.height)
     }
 }
-//
-//struct AucaPlusImageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AucaPlusImageView()
-//    }
-//}
+
+#if DEBUG
+struct AucaPlusImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        AucaPlusImageView(URL(string: "www.google.com")!)
+    }
+}
+#endif
