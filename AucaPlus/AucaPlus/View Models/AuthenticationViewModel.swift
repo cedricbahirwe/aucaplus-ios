@@ -156,6 +156,7 @@ extension AuthenticationViewModel {
     }
     
     struct RegisterModel {
+        var username = ""
         var firstName = ""
         var lastName = ""
         var type = AucaUserType.student
@@ -163,6 +164,7 @@ extension AuthenticationViewModel {
         var about = ""
         
         func isValid() -> Bool {
+            guard username.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
             guard firstName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
             guard lastName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
             guard email.isValidEmail() else { return false }

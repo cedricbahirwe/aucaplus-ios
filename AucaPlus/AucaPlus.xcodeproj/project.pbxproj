@@ -77,6 +77,7 @@
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
 		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
 		CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */; };
+		CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
 		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFieldStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +331,7 @@
 				CB079D712A8EB702005C9654 /* DotView.swift */,
 				CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */,
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
+				CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				CB079D6A2A8E1782005C9654 /* InternshipsViewModel.swift in Sources */,
 				CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */,
 				CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */,
+				CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */,
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
 				CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */,
 				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
