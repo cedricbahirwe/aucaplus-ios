@@ -37,6 +37,7 @@
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
 		CB1923D929FEEE9A008873F8 /* AuthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */; };
 		CB1923E129FF06D6008873F8 /* AppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923E029FF06D6008873F8 /* AppKeys.swift */; };
+		CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB420F812A9A013400994599 /* ShareLinkView.swift */; };
 		CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */; };
 		CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827629F9938500F436C3 /* NewsItemViewModel.swift */; };
 		CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827829F99B4C00F436C3 /* NewsRowView.swift */; };
@@ -129,6 +130,7 @@
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfoView.swift; sourceTree = "<group>"; };
 		CB1923E029FF06D6008873F8 /* AppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeys.swift; sourceTree = "<group>"; };
+		CB420F812A9A013400994599 /* ShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkView.swift; sourceTree = "<group>"; };
 		CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreationViewModel.swift; sourceTree = "<group>"; };
 		CB42827629F9938500F436C3 /* NewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewModel.swift; sourceTree = "<group>"; };
 		CB42827829F99B4C00F436C3 /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				CB079D6D2A8E3299005C9654 /* WebView.swift */,
 				CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */,
+				CB420F812A9A013400994599 /* ShareLinkView.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
 			);
@@ -646,6 +649,7 @@
 				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
 				CB079D722A8EB702005C9654 /* DotView.swift in Sources */,
 				CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */,
+				CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
