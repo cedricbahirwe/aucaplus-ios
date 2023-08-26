@@ -38,8 +38,10 @@ struct InternshipDetailView: View {
             }
         }
         .task {
-            await bookmarkVM.view(internship: internship)
             linkPreview = await linksVM.getLinkPreview(for: internship.link)
+        }
+        .task {
+            await bookmarkVM.view(internship: internship)
         }
     }
 }
