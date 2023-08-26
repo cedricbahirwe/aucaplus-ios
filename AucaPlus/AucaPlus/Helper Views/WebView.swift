@@ -79,6 +79,7 @@ fileprivate class AucaWebViewController: UIViewController {
     }
     
     private func setTitle(_ pageTitle: String?) {
+        guard let pageTitle else { return }
         parent?.navigationItem.title = pageTitle
     }
     

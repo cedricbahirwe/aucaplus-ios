@@ -64,6 +64,20 @@ extension APIClient: InternshipClient {
             .value
     }
     
+    func updateInternship(with id: Internship.ID, with newValue: [String: AnyJSON]) async throws -> Internship {
+        guard let id else {
+            throw APIError.invalidID
+        }
+
+        return try await client.database
+            .from(DBTable.internships)
+            .update(values: newValue, returning: .representation)
+            .eq(column: "id", value: id)
+            .single()
+            .execute()
+            .value
+    }
+    
     func deleteInternship(with id: Internship.ID) async throws {
         guard let id else {
             throw APIError.invalidID
@@ -87,7 +101,8 @@ extension APIClient: BookmarkClient {
         var toUpdate = try await getInternship(with: internship)
         toUpdate.views += 1
         
-        return try await updateInternship(with: internship, with: toUpdate)
+        return try await updateInternship(with: internship,
+                                          with: ["views": .number(Double(toUpdate.views))])
     }
     
     @discardableResult
@@ -99,7 +114,8 @@ extension APIClient: BookmarkClient {
         var toUpdate = try await getInternship(with: internship)
         toUpdate.bookmarks += 1
         
-        return try await updateInternship(with: internship, with: toUpdate)
+        return try await updateInternship(with: internship,
+                                          with: ["bookmarks": .number(Double(toUpdate.bookmarks))])
     }
     
     func unBookmarkIntership(_ internship: Internship.ID) async throws -> Internship {
@@ -110,7 +126,9 @@ extension APIClient: BookmarkClient {
         var toUpdate = try await getInternship(with: internship)
         toUpdate.bookmarks -= 1
         
-        return try await updateInternship(with: internship, with: toUpdate)
+        return try await updateInternship(with: internship,
+                                          with: ["bookmarks": .number(Double(toUpdate.bookmarks))])
+//        return try await updateInternship(with: internship, with: toUpdate)
     }
 }
 
@@ -119,7 +137,10 @@ protocol InternshipClient {
     func getInternship(with id: Internship.ID) async throws -> Internship
     func createInternship(_ value: Internship) async throws
     
+    @discardableResult
     func updateInternship(with id: Internship.ID, with newValue: Internship) async throws -> Internship
+    @discardableResult
+    func updateInternship(with id: Internship.ID, with newValue: [String: AnyJSON]) async throws -> Internship
     func deleteInternship(with id: Internship.ID) async throws
     
 }
