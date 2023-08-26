@@ -28,6 +28,7 @@ extension BookmarkViewModel {
     
     func clearAlls() {
         bookmarks = []
+        TemporaryStorage.shared.remove(forKey: "bookmarks")
     }
     
     func isBookmarked(_ bookmark: Internship) -> Bool {
