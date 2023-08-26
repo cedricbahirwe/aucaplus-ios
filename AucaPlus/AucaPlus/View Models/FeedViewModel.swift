@@ -33,7 +33,7 @@ final class FeedStore: ObservableObject {
     func getFeed(for filter: FeedFilter) {
         let announcements = Announcement.example.replicate(2)
         let resources = RemoteResource.example.replicate(2)
-        let news = News.news1.replicate(4)
+        let news = News.news1.replicate(1)
         
         var result = [FeedItem] ()
         switch filter {

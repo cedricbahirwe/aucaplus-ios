@@ -67,8 +67,7 @@ extension JobsView  {
                 
                 if job.verified {
                     HStack(spacing: 2) {
-                        Image("verify")
-                        Text("Verified")
+                        VerifyView()
                     }
                     .font(.caption)
                     .foregroundColor(.green)

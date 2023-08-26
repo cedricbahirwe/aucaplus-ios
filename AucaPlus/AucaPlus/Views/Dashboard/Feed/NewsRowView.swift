@@ -55,7 +55,13 @@ struct NewsRowView: View {
                     Spacer()
                     
                     HStack(spacing: 2) {
-                        Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
+                        Image(isBookmarked ? "bookmark.fill" : "bookmark")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(isBookmarked ? Color.accentColor : nil)
+                            .frame(width: 20)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 itemVM.bookmark(!isBookmarked)
                                 onBookmarked(itemVM.item)
@@ -65,7 +71,7 @@ struct NewsRowView: View {
                         }
                     }
                 }
-                .foregroundColor(.secondary)
+                .foregroundColor(.primary.opacity(0.6))
             }
         }
         .padding()
@@ -91,6 +97,7 @@ struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
         NewsRowView(.news1, isBookmarked: false) { _ in }
             .environmentObject(FeedStore())
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif
@@ -137,7 +144,7 @@ struct ProfileInfoView: View {
                     HStack(spacing: 2) {
                         Text(title).bold()
                         if verified {
-                            Image("verify")
+                            VerifyView()
                         }
                     }
                     
