@@ -117,7 +117,7 @@ struct RemoteResource: FeedItem, Codifiable {
     }
 }
 
-struct Announcement<T: Codable>: FeedItem, Codifiable {
+struct Announcement: FeedItem, Codifiable {
     var id: Int?
     
     var title: String
@@ -134,7 +134,7 @@ struct Announcement<T: Codable>: FeedItem, Codifiable {
     
     var updatedDate: Date?
     
-    var content: T
+    var content: AttributedString
 }
 
 //extension ResourceMetadata {

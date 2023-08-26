@@ -120,7 +120,7 @@ struct Bookmark: Equatable, Codifiable {
         case .internship(let item):
             return item.id!
         case .news(let item):
-            return item.id
+            return item.id!
         }
     }
     

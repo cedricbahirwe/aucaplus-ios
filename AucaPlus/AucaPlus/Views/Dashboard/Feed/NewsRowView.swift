@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsRowView: View {
-        
+    
     private var news: News {
         itemVM.item
     }
@@ -19,7 +19,7 @@ struct NewsRowView: View {
     
     private var isBookmarked: Bool
     private var onBookmarked: (News) -> Void
-
+    
     init(_ news: News, isBookmarked: Bool, onBookmarked: @escaping (News) -> Void) {
         _itemVM = StateObject(wrappedValue: { NewsItemViewModel(news) }())
         self.isBookmarked = isBookmarked
@@ -29,41 +29,46 @@ struct NewsRowView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-//            ProfileInfoView(imageURL: news..imageURL,
-//                            title: news.author.name,
-//                            subtitle: news.author.headline,
-//                            verified: news.isVerified,
-//                            caption: news.createdDate.formatted(date: .long, time: .omitted))
+            if let source = news.source {
+                ProfileInfoView(imageURL: source.profile,
+                                title: source.name,
+                                subtitle: source.headline,
+                                postedDate: news.postedDate)
+            }
+            
+            //            ProfileInfoView(imageURL: news..imageURL,
+            //                            title: news.author.name,
+            //                            subtitle: news.author.headline,
+            //                            verified: news.isVerified,
+            //                            caption: news.createdDate.formatted(date: .long, time: .omitted))
             
             VStack (alignment: .leading) {
                 Text(news.content)
                     .font(.callout)
                 VStack {
-                    Image(news.images.first!)
-                        .resizable()
+                    AucaPlusImageView(news.images.first!, placeholderImage: Image("auca1"))
                         .scaledToFit()
                         .background(.gray)
                         .cornerRadius(15)
                 }
             }
-            .padding(.leading, 30)
         }
         .padding()
     }
     
     var message: AttributedString {
-            let string = "The letters go up and down"
-            var result = AttributedString()
-
-            for (index, letter) in string.enumerated() {
-                var letterString = AttributedString(String(letter))
-                letterString.baselineOffset = sin(Double(index)) * 5
-                result += letterString
-            }
-
-            result.font = .largeTitle
-            return result
+        let string = "The letters go up and down"
+        var result = AttributedString()
+        
+        for (index, letter) in string.enumerated() {
+            var letterString = AttributedString(String(letter))
+            letterString.baselineOffset = sin(Double(index)) * 5
+            result += letterString
         }
+        
+        result.font = .largeTitle
+        return result
+    }
 }
 
 #if DEBUG
@@ -106,35 +111,43 @@ struct ProfileInfoView: View {
     let imageURL: URL?
     let title: String
     let subtitle: String?
-    var verified: Bool = false
-    let caption: String?
+    let postedDate: Date
     
     var body: some View {
+        
         HStack {
-            ProfileImageView(imageURL)
+            
+            ProfileImageView(imageURL, 40)
             
             VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 4) {
-                    HStack(spacing: 2) {
-                        Text(title).bold()
-                        if verified {
-                            VerifyView()
-                        }
-                    }
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(title)
+                        .font(.headline)
                     
-                    if let caption {
-                        HStack(spacing: 2) {
-                            Text("·").fontWeight(.black)
-                            Text(caption).font(.caption)
-                        }
-                        .foregroundColor(.secondary)
+                    if subtitle != nil {
+                        Text("·").fontWeight(.black)
+                        Text(postedDate.formatted(date: .long, time: .omitted))
+                            .font(.callout)
+                            .opacity(0.8)
                     }
                 }
                 .lineLimit(1)
                 
-                Text(subtitle ?? "")
-                    .font(.caption)
-                    .opacity(0.8)
+                Group {
+                    if let subtitle {
+                        Text(subtitle)
+                    } else {
+                        Text(postedDate.formatted(date: .long, time: .omitted))
+                    }
+                }
+                .font(.caption)
+                .opacity(0.8)
+            }
+        }
+        .padding(.bottom, 8)
+        .overlay(alignment: .bottom) {
+            if subtitle == nil {
+                Divider()
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -21,14 +21,14 @@ struct FeedView: View {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
                                 if let announcement = item as? Announcement {
-                                    AnnouncementRowView(announcement: announcement)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                overlay.present(announcement)
-                                            }
-                                        }
+//                                    AnnouncementRowView(announcement: announcement)
+//                                        .onTapGesture {
+//                                            withAnimation {
+//                                                overlay.present(announcement)
+//                                            }
+//                                        }
                                 } else if let resource = item as? RemoteResource {
-                                    ResourceRowView(resource: resource)
+//                                    ResourceRowView(resource: resource)
                                 } else if let news = item as? News {
                                     NewsRowView(
                                         news,
@@ -46,16 +46,19 @@ struct FeedView: View {
                     }
                 }
             }
-            .overlayListener(of: $overlay) { announcement in
-               AnnouncementRowView(announcement: announcement, isExpanded: true)
-                    .padding()
+            .refreshable {
+                
             }
+//            .overlayListener(of: $overlay) { announcement in
+//               AnnouncementRowView(announcement: announcement, isExpanded: true)
+//                    .padding()
+//            }
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     filterButton
-                    notificationButton
-                        .hidden()
+//                    notificationButton
+//                        .hidden()
                 }
             }
         }

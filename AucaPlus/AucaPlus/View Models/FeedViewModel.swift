@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 final class FeedStore: ObservableObject {
-    @Published private var items: [FeedItem] = Array(repeating: News.news1, count: 5)
-    var sortedItems: [FeedItem] {
-        items.sorted { $0.createdDate > $1.createdDate }
+    @Published private var items: [any FeedItem] = Array(repeating: News.news1, count: 5)
+    var sortedItems: [any FeedItem] {
+        items.sorted { $0.postedDate > $1.postedDate }
     }
     @Published var filter: FeedFilter = .all
     
@@ -31,21 +31,21 @@ final class FeedStore: ObservableObject {
     }
     
     func getFeed(for filter: FeedFilter) {
-        let announcements = Announcement.example.replicate(2)
-        let resources = RemoteResource.example.replicate(2)
-        let news = News.news1.replicate(1)
+//        let announcements = Announcement.example.replicate(2)
+//        let resources = RemoteResource.example.replicate(2)
+        let news = News.news1.replicate(4)
         
-        var result = [FeedItem] ()
-        switch filter {
-        case .all:
-            result = announcements + resources + news
-        case .news:
-            result = news
-        case .resources:
-            result = resources
-        case .announcements:
-            result = announcements
-        }
+//        var result = [any FeedItem] ()
+//        switch filter {
+//        case .all:
+//            result = announcements + resources + news
+//        case .news:
+//            result = news
+//        case .resources:
+//            result = resources
+//        case .announcements:
+//            result = announcements
+//        }
         
         items = news
     }
