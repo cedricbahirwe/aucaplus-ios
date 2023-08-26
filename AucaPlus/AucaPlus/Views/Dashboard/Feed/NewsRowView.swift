@@ -29,50 +29,24 @@ struct NewsRowView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            ProfileInfoView(imageURL: news.author.imageURL,
-                            title: news.author.name,
-                            subtitle: news.author.headline,
-                            verified: news.isVerified,
-                            caption: news.createdDate.formatted(date: .long, time: .omitted))
+//            ProfileInfoView(imageURL: news..imageURL,
+//                            title: news.author.name,
+//                            subtitle: news.author.headline,
+//                            verified: news.isVerified,
+//                            caption: news.createdDate.formatted(date: .long, time: .omitted))
             
-            Text(news.content)
-                .font(.callout)
-            VStack {
-                Image(news.images.first!)
-                    .resizable()
-                    .scaledToFit()
-                    .background(.gray)
-                    .cornerRadius(15)
-                
-                HStack {
-                    HStack(spacing: 2) {
-                        Image(systemName: "chart.bar.xaxis")
-                        if news.views > 0 {
-                            Text("\(news.views)")
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 2) {
-                        Image(isBookmarked ? "bookmark.fill" : "bookmark")
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(isBookmarked ? Color.accentColor : nil)
-                            .frame(width: 20)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                itemVM.bookmark(!isBookmarked)
-                                onBookmarked(itemVM.item)
-                            }
-                        if news.bookmarks > 0 {
-                            Text("\(news.bookmarks)")
-                        }
-                    }
+            VStack (alignment: .leading) {
+                Text(news.content)
+                    .font(.callout)
+                VStack {
+                    Image(news.images.first!)
+                        .resizable()
+                        .scaledToFit()
+                        .background(.gray)
+                        .cornerRadius(15)
                 }
-                .foregroundColor(.primary.opacity(0.6))
             }
+            .padding(.leading, 30)
         }
         .padding()
     }
