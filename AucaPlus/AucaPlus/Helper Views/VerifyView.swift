@@ -24,6 +24,7 @@ struct VerifyView: View {
                 Image("app.logo.transparent")
                     .resizable()
                     .scaledToFit()
+                    .padding(2)
             }
     }
 }
