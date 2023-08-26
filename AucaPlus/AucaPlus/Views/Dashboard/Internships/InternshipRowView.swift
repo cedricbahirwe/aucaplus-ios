@@ -94,8 +94,13 @@ struct InternshipRowView: View {
                 .foregroundColor(.primary)
                 .opacity(0.6)
                 
-                Text(internship.verified ? "Verified" : "Not verified")
-                    .foregroundColor(internship.verified ? Color.accentColor : .primary.opacity(0.6))
+                HStack(spacing: 2) {
+                    if internship.verified {
+                        VerifyView()
+                    }
+                    Text(internship.verified ? "Verified" : "Not verified")
+                        .foregroundColor(internship.verified ? Color.accentColor : .primary.opacity(0.6))
+                }
                 
                 Spacer()
                 

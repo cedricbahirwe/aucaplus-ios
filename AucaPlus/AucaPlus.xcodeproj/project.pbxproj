@@ -76,6 +76,7 @@
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
 		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
+		CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
 		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 				CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */,
 				CB420F812A9A013400994599 /* ShareLinkView.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
+				CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */,
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
 			);
 			path = "Helper Views";
@@ -616,6 +619,7 @@
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
 				CB079D6E2A8E3299005C9654 /* WebView.swift in Sources */,
+				CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */,
 				CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */,
 				CBDC65DB2A92B574006074B3 /* AboutView.swift in Sources */,
 				CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */,
