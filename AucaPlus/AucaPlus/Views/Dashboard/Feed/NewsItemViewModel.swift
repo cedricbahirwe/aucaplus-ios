@@ -13,4 +13,17 @@ final class NewsItemViewModel: ObservableObject {
     init(_ item: News) {
         self.item = item
     }
+    
+    func bookmark(_ isActive: Bool) {
+        if isActive {
+            item.bookmarks += 1
+        } else {
+            guard item.bookmarks != 0 else { return }
+            item.bookmarks -= 1
+        }
+    }
+    
+    func view() {
+        item.views += 1
+    }
 }

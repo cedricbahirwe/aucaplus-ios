@@ -47,7 +47,8 @@ final class FeedStore: ObservableObject {
 //            result = announcements
 //        }
         
-        items = news
+//        feed.news = news
+//        items = news
     }
     
     public enum FeedFilter: String, CaseIterable {

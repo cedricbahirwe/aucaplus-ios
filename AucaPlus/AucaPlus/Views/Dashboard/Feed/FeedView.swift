@@ -27,14 +27,18 @@ struct FeedView: View {
 //                                                overlay.present(announcement)
 //                                            }
 //                                        }
-                                } else if let resource = item as? RemoteResource {
+//                                } else if let resource = item as? RemoteResource {
 //                                    ResourceRowView(resource: resource)
                                 } else if let news = item as? News {
                                     NewsRowView(
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
                                         onBookmarked: {
-                                            bookmarksVM.toggleBookmarking(.init(type: .news($0)))
+                                            if bookmarksVM.isBookmarked(news) {
+                                                bookmarksVM.removeFromBookmarks($0)
+                                            } else {
+                                                bookmarksVM.addToBookmarks($0)
+                                            }
                                         }
                                     )
                                 }

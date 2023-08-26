@@ -17,6 +17,17 @@ final class BookmarkViewModel: ObservableObject {
         bookmarks.sorted { $0.bookmarkDate > $1.bookmarkDate }
     }
     
+    private func addNewBookmark(_ bookmark: Bookmark) {
+        self.bookmarks.append(bookmark)
+        TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
+    }
+    
+    private func removeBookmark(_ bookmark: Bookmark) {
+        if let index = bookmarks.firstIndex(of: bookmark) {
+            bookmarks.remove(at: index)
+            TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
+        }
+    }
 }
 
 
@@ -55,6 +66,20 @@ extension BookmarkViewModel {
         }
     }
     
+    func addToBookmarks<Item: FeedItem>(_ item: Item) {
+        switch item {
+        case let news as News:
+            let bookmark = Bookmark(type: .news(news))
+            addNewBookmark(bookmark)
+            #warning("Need to add to bookmarks on the database side")
+//            Task {
+//                await self.bookmark(news, isBookmarking: true)
+//            }
+        default:
+            break
+        }
+    }
+    
     func removeFromBookmarks(_ internship: Internship) {
         let bookmark = Bookmark(type: .internship(internship))
         
@@ -64,15 +89,17 @@ extension BookmarkViewModel {
         }
     }
     
-    func addNewBookmark(_ bookmark: Bookmark) {
-        self.bookmarks.append(bookmark)
-        TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
-    }
-    
-    func removeBookmark(_ bookmark: Bookmark) {
-        if let index = bookmarks.firstIndex(of: bookmark) {
-            bookmarks.remove(at: index)
-            TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
+    func removeFromBookmarks<Item: FeedItem>(_ item: Item) {
+        switch item {
+        case let news as News:
+            let bookmark = Bookmark(type: .news(news))
+            removeBookmark(bookmark)
+            #warning("Need to remove from bookmarks on the database side")
+//            Task {
+//                await self.bookmark(news, isBookmarking: false)
+//            }
+        default:
+            break
         }
     }
     

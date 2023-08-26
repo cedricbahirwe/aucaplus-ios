@@ -20,7 +20,7 @@ enum FeedType: Codable {
 }
 
 protocol FeedItem {
-    associatedtype FeedContent: Codable
+//    associatedtype FeedContent: Codable
     var id: Int? { get set }
     var title: String { get set }
     var subtitle: String? { get set }
@@ -30,11 +30,15 @@ protocol FeedItem {
     var source: FeedSource? { get set }
     var type: FeedType { get }
     
-    var content: FeedContent { get set }
+    var content: AttributedString { get set }
 
     var postedDate: Date { get set }
     var updatedDate: Date? { get }
+    
+    var views: Int { get }
+    var bookmarks: Int { get }
 }
+
 
 struct News: FeedItem, Codifiable {
     var id: Int?
@@ -58,6 +62,8 @@ struct News: FeedItem, Codifiable {
     // Extras
     var images: [URL]
     var tags: [String]?
+    
+    var bookmarks: Int = 0
     var views: Int = 0
     
     enum CodingKeys: String, CodingKey {
@@ -68,54 +74,59 @@ struct News: FeedItem, Codifiable {
         case updatedDate = "updated_at"
         case content
         case images = "images_url"
-        case tags, views
+        case tags, bookmarks, views
     }
 }
 
-struct RemoteResource: FeedItem, Codifiable {
-    
-    var id: Int?
-    
-    var title: String
-    
-    var subtitle: String?
-    
-    var link: URL?
-    
-    var source: FeedSource?
-    
-    var type: FeedType = .resource
-    
-    var postedDate: Date
-    
-    var updatedDate: Date?
-    
-    var content: ResourceMetadata
-    
-    var keywords: [String]?
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title, subtitle, link
-        case source, type
-        case postedDate = "posted_at"
-        case updatedDate = "updated_at"
-        case content
-        case keywords
-    }
-    
-    struct ResourceMetadata: Codable {
-        let type: ResourceFileType
-        let size: Int?
-        let owner: String?
-    }
-    
-    enum ResourceFileType: String, Codable {
-        case pdf
-        case jpg
-        case other
-    }
-}
+//struct RemoteResource: FeedItem, Codifiable {
+//    
+//    var id: Int?
+//    
+//    var title: String
+//    
+//    var subtitle: String?
+//    
+//    var link: URL?
+//    
+//    var source: FeedSource?
+//    
+//    var type: FeedType = .resource
+//    
+//    var postedDate: Date
+//    
+//    var updatedDate: Date?
+//    
+//    var content: ResourceMetadata
+//    
+//    var keywords: [String]?
+//    
+//    var bookmarks: Int = 0
+//    var views: Int = 0
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case title, subtitle, link
+//        case source, type
+//        case postedDate = "posted_at"
+//        case updatedDate = "updated_at"
+//        case content
+//        case keywords
+//        case bookmarks
+//        case views
+//    }
+//    
+//    struct ResourceMetadata: Codable {
+//        let type: ResourceFileType
+//        let size: Int?
+//        let owner: String?
+//    }
+//    
+//    enum ResourceFileType: String, Codable {
+//        case pdf
+//        case jpg
+//        case other
+//    }
+//}
 
 struct Announcement: FeedItem, Codifiable {
     var id: Int?
@@ -135,6 +146,20 @@ struct Announcement: FeedItem, Codifiable {
     var updatedDate: Date?
     
     var content: AttributedString
+    
+    var bookmarks: Int = 0
+    var views: Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title, subtitle, link
+        case source, type
+        case postedDate = "posted_at"
+        case updatedDate = "updated_at"
+        case content
+        case bookmarks
+        case views
+    }
 }
 
 //extension ResourceMetadata {
