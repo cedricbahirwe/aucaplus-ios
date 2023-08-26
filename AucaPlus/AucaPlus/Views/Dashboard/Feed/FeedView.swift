@@ -53,10 +53,10 @@ struct FeedView: View {
             .refreshable {
                 
             }
-//            .overlayListener(of: $overlay) { announcement in
-//               AnnouncementRowView(announcement: announcement, isExpanded: true)
-//                    .padding()
-//            }
+            .overlayListener(of: $overlay) { announcement in
+               AnnouncementRowView(announcement: announcement, isExpanded: true)
+                    .padding()
+            }
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {

@@ -31,7 +31,6 @@ struct NewsRowView: View {
                                     subtitle: source.headline,
                                     postedDate: news.postedDate)
                     
-                    Text(itemVM.item.bookmarks.description)
                     Image(isBookmarked ? "bookmark.fill" : "bookmark")
                         .renderingMode(.template)
                         .resizable()

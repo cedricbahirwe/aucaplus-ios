@@ -20,7 +20,7 @@ enum FeedType: Codable {
 }
 
 protocol FeedItem {
-//    associatedtype FeedContent: Codable
+    associatedtype FeedContent: Codable
     var id: Int? { get set }
     var title: String { get set }
     var subtitle: String? { get set }
@@ -30,7 +30,7 @@ protocol FeedItem {
     var source: FeedSource? { get set }
     var type: FeedType { get }
     
-    var content: AttributedString { get set }
+    var content: FeedContent { get set }
 
     var postedDate: Date { get set }
     var updatedDate: Date? { get }
@@ -79,30 +79,30 @@ struct News: FeedItem, Codifiable {
 }
 
 //struct RemoteResource: FeedItem, Codifiable {
-//    
+//
 //    var id: Int?
-//    
+//
 //    var title: String
-//    
+//
 //    var subtitle: String?
-//    
+//
 //    var link: URL?
-//    
+//
 //    var source: FeedSource?
-//    
+//
 //    var type: FeedType = .resource
-//    
+//
 //    var postedDate: Date
-//    
+//
 //    var updatedDate: Date?
-//    
+//
 //    var content: ResourceMetadata
-//    
+//
 //    var keywords: [String]?
-//    
+//
 //    var bookmarks: Int = 0
 //    var views: Int = 0
-//    
+//
 //    enum CodingKeys: String, CodingKey {
 //        case id
 //        case title, subtitle, link
@@ -114,13 +114,13 @@ struct News: FeedItem, Codifiable {
 //        case bookmarks
 //        case views
 //    }
-//    
+//
 //    struct ResourceMetadata: Codable {
 //        let type: ResourceFileType
 //        let size: Int?
 //        let owner: String?
 //    }
-//    
+//
 //    enum ResourceFileType: String, Codable {
 //        case pdf
 //        case jpg
@@ -160,6 +160,14 @@ struct Announcement: FeedItem, Codifiable {
         case bookmarks
         case views
     }
+}
+
+
+extension Announcement {
+    static let example = Announcement(title: "Exams timetable is updated",
+                                      source: .person,
+                                      postedDate: .now,
+                                      content: AttributedString())
 }
 
 //extension ResourceMetadata {

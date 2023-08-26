@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class FeedStore: ObservableObject {
-    @Published private var items: [any FeedItem] = Array(repeating: News.news1, count: 5)
+    @Published private var items: [any FeedItem] = []
     var sortedItems: [any FeedItem] {
         items.sorted { $0.postedDate > $1.postedDate }
     }
@@ -48,7 +48,7 @@ final class FeedStore: ObservableObject {
 //        }
         
 //        feed.news = news
-//        items = news
+        items = news
     }
     
     public enum FeedFilter: String, CaseIterable {
