@@ -9,7 +9,7 @@ import Foundation
 
 final class BookmarkViewModel: ObservableObject {
     
-    @Published private var bookmarks = [Bookmark]()
+    @Published private var bookmarks: [Bookmark] = TemporaryStorage.shared.retrieve(forKey: "bookmarks")
     
     private let bookmarkClient: BookmarkClient = AuthClient.shared
     
@@ -65,11 +65,13 @@ extension BookmarkViewModel {
     
     func addNewBookmark(_ bookmark: Bookmark) {
         self.bookmarks.append(bookmark)
+        TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
     }
     
     func removeBookmark(_ bookmark: Bookmark) {
         if let index = bookmarks.firstIndex(of: bookmark) {
             bookmarks.remove(at: index)
+            TemporaryStorage.shared.save(object: bookmarks, forKey: "bookmarks")
         }
     }
     
