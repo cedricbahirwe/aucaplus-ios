@@ -106,7 +106,6 @@ struct News: FeedItem, Codifiable {
         try container.encodeIfPresent(link, forKey: .link)
         try container.encode(userID, forKey: .userID)
         
-        // Source Encoding
         try container.encodeIfPresent(source?.name, forKey: .sourceName)
         try container.encodeIfPresent(source?.headline, forKey: .sourceHeadline)
         try container.encodeIfPresent(source?.profile, forKey: .sourceProfile)

@@ -134,8 +134,7 @@ extension APIClient: BookmarkClient {
 
 extension APIClient: NewsClient {
     func getNews() async throws -> [News] {
-        
-        return try await client.database
+        try await client.database
             .from(DBTable.news)
             .select()
             .order(column: "posted_at", ascending: false)
@@ -144,13 +143,6 @@ extension APIClient: NewsClient {
     }
     
     func createNews(_ value: News) async throws {
-        if let encoded = try? JSONEncoder().encode(value) {
-            if let json = try? JSONSerialization.jsonObject(with: encoded) {
-                print("Here is", json)
-            } else {
-                print("No Json Found")
-            }
-        }
         try await client.database
             .from(DBTable.news)
             .insert(values: value)

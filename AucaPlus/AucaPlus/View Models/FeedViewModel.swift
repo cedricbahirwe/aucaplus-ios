@@ -29,6 +29,9 @@ final class FeedStore: ObservableObject {
             self.getFeed(for: newFilter)
         }
         .store(in: &cancellables)
+        
+        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
+        items = news
     }
     
     func setFilter(_ newFilter: FeedFilter) {
@@ -37,25 +40,7 @@ final class FeedStore: ObservableObject {
     }
     
     private func getFeed(for filter: FeedFilter) {
-        let announcements = Announcement.example.replicate(2)
-        let resources = RemoteResource.example.replicate(2)
-        let news = News.news1.replicate(4)
-        
-        var result = [any FeedItem] ()
-        switch filter {
-        case .all:
-            result = announcements + resources + news
-        case .news:
-            result = news
-        case .resources:
-            result = resources
-        case .announcements:
-            result = announcements
-        }
-        
-//        items = result
-        
-//        items = news
+        #warning("Perform a filter")
     }
     
     func fetchNews() async {
@@ -64,8 +49,9 @@ final class FeedStore: ObservableObject {
         }
         do {
             let news = try await newsClient.getNews()
-            self.items = news
             isFetchingNews = false
+            TemporaryStorage.shared.save(object: news, forKey: "news")
+            self.items = news
         } catch {
             print("❌Error", error.localizedDescription)
             isFetchingNews = false
