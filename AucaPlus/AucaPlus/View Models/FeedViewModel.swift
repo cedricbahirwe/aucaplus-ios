@@ -52,7 +52,6 @@ final class FeedStore: ObservableObject {
             isFetchingNews = false
             TemporaryStorage.shared.save(object: news, forKey: "news")
             self.items = news
-            await deleteNews()
         } catch {
             print("❌Error", error.localizedDescription)
             isFetchingNews = false
@@ -71,7 +70,6 @@ final class FeedStore: ObservableObject {
             newNews.content = News.description2
             
             try await newsClient.createNews(newNews)
-            print("Created")
         } catch {
             print("❌Error", error.localizedDescription)
         }
@@ -81,7 +79,6 @@ final class FeedStore: ObservableObject {
         do {
             let aNews = items[0] as! News
             try await newsClient.deleteNews(with: aNews.id)
-            print("nigga deleted")
         } catch {
             print("❌Error", error.localizedDescription)
         }

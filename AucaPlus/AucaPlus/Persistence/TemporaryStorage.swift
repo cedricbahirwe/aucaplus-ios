@@ -20,7 +20,7 @@ class TemporaryStorage {
             let encodedData = try JSONEncoder().encode(object)
             userDefaults.set(encodedData, forKey: key)
         } catch {
-            print("Error encoding and saving object: \(error)")
+            print("❌Error encoding and saving object: \(error)")
         }
     }
     
@@ -32,7 +32,8 @@ class TemporaryStorage {
             let decodedObject = try JSONDecoder().decode(T.self, from: encodedData)
             return decodedObject
         } catch {
-            print("Error decoding object: \(error)")
+            print("❌Error decoding object: \(error)")
+            remove(forKey: key)
             return nil
         }
     }
@@ -46,7 +47,7 @@ class TemporaryStorage {
             let decodedObjects = try JSONDecoder().decode([T].self, from: encodedData)
             return decodedObjects
         } catch {
-            print("Error decoding objects: \(error)")
+            print("❌Error decoding objects: \(error)")
             remove(forKey: key)
             return []
         }
