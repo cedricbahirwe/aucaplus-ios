@@ -48,7 +48,7 @@ final class FeedStore: ObservableObject {
             isFetchingNews = true
         }
         do {
-            let news = try await newsClient.getNews()
+            let news = try await newsClient.fetchNews()
             isFetchingNews = false
             TemporaryStorage.shared.save(object: news, forKey: "news")
             self.items = news

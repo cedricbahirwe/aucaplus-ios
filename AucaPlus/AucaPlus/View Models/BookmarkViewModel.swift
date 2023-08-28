@@ -11,7 +11,7 @@ final class BookmarkViewModel: ObservableObject {
     
     @Published private var bookmarks: [Bookmark] = TemporaryStorage.shared.retrieve(forKey: "bookmarks")
     
-    private let bookmarkClient: BookmarkClient = AuthClient.shared
+    private let socialClient: SocialClient = AuthClient.shared
     
     var sortedBookmarks: [Bookmark] {
         bookmarks.sorted { $0.bookmarkDate > $1.bookmarkDate }
@@ -117,7 +117,7 @@ extension BookmarkViewModel {
         }
         
         do {
-            try await bookmarkClient.viewInternship(id)
+            try await socialClient.viewInternship(id)
         } catch {
             print("❌Error: \(error)")
         }
@@ -131,9 +131,9 @@ extension BookmarkViewModel {
         
         do {
             if isBookmarking {
-                try await bookmarkClient.bookmarkInternship(id)
+                try await socialClient.bookmarkInternship(id)
             } else {
-                try await bookmarkClient.unBookmarkIntership(id)
+                try await socialClient.unBookmarkIntership(id)
             }
         } catch {
             print("❌Error: \(error.localizedDescription)")
