@@ -46,10 +46,12 @@ struct NewsRowView: View {
             }
             
             VStack (alignment: .leading) {
-                Text(news.content)
-                    .font(.callout)
+                if let content = news.content {
+                    Text(content)
+                        .font(.callout)
+                }
                 
-                AucaPlusImageView(news.images.first!, placeholderImage: Image("auca1"))
+                AucaPlusImageView(news.images.first!, placeholderImage: Image("placeholder"))
                     .scaledToFit()
                     .background(.gray)
                     .cornerRadius(15)

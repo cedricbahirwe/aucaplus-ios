@@ -15,7 +15,7 @@ struct FeedView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ScrollViewReader { proxy in
                     VStack(spacing: 0) {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
@@ -53,6 +53,9 @@ struct FeedView: View {
             .refreshable {
                 
             }
+            .task {
+                await feedStore.fetchNews()
+            }
             .overlayListener(of: $overlay) { announcement in
                AnnouncementRowView(announcement: announcement, isExpanded: true)
                     .padding()
@@ -66,26 +69,43 @@ struct FeedView: View {
                 }
             }
         }
+        .overlay {
+            if feedStore.isFetchingNews {
+                SpinnerView()
+            }
+        }
     }
     
+    @ViewBuilder
     private var filterButton: some View {
-        Menu {
-            ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
-                Button {
-                    feedStore.setFilter(filter)
-                } label: {
-                    Label {
-                        Text(filter.rawValue.capitalized)
-                    } icon: {
-                        if filter == feedStore.filter {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
+        Button("Fetch") {
+            Task {
+                await feedStore.fetchNews()
             }
-        } label: {
-            Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
         }
+        
+        Button("Create") {
+            Task {
+                await feedStore.createNews()
+            }
+        }
+//        Menu {
+//            ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
+//                Button {
+//                    feedStore.setFilter(filter)
+//                } label: {
+//                    Label {
+//                        Text(filter.rawValue.capitalized)
+//                    } icon: {
+//                        if filter == feedStore.filter {
+//                            Image(systemName: "checkmark")
+//                        }
+//                    }
+//                }
+//            }
+//        } label: {
+//            Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+//        }
     }
     
     private var notificationButton: some View {

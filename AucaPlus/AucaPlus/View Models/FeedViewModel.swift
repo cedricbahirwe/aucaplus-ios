@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 final class FeedStore: ObservableObject {
     @Published private var items: [any FeedItem] = []
     var sortedItems: [any FeedItem] {
@@ -15,7 +16,12 @@ final class FeedStore: ObservableObject {
     }
     @Published var filter: FeedFilter = .all
     
+    @Published private(set) var isFetchingNews = false
+    
     private var cancellables = Set<AnyCancellable>()
+    
+    private let newsClient: NewsClient = APIClient()
+    private let authClient: AuthClient = AuthClient.shared
     
     init() {
         $filter.sink { [weak self] newFilter in
@@ -30,7 +36,7 @@ final class FeedStore: ObservableObject {
         filter = newFilter
     }
     
-    func getFeed(for filter: FeedFilter) {
+    private func getFeed(for filter: FeedFilter) {
         let announcements = Announcement.example.replicate(2)
         let resources = RemoteResource.example.replicate(2)
         let news = News.news1.replicate(4)
@@ -47,9 +53,40 @@ final class FeedStore: ObservableObject {
             result = announcements
         }
         
-        items = result
+//        items = result
         
-        items = news
+//        items = news
+    }
+    
+    func fetchNews() async {
+        if items.isEmpty {
+            isFetchingNews = true
+        }
+        do {
+            let news = try await newsClient.getNews()
+            self.items = news
+            isFetchingNews = false
+        } catch {
+            print("❌Error", error.localizedDescription)
+            isFetchingNews = false
+        }
+    }
+    
+    func createNews() async {
+        do {
+            let user = try await authClient.auth.session.user
+
+            var newNews = News.news1
+            newNews.id = nil
+            newNews.postedDate = .now
+            newNews.updatedDate = .now
+            newNews.userID = user.id
+            
+            try await newsClient.createNews(newNews)
+            print("Created")
+        } catch {
+            print("❌Error", error.localizedDescription)
+        }
     }
     
     enum FeedFilter: String, CaseIterable {
@@ -59,56 +96,3 @@ final class FeedStore: ObservableObject {
         case resources
     }
 }
-
-
-#if DEBUG
-class TemporaryStorage {
-    static let shared = TemporaryStorage()
-    
-    private let userDefaults = UserDefaults.standard
-    
-    private init() { }
-    
-    func save<T: Codable>(object: T, forKey key: String) {
-        do {
-            let encodedData = try JSONEncoder().encode(object)
-            userDefaults.set(encodedData, forKey: key)
-        } catch {
-            print("Error encoding and saving object: \(error)")
-        }
-    }
-    
-    func retrieve<T: Codable>(forKey key: String) -> T? {
-        guard let encodedData = userDefaults.data(forKey: key) else {
-            return nil
-        }
-        do {
-            let decodedObject = try JSONDecoder().decode(T.self, from: encodedData)
-            return decodedObject
-        } catch {
-            print("Error decoding object: \(error)")
-            return nil
-        }
-    }
-    
-    func retrieve<T: Codable>(forKey key: String) -> [T] {
-        guard let encodedData = userDefaults.data(forKey: key) else {
-            print("Not data objects found")
-            return []
-        }
-        
-        do {
-            let decodedObjects = try JSONDecoder().decode([T].self, from: encodedData)
-            return decodedObjects
-        } catch {
-            print("Error decoding objects: \(error)")
-            return  []
-        }
-
-    }
-    
-    func remove(forKey key: String) {
-        userDefaults.removeObject(forKey: key)
-    }
-}
-#endif

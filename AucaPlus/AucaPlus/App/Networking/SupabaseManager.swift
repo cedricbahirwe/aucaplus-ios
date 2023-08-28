@@ -20,10 +20,10 @@ class APIClient {
 }
 
 extension APIClient: InternshipClient {
-    func createInternship(_ newvalue: Internship) async throws {
+    func createInternship(_ newBalue: Internship) async throws {
         try await client.database
             .from(DBTable.internships)
-            .insert(values: newvalue)
+            .insert(values: newBalue)
             .execute()
     }
     
@@ -132,6 +132,32 @@ extension APIClient: BookmarkClient {
     }
 }
 
+extension APIClient: NewsClient {
+    func getNews() async throws -> [News] {
+        
+        return try await client.database
+            .from(DBTable.news)
+            .select()
+            .order(column: "posted_at", ascending: false)
+            .execute()
+            .value
+    }
+    
+    func createNews(_ value: News) async throws {
+        if let encoded = try? JSONEncoder().encode(value) {
+            if let json = try? JSONSerialization.jsonObject(with: encoded) {
+                print("Here is", json)
+            } else {
+                print("No Json Found")
+            }
+        }
+        try await client.database
+            .from(DBTable.news)
+            .insert(values: value)
+            .execute()
+    }
+}
+
 protocol InternshipClient {
     func fetchInternships() async throws -> [Internship]
     func getInternship(with id: Internship.ID) async throws -> Internship
@@ -143,6 +169,11 @@ protocol InternshipClient {
     func updateInternship(with id: Internship.ID, with newValue: [String: AnyJSON]) async throws -> Internship
     func deleteInternship(with id: Internship.ID) async throws
     
+}
+
+protocol NewsClient {
+    func getNews() async throws -> [News]
+    func createNews(_ value: News) async throws
 }
 
 protocol BookmarkClient {
@@ -157,6 +188,7 @@ protocol BookmarkClient {
 fileprivate enum DBTable {
     static let internships = "internships"
     static let aucaUsers = "aucausers"
+    static let news = "news"
 }
 
 
@@ -211,3 +243,26 @@ extension Supabase.User {
                     updatedAt: updatedAt)
     }
 }
+
+
+#if DEBUG
+extension APIClient {
+    func printJson(from table: String) async {
+        do {
+            let data: Data = try await client.database
+                .from(table)
+                .select()
+                .execute()
+                .underlyingResponse.data
+            
+            if let json = try? JSONSerialization.jsonObject(with: data) {
+                print("Here is", json)
+            } else {
+                print("No Json Found")
+            }
+        } catch {
+            print("Error found during json printing:", error)
+        }
+    }
+}
+#endif
