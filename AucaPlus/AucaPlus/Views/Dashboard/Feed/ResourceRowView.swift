@@ -11,19 +11,22 @@ struct ResourceRowView: View {
     let resource: RemoteResource
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
-            Text(resource.name)
+
+            Text(resource.title)
                 .font(.title)
-            Text(resource.description)
-                .font(.title2)
             
+            if let subtitle = resource.subtitle {
+                Text(subtitle)
+                    .font(.title2)
+            }
+
             HStack {
                 Group {
-                    Text(resource.metadata.type.rawValue)
+                    Text(resource.content.type.rawValue)
                         .textCase(.uppercase)
                         .font(.callout)
-                    
-                    Text(resource.createdDate.formatted(date: .long, time: .omitted))
+
+                    Text(resource.postedDate.formatted(date: .long, time: .omitted))
                 }
                 .padding(.vertical, 6)
                 .padding(.horizontal, 10)
@@ -31,7 +34,7 @@ struct ResourceRowView: View {
                 .clipShape(Capsule())
             }
             .foregroundColor(.accentColor)
-            
+
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

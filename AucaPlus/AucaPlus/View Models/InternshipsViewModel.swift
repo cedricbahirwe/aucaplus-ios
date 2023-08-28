@@ -61,7 +61,7 @@ extension InternshipsViewModel {
         }
     }
     
-    func deleteInternship(withID id: Int) async {
+    func deleteInternship(withID id: News.ID) async {
         do {
             try await internshipClient.deleteInternship(with: id)
         } catch {

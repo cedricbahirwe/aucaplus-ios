@@ -12,29 +12,33 @@ struct FeedView: View {
     
     @State private var overlay = OverlayModel<Announcement>()
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
-
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ScrollViewReader { proxy in
                     VStack(spacing: 0) {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
                                 if let announcement = item as? Announcement {
-                                    AnnouncementRowView(announcement: announcement)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                overlay.present(announcement)
-                                            }
-                                        }
-                                } else if let resource = item as? RemoteResource {
-                                    ResourceRowView(resource: resource)
+                                    //                                    AnnouncementRowView(announcement: announcement)
+                                    //                                        .onTapGesture {
+                                    //                                            withAnimation {
+                                    //                                                overlay.present(announcement)
+                                    //                                            }
+                                    //                                        }
+                                    //                                } else if let resource = item as? RemoteResource {
+                                    //                                    ResourceRowView(resource: resource)
                                 } else if let news = item as? News {
                                     NewsRowView(
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
                                         onBookmarked: {
-                                            bookmarksVM.toggleBookmarking(.init(type: .news($0)))
+                                            if bookmarksVM.isBookmarked(news) {
+                                                bookmarksVM.removeFromBookmarks($0)
+                                            } else {
+                                                bookmarksVM.addToBookmarks($0)
+                                            }
                                         }
                                     )
                                 }
@@ -46,21 +50,33 @@ struct FeedView: View {
                     }
                 }
             }
+            .refreshable {
+                
+            }
+            .task {
+                await feedStore.fetchNews()
+            }
             .overlayListener(of: $overlay) { announcement in
-               AnnouncementRowView(announcement: announcement, isExpanded: true)
+                AnnouncementRowView(announcement: announcement, isExpanded: true)
                     .padding()
             }
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     filterButton
-                    notificationButton
-                        .hidden()
+                    //                    notificationButton
+                    //                        .hidden()
                 }
+            }
+        }
+        .overlay {
+            if feedStore.isFetchingNews {
+                SpinnerView()
             }
         }
     }
     
+    @ViewBuilder
     private var filterButton: some View {
         Menu {
             ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in

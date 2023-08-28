@@ -8,14 +8,20 @@
 import Foundation
 import Combine
 
+@MainActor
 final class FeedStore: ObservableObject {
-    @Published private var items: [FeedItem] = Array(repeating: News.news1, count: 5)
-    var sortedItems: [FeedItem] {
-        items.sorted { $0.createdDate > $1.createdDate }
+    @Published private var items: [any FeedItem] = []
+    var sortedItems: [any FeedItem] {
+        items.sorted { $0.postedDate > $1.postedDate }
     }
     @Published var filter: FeedFilter = .all
     
+    @Published private(set) var isFetchingNews = false
+    
     private var cancellables = Set<AnyCancellable>()
+    
+    private let newsClient: NewsClient = APIClient()
+    private let authClient: AuthClient = AuthClient.shared
     
     init() {
         $filter.sink { [weak self] newFilter in
@@ -23,6 +29,9 @@ final class FeedStore: ObservableObject {
             self.getFeed(for: newFilter)
         }
         .store(in: &cancellables)
+        
+        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
+        items = news
     }
     
     func setFilter(_ newFilter: FeedFilter) {
@@ -30,83 +39,55 @@ final class FeedStore: ObservableObject {
         filter = newFilter
     }
     
-    func getFeed(for filter: FeedFilter) {
-        let announcements = Announcement.example.replicate(2)
-        let resources = RemoteResource.example.replicate(2)
-        let news = News.news1.replicate(4)
-        
-        var result = [FeedItem] ()
-        switch filter {
-        case .all:
-            result = announcements + resources + news
-        case .news:
-            result = news
-        case .resources:
-            result = resources
-        case .announcements:
-            result = announcements
-        }
-        
-        items = news
+    private func getFeed(for filter: FeedFilter) {
+        #warning("Perform a filter")
     }
     
-    public enum FeedFilter: String, CaseIterable {
+    func fetchNews() async {
+        if items.isEmpty {
+            isFetchingNews = true
+        }
+        do {
+            let news = try await newsClient.fetchNews()
+            isFetchingNews = false
+            TemporaryStorage.shared.save(object: news, forKey: "news")
+            self.items = news
+        } catch {
+            print("❌Error", error.localizedDescription)
+            isFetchingNews = false
+        }
+    }
+    
+    func createNews() async {
+        do {
+            let user = try await authClient.auth.session.user
+
+            var newNews = News.news1
+            newNews.id = nil
+            newNews.postedDate = .now
+            newNews.updatedDate = .now
+            newNews.userID = user.id
+            newNews.content = News.description2
+            
+            try await newsClient.createNews(newNews)
+        } catch {
+            print("❌Error", error.localizedDescription)
+        }
+    }
+    
+    func deleteNews() async {
+        do {
+            let aNews = items[0] as! News
+            try await newsClient.deleteNews(with: aNews.id)
+        } catch {
+            print("❌Error", error.localizedDescription)
+        }
+    }
+    
+    enum FeedFilter: String, CaseIterable {
         case all
         case news
         case announcements
         case resources
     }
 }
-
-
-#if DEBUG
-class TemporaryStorage {
-    static let shared = TemporaryStorage()
-    
-    private let userDefaults = UserDefaults.standard
-    
-    private init() { }
-    
-    func save<T: Codable>(object: T, forKey key: String) {
-        do {
-            let encodedData = try JSONEncoder().encode(object)
-            userDefaults.set(encodedData, forKey: key)
-        } catch {
-            print("Error encoding and saving object: \(error)")
-        }
-    }
-    
-    func retrieve<T: Codable>(forKey key: String) -> T? {
-        guard let encodedData = userDefaults.data(forKey: key) else {
-            return nil
-        }
-        do {
-            let decodedObject = try JSONDecoder().decode(T.self, from: encodedData)
-            return decodedObject
-        } catch {
-            print("Error decoding object: \(error)")
-            return nil
-        }
-    }
-    
-    func retrieve<T: Codable>(forKey key: String) -> [T] {
-        guard let encodedData = userDefaults.data(forKey: key) else {
-            print("Not data objects found")
-            return []
-        }
-        
-        do {
-            let decodedObjects = try JSONDecoder().decode([T].self, from: encodedData)
-            return decodedObjects
-        } catch {
-            print("Error decoding objects: \(error)")
-            return  []
-        }
-
-    }
-    
-    func remove(forKey key: String) {
-        userDefaults.removeObject(forKey: key)
-    }
-}
-#endif

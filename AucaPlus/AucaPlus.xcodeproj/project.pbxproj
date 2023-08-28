@@ -49,6 +49,10 @@
 		CB43EFA629F7199B000EE752 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA529F7199B000EE752 /* News.swift */; };
 		CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */; };
 		CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA929F71CF2000EE752 /* BookmarksView.swift */; };
+		CB7363172A9C8B3E00A64E54 /* TemporaryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */; };
+		CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363182A9CB6A700A64E54 /* RemoteResource.swift */; };
+		CB73631B2A9CB6AD00A64E54 /* Annoucement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73631A2A9CB6AD00A64E54 /* Annoucement.swift */; };
+		CB73631D2A9CB6D000A64E54 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73631C2A9CB6D000A64E54 /* FeedItem.swift */; };
 		CB8592DA2A93B9B2004D2B95 /* OnboardingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */; };
 		CB8592DD2A93BE45004D2B95 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = CB8592DC2A93BE45004D2B95 /* Supabase */; };
 		CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E02A93E15E004D2B95 /* AppSecrets.swift */; };
@@ -76,6 +80,10 @@
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
 		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
+		CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */; };
+		CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */; };
+		CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */; };
+		CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +150,10 @@
 		CB43EFA529F7199B000EE752 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CB43EFA929F71CF2000EE752 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryStorage.swift; sourceTree = "<group>"; };
+		CB7363182A9CB6A700A64E54 /* RemoteResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResource.swift; sourceTree = "<group>"; };
+		CB73631A2A9CB6AD00A64E54 /* Annoucement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annoucement.swift; sourceTree = "<group>"; };
+		CB73631C2A9CB6D000A64E54 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConstants.swift; sourceTree = "<group>"; };
 		CB8592E02A93E15E004D2B95 /* AppSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
 		CB8592E42A93E733004D2B95 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
@@ -168,6 +180,10 @@
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
 		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFieldStack.swift; sourceTree = "<group>"; };
+		CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusImageView.swift; sourceTree = "<group>"; };
+		CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedItem+Preview.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				CB8592E62A93FB50004D2B95 /* Opportunity */,
-				CB43EFA429F71994000EE752 /* Post */,
+				CB43EFA429F71994000EE752 /* Feed */,
 				CB03EF5829EB41D9006EC539 /* AucaUser */,
 				CB079D752A8EB7D5005C9654 /* OverlayModel.swift */,
 				CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */,
@@ -297,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				CB1913E129D77CB7007BC45C /* Preview Assets.xcassets */,
+				CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -325,7 +342,10 @@
 				CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */,
 				CB420F812A9A013400994599 /* ShareLinkView.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
+				CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */,
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
+				CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */,
+				CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -371,6 +391,7 @@
 				CB8592E42A93E733004D2B95 /* csvjson.json */,
 				CB1913E329D77CB7007BC45C /* Persistence.swift */,
 				CB1923E029FF06D6008873F8 /* AppKeys.swift */,
+				CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -389,12 +410,15 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		CB43EFA429F71994000EE752 /* Post */ = {
+		CB43EFA429F71994000EE752 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				CB73631C2A9CB6D000A64E54 /* FeedItem.swift */,
 				CB43EFA529F7199B000EE752 /* News.swift */,
+				CB7363182A9CB6A700A64E54 /* RemoteResource.swift */,
+				CB73631A2A9CB6AD00A64E54 /* Annoucement.swift */,
 			);
-			path = Post;
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		CB8592E62A93FB50004D2B95 /* Opportunity */ = {
@@ -610,12 +634,15 @@
 				CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */,
 				CBDC65DE2A92B764006074B3 /* SectionHeaderText.swift in Sources */,
 				CBDC65E02A92B773006074B3 /* FormLabel.swift in Sources */,
+				CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */,
 				CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */,
 				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
 				CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */,
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
 				CB079D6E2A8E3299005C9654 /* WebView.swift in Sources */,
+				CB7363172A9C8B3E00A64E54 /* TemporaryStorage.swift in Sources */,
+				CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */,
 				CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */,
 				CBDC65DB2A92B574006074B3 /* AboutView.swift in Sources */,
 				CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */,
@@ -626,11 +653,14 @@
 				CB079D6A2A8E1782005C9654 /* InternshipsViewModel.swift in Sources */,
 				CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */,
 				CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */,
+				CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */,
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
 				CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */,
 				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
 				CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */,
 				CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */,
+				CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */,
+				CB73631B2A9CB6AD00A64E54 /* Annoucement.swift in Sources */,
 				CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */,
 				CB079D6C2A8E1AA1005C9654 /* InternshipsView.swift in Sources */,
 				CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */,
@@ -653,9 +683,11 @@
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
+				CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
 				CB079D762A8EB7D5005C9654 /* OverlayModel.swift in Sources */,
 				CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */,
+				CB73631D2A9CB6D000A64E54 /* FeedItem.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
