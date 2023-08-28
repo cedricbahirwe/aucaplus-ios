@@ -28,6 +28,14 @@ extension News {
         
         return "Today, AUCA & " + str + "'s Bridge Talent Services, signed a MoU in areas of career devpt for students/graduates. The partnership will enhance education-to-employment approach, thus enabling students to learn, apply skills to build career mobility via job readiness workshops."
     }()
+    
+    static var description2: AttributedString = {
+        var str = AttributedString("@ASOMEHealth")
+        str.link = URL(string: "https://twitter.com/ASOMEHealth")
+        str.foregroundColor = .red
+       
+        return "VC Prof Kelvin Onongha hands over a token of appreciation to Dr Zeno L. Charles-Marcel.  Zeno is the Assoc. Director of Adventist Health Ministry at the Headquarters of the SDA World Church. He has been very instrumental in the establishment of AUCA's Medical School " + str
+    }()
 }
 
 extension RemoteResource {

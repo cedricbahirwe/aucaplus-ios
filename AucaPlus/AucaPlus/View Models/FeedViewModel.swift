@@ -67,6 +67,7 @@ final class FeedStore: ObservableObject {
             newNews.postedDate = .now
             newNews.updatedDate = .now
             newNews.userID = user.id
+            newNews.content = News.description2
             
             try await newsClient.createNews(newNews)
             print("Created")
