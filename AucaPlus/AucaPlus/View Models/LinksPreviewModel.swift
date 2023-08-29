@@ -85,13 +85,6 @@ final class LinksPreviewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
-
-    
-    class func fetchMetadata(for url: URL) async throws -> LPLinkMetadata {
-        let metadataProvider = LPMetadataProvider()
-        let metadata  = try await metadataProvider.startFetchingMetadata(for: url)
-        return metadata
-    }
 }
 
 

@@ -13,8 +13,8 @@ struct LinkPreviewer: UIViewRepresentable {
     var metadata: LPLinkMetadata
     
     func makeUIView(context: Context) -> AucaLinkView {
-        let linkView = AucaLinkView()
-        linkView.metadata = metadata
+        let linkView = AucaLinkView(metadata: metadata)
+        linkView.sizeToFit()
     
         return linkView
     }

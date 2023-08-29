@@ -161,7 +161,7 @@ struct Bookmark: Equatable, Codifiable {
     }
     
     static func ==(lhs: Bookmark, rhs: Bookmark) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.type == rhs.type
     }
 }
 

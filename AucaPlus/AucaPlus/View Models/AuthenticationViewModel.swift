@@ -65,8 +65,6 @@ extension AuthenticationViewModel {
                 token: otp,
                 type: .sms)
             
-            let session = try await client.auth.session
-            print("✅Session Info: \(session)")
             await verifyExistingUser()
         } catch {
             isValidatingOTP = false
@@ -79,15 +77,6 @@ extension AuthenticationViewModel {
             let user = try await client.auth.session.user
             
             isValidatingOTP = false
-            
-            print("All user", user)
-            print("Hoping", user.toAucaStudent())
-            
-            print("More meta", user.userMetadata)
-            
-            print("App meta", user.appMetadata)
-            
-            print("Final", user.aud)
 
             // User exist with information
             if user.toAucaStudent().type != .visitor {
