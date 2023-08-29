@@ -49,6 +49,9 @@
 		CB43EFA629F7199B000EE752 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA529F7199B000EE752 /* News.swift */; };
 		CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */; };
 		CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA929F71CF2000EE752 /* BookmarksView.swift */; };
+		CB6DF69F2A9EAD480016E683 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF69E2A9EAD480016E683 /* AuthClient.swift */; };
+		CB6DF6A12A9EAE320016E683 /* SocialFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */; };
+		CB6DF6A32A9EAE560016E683 /* FeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF6A22A9EAE560016E683 /* FeedClient.swift */; };
 		CB7363172A9C8B3E00A64E54 /* TemporaryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */; };
 		CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363182A9CB6A700A64E54 /* RemoteResource.swift */; };
 		CB73631B2A9CB6AD00A64E54 /* Annoucement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73631A2A9CB6AD00A64E54 /* Annoucement.swift */; };
@@ -150,6 +153,9 @@
 		CB43EFA529F7199B000EE752 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CB43EFA929F71CF2000EE752 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		CB6DF69E2A9EAD480016E683 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
+		CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeed.swift; sourceTree = "<group>"; };
+		CB6DF6A22A9EAE560016E683 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
 		CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryStorage.swift; sourceTree = "<group>"; };
 		CB7363182A9CB6A700A64E54 /* RemoteResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResource.swift; sourceTree = "<group>"; };
 		CB73631A2A9CB6AD00A64E54 /* Annoucement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annoucement.swift; sourceTree = "<group>"; };
@@ -435,6 +441,9 @@
 			isa = PBXGroup;
 			children = (
 				CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */,
+				CB6DF69E2A9EAD480016E683 /* AuthClient.swift */,
+				CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */,
+				CB6DF6A22A9EAE560016E683 /* FeedClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -620,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB03EF6229EB4209006EC539 /* AucaStaff.swift in Sources */,
+				CB6DF6A32A9EAE560016E683 /* FeedClient.swift in Sources */,
 				CB079D702A8EB6D1005C9654 /* CaughtUpView.swift in Sources */,
 				CB1923E129FF06D6008873F8 /* AppKeys.swift in Sources */,
 				CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */,
@@ -637,6 +647,7 @@
 				CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */,
 				CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */,
 				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
+				CB6DF6A12A9EAE320016E683 /* SocialFeed.swift in Sources */,
 				CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */,
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
@@ -681,6 +692,7 @@
 				CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */,
 				CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
+				CB6DF69F2A9EAD480016E683 /* AuthClient.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
 				CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */,

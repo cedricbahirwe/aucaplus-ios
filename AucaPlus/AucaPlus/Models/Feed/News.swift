@@ -13,7 +13,9 @@ struct News: FeedItem {
     var id: Int?
     
     var title: String
+    
     var subtitle: String?
+   
     var userID: UUID
     
     var link: URL?

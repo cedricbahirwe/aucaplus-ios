@@ -11,7 +11,9 @@ typealias Codifiable = Codable & Identifiable
 
 struct FeedSource: Codable {
     var name: String
+    
     var headline: String?
+   
     var profile: URL?
     
     enum CodingKeys: String, CodingKey {
