@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct News: FeedItem, Codifiable {
+struct News: FeedItem {
     var id: Int?
     
     var title: String
@@ -42,12 +42,7 @@ struct News: FeedItem, Codifiable {
         case content
         case images
         case tags, bookmarks, views
-        
-        case sourceName = "source_name"
-        case sourceHeadline = "source_headline"
-        case sourceProfile = "source_profile"
         case userID = "user_id"
-
     }
     
     init(id: Int? = nil, title: String, subtitle: String? = nil, userID: UUID, link: URL? = nil, source: FeedSource? = nil, postedDate: Date, updatedDate: Date? = nil, content: AttributedString, images: [URL], tags: [String]? = nil, bookmarks: Int = 0, views: Int = 0) {
@@ -74,13 +69,7 @@ struct News: FeedItem, Codifiable {
         self.subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
         self.link = try container.decodeIfPresent(URL.self, forKey: .link)
         self.userID = try container.decode(UUID.self, forKey: .userID)
-        
-        if let sName = try container.decodeIfPresent(String.self, forKey: .sourceName) {
-            let sHeadline = try container.decodeIfPresent(String.self, forKey: .sourceHeadline)
-            let sProfile = try container.decodeIfPresent(URL.self, forKey: .sourceProfile)
-            self.source = FeedSource(name: sName, headline: sHeadline, profile: sProfile)
-        }
-
+        self.source = try FeedSource(from: decoder)
         self.type = try container.decode(FeedType.self, forKey: .type)
         self.postedDate = try container.decode(Date.self, forKey: .postedDate)
         self.updatedDate = try container.decodeIfPresent(Date.self, forKey: .updatedDate)
@@ -105,10 +94,7 @@ struct News: FeedItem, Codifiable {
         try container.encodeIfPresent(subtitle, forKey: .subtitle)
         try container.encodeIfPresent(link, forKey: .link)
         try container.encode(userID, forKey: .userID)
-        
-        try container.encodeIfPresent(source?.name, forKey: .sourceName)
-        try container.encodeIfPresent(source?.headline, forKey: .sourceHeadline)
-        try container.encodeIfPresent(source?.profile, forKey: .sourceProfile)
+        try source?.encode(to: encoder)
         
         try container.encode(type, forKey: .type)
         try container.encode(updatedDate, forKey: .postedDate)

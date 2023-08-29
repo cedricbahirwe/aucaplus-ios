@@ -62,7 +62,7 @@ final class FeedStore: ObservableObject {
         do {
             let user = try await authClient.auth.session.user
 
-            var newNews = News.news1
+            var newNews: News = items.last! as! News
             newNews.id = nil
             newNews.postedDate = .now
             newNews.updatedDate = .now
