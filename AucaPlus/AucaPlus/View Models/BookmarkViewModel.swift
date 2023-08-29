@@ -109,9 +109,13 @@ extension BookmarkViewModel {
 
 // MARK: - Bookmarking
 extension BookmarkViewModel {
-    func view(internship: Internship) async {
-        guard let id = internship.id else {
-            print("❌Can not update \(internship)")
+    private func getBookmarker<Element: Sociable>(for item: Element) -> SocialFeed<Element> {
+        return SocialFeed<Element>()
+    }
+    
+    func view<T: Sociable>(_ item: T) async {
+        guard let id = item.id else {
+            print("❌Can not update \(item)")
             return
         }
         
@@ -128,12 +132,7 @@ extension BookmarkViewModel {
             return
         }
         
-        func getBookmarker<Element: Sociable>(item: Element) -> SocialFeed<Element> where Element: Sociable  {
-            return SocialFeed<Element>()
-        }
-        
-        
-        let bookmarker = getBookmarker(item: item)
+        let bookmarker = getBookmarker(for: item)
         
         do {
             if isBookmarking {
