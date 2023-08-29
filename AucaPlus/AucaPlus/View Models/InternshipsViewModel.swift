@@ -51,7 +51,6 @@ extension InternshipsViewModel {
             TemporaryStorage.shared.save(object: internships, forKey: "internships")
             self.internships = internships
             
-            let test = try await internshipClient.getInternship(with: News.news1.id)
         } catch {
             print("❌\(error.localizedDescription)")
             isFetchingInternships = false
