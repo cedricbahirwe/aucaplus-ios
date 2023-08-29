@@ -19,17 +19,19 @@ class APIClient {
     }
 }
 
+class FeedClient<T: Sociable>: APIClient {}
+
 extension APIClient: InternshipClient {
     func createInternship(_ newBalue: Internship) async throws {
         try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .insert(values: newBalue)
             .execute()
     }
     
     func fetchInternships() async throws -> [Internship] {
         try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .select()
             .order(column: "posted_at", ascending: false)
             .execute()
@@ -42,7 +44,7 @@ extension APIClient: InternshipClient {
         }
         
         return try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .select()
             .eq(column: "id", value: id)
             .single()
@@ -56,7 +58,7 @@ extension APIClient: InternshipClient {
         }
 
         return try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .update(values: newValue, returning: .representation)
             .eq(column: "id", value: id)
             .single()
@@ -70,7 +72,7 @@ extension APIClient: InternshipClient {
         }
 
         return try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .update(values: newValue, returning: .representation)
             .eq(column: "id", value: id)
             .single()
@@ -84,7 +86,7 @@ extension APIClient: InternshipClient {
         }
         
         try await client.database
-            .from(DBTable.internships)
+            .from(DVTable.internships)
             .delete()
             .eq(column: "id", value: id)
             .execute()
@@ -92,151 +94,32 @@ extension APIClient: InternshipClient {
 }
 
 
-extension APIClient: SocialClient {
-    func viewInternship(_ internship: Internship.ID) async throws -> Internship  {
-        guard let internship else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await getInternship(with: internship)
+class SocialFeed<T: Sociable>: FeedClient<T> {
+    @discardableResult
+    func view(_ itemID: T.ID) async throws -> T {
+        var toUpdate = try await fetch(with: itemID)
         toUpdate.views += 1
         
-        return try await updateInternship(with: internship,
-                                          with: ["views": .number(Double(toUpdate.views))])
+        return try await update(with: itemID,
+                                ["views": .number(Double(toUpdate.views))])
     }
     
     @discardableResult
-    func bookmarkInternship(_ internship: Internship.ID) async throws -> Internship {
-        guard let internship else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await getInternship(with: internship)
+    func bookmark(_ itemID: T.ID) async throws -> T {
+        var toUpdate = try await fetch(with: itemID)
         toUpdate.bookmarks += 1
         
-        return try await updateInternship(with: internship,
-                                          with: ["bookmarks": .number(Double(toUpdate.bookmarks))])
+        return try await update(with: itemID,
+                                ["bookmarks": .number(Double(toUpdate.bookmarks))])
     }
     
-    func unBookmarkIntership(_ internship: Internship.ID) async throws -> Internship {
-        guard let internship else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await getInternship(with: internship)
+    @discardableResult
+    func unBookmark(_ itemID: T.ID) async throws -> T {
+        var toUpdate = try await fetch(with: itemID)
         toUpdate.bookmarks -= 1
         
-        return try await updateInternship(with: internship,
-                                          with: ["bookmarks": .number(Double(toUpdate.bookmarks))])
-    }
-    
-    func viewNews(_ newsID: News.ID) async throws -> News {
-        guard let newsID else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await fetchNews(with: newsID)
-        toUpdate.views += 1
-        
-        return try await updateNews(with: newsID,
-                                    ["views": .number(Double(toUpdate.views))])
-    }
-    
-    func bookmarkNews(_ newsID: News.ID) async throws -> News {
-        guard let newsID else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await fetchNews(with: newsID)
-        toUpdate.bookmarks += 1
-        
-        return try await updateNews(with: newsID,
-                                    ["bookmarks": .number(Double(toUpdate.bookmarks))])
-    }
-    
-    func unBookmarkNews(_ newsID: News.ID) async throws -> News {
-        guard let newsID else {
-            throw APIError.invalidID
-        }
-        
-        var toUpdate = try await getInternship(with: newsID)
-        toUpdate.bookmarks -= 1
-        
-        return try await updateNews(with: newsID,
-                                    ["bookmarks": .number(Double(toUpdate.bookmarks))])
-    }
-    
-}
-
-extension APIClient: NewsClient {
-    func fetchNews() async throws -> [News] {
-        try await client.database
-            .from(DBTable.news)
-            .select()
-            .order(column: "posted_at", ascending: false)
-            .execute()
-            .value
-    }
-    
-    func fetchNews(with id: News.ID) async throws -> News {
-        guard let id else {
-            throw APIError.invalidID
-        }
-        
-        return try await client.database
-            .from(DBTable.news)
-            .select()
-            .eq(column: "id", value: id)
-            .single()
-            .execute()
-            .value
-    }
-    
-    func updateNews(with id: News.ID, _ newValue: News) async throws -> News {
-        guard let id else {
-            throw APIError.invalidID
-        }
-
-        return try await client.database
-            .from(DBTable.news)
-            .update(values: newValue, returning: .representation)
-            .eq(column: "id", value: id)
-            .single()
-            .execute()
-            .value
-    }
-    
-    func updateNews(with id: News.ID, _ newValue: [String : GoTrue.AnyJSON]) async throws -> News {
-        guard let id else {
-            throw APIError.invalidID
-        }
-
-        return try await client.database
-            .from(DBTable.news)
-            .update(values: newValue, returning: .representation)
-            .eq(column: "id", value: id)
-            .single()
-            .execute()
-            .value
-    }
-    
-    func deleteNews(with id: News.ID) async throws {
-        guard let id else {
-            throw APIError.invalidID
-        }
-        
-        try await client.database
-            .from(DBTable.news)
-            .delete()
-            .eq(column: "id", value: id)
-            .execute()
-    }
-    
-    func createNews(_ value: News) async throws {
-        try await client.database
-            .from(DBTable.news)
-            .insert(values: value)
-            .execute()
+        return try await update(with: itemID,
+                                ["bookmarks": .number(Double(toUpdate.bookmarks))])
     }
 }
 
@@ -252,38 +135,122 @@ protocol InternshipClient {
     func deleteInternship(with id: Internship.ID) async throws
 }
 
-protocol NewsClient {
-    func fetchNews() async throws -> [News]
-    func fetchNews(with id: News.ID) async throws -> News
-    func createNews(_ value: News) async throws
-    
+protocol FeedCRUD<T> {
+    associatedtype T: Sociable
+
+    func fetchAll() async throws -> [T]
+    func fetch(with id: T.ID) async throws -> T
+    func create(_ value: T) async throws
     @discardableResult
-    func updateNews(with id: News.ID,_ newValue: News) async throws -> News
+    func update(with id: T.ID,_ newValue: T) async throws -> T
     @discardableResult
-    func updateNews(with id: News.ID,_ newValue: [String: AnyJSON]) async throws -> News
-    func deleteNews(with id: News.ID) async throws
+    func update(with id: T.ID,_ newValue: [String: AnyJSON]) async throws -> T
+    func delete(with id: T.ID) async throws
 }
 
-protocol SocialClient {
-    @discardableResult
-    func viewInternship(_ internship: Internship.ID) async throws -> Internship
-    @discardableResult
-    func bookmarkInternship(_ internship: Internship.ID) async throws -> Internship
-    @discardableResult
-    func unBookmarkIntership(_ internship: Internship.ID) async throws -> Internship
+
+extension FeedClient: FeedCRUD {
+    func fetchAll() async throws -> [T] {
+        try await client.database
+            .from(T.database.rawValue)
+            .select()
+            .order(column: "posted_at", ascending: false)
+            .execute()
+            .value
+    }
     
-    @discardableResult
-    func viewNews(_ news: News.ID) async throws -> News
-    @discardableResult
-    func bookmarkNews(_ news: News.ID) async throws -> News
-    @discardableResult
-    func unBookmarkNews(_ news: News.ID) async throws -> News
+    func create(_ value: T) async throws {
+        try await client.database
+            .from(T.database.rawValue)
+            .insert(values: value)
+            .execute()
+    }
+    
+    func fetch(with id: T.ID) async throws -> T {
+        guard let id = id as? URLQueryRepresentable else {
+            throw APIError.invalidID
+        }
+
+        return try await client.database
+            .from(T.database.rawValue)
+            .select()
+            .eq(column: "id", value: id)
+            .single()
+            .execute()
+            .value
+    }
+    
+    func update(with id: T.ID, _ newValue: T) async throws -> T {
+        guard let id = id as? URLQueryRepresentable else {
+            throw APIError.invalidID
+        }
+        
+        return try await client.database
+            .from(T.database.rawValue)
+            .update(values: newValue, returning: .representation)
+            .eq(column: "id", value: id)
+            .single()
+            .execute()
+            .value
+    }
+
+    func update(with id: T.ID, _ newValue: [String : GoTrue.AnyJSON]) async throws -> T {
+        guard let id = id as? URLQueryRepresentable else {
+            throw APIError.invalidID
+        }
+        
+        return try await client.database
+            .from(T.database.rawValue)
+            .update(values: newValue, returning: .representation)
+            .eq(column: "id", value: id)
+            .single()
+            .execute()
+            .value
+    }
+    
+    func delete(with id: T.ID) async throws {
+        guard let id = id as? URLQueryRepresentable else {
+            throw APIError.invalidID
+        }
+        
+        try await client.database
+            .from(T.database.rawValue)
+            .delete()
+            .eq(column: "id", value: id)
+            .execute()
+    }
+    
 }
 
-fileprivate enum DBTable {
+
+
+//protocol SocialClient<T> {
+//    associatedtype T: Sociable
+////    @discardableResult
+//    func view(_ itemID: T.ID) async throws -> T
+////    @discardableResult
+////    func bookmarkInternship(_ internship: Internship.ID) async throws -> Internship
+////    @discardableResult
+////    func unBookmarkIntership(_ internship: Internship.ID) async throws -> Internship
+////
+////    @discardableResult
+////    func viewNews(_ news: News.ID) async throws -> News
+//    @discardableResult
+//    func bookmark(_ news: T.ID) async throws -> T
+//    @discardableResult
+//    func unBookmark(_ news: T.ID) async throws -> T
+//}
+
+enum DVTable {
     static let internships = "internships"
     static let aucaUsers = "aucausers"
     static let news = "news"
+    static let announcements = "announcements"
+}
+
+enum DBTable: String {
+    case news, internships, aucaUsers
+    case jobs, announcements, resources
 }
 
 

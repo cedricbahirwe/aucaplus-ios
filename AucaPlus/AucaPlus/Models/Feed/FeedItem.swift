@@ -46,9 +46,16 @@ enum FeedType: String, Codable {
     case news, resource, announcement
 }
 
-protocol FeedItem: Codifiable {
+protocol Sociable: Codifiable {
+    var id: Int?  { get set }
+    var bookmarks: Int { get set }
+    var views: Int { get set }
+    
+    static var database: DBTable { get }
+}
+
+protocol FeedItem: Sociable {
     associatedtype FeedContent: Codable
-    var id: Int? { get set }
     var userID: UUID { get set }
     var title: String { get set }
     var subtitle: String? { get set }
@@ -62,7 +69,4 @@ protocol FeedItem: Codifiable {
 
     var postedDate: Date { get set }
     var updatedDate: Date? { get }
-    
-    var views: Int { get }
-    var bookmarks: Int { get }
 }

@@ -27,6 +27,19 @@ final class InternshipsViewModel: ObservableObject {
 
 // MARK: - Database
 extension InternshipsViewModel {
+    
+//    func fetch() async {
+//        
+//        do {
+//            let announcements = try await announcementClient.fetchAll()
+//            TemporaryStorage.shared.save(object: announcements, forKey: "announcements")
+//            print("Found", announcements)
+//        } catch {
+//            print("❌\(error.localizedDescription)")
+//            isFetchingInternships = false
+//        }
+//    }
+    
     func fetchInternships() async {
         if internships.isEmpty {
             isFetchingInternships = true
@@ -37,6 +50,8 @@ extension InternshipsViewModel {
             isFetchingInternships = false
             TemporaryStorage.shared.save(object: internships, forKey: "internships")
             self.internships = internships
+            
+            let test = try await internshipClient.getInternship(with: News.news1.id)
         } catch {
             print("❌\(error.localizedDescription)")
             isFetchingInternships = false

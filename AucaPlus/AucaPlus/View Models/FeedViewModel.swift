@@ -20,7 +20,7 @@ final class FeedStore: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    private let newsClient: NewsClient = APIClient()
+    private let newsClient = FeedClient<News>()
     private let authClient: AuthClient = AuthClient.shared
     
     init() {
@@ -30,8 +30,8 @@ final class FeedStore: ObservableObject {
         }
         .store(in: &cancellables)
         
-        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
-        items = news
+//        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
+//        items = news
     }
     
     func setFilter(_ newFilter: FeedFilter) {
@@ -48,10 +48,14 @@ final class FeedStore: ObservableObject {
             isFetchingNews = true
         }
         do {
-            let news = try await newsClient.fetchNews()
+            let news = try await newsClient.fetchAll()
             isFetchingNews = false
             TemporaryStorage.shared.save(object: news, forKey: "news")
             self.items = news
+            print("Finish first")
+            let result = try await newsClient.fetch(with: news[0].id)
+            print("Found something", result)
+            
         } catch {
             print("❌Error", error.localizedDescription)
             isFetchingNews = false
@@ -69,7 +73,7 @@ final class FeedStore: ObservableObject {
             newNews.userID = user.id
             newNews.content = News.description2
             
-            try await newsClient.createNews(newNews)
+            try await newsClient.create(newNews)
         } catch {
             print("❌Error", error.localizedDescription)
         }
@@ -78,7 +82,7 @@ final class FeedStore: ObservableObject {
     func deleteNews() async {
         do {
             let aNews = items[0] as! News
-            try await newsClient.deleteNews(with: aNews.id)
+            try await newsClient.delete(with: aNews.id)// delete(with: aNews.id)
         } catch {
             print("❌Error", error.localizedDescription)
         }
