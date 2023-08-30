@@ -18,9 +18,14 @@ struct BookmarksView: View {
                         news,
                         isBookmarked: bookmarksVM.isBookmarked(news),
                         onBookmarked: {
-                            bookmarksVM.toggleBookmarking(.init(type: .news($0)))
-                        }
-                    )
+                            if bookmarksVM.isBookmarked(news) {
+                                bookmarksVM.removeFromBookmarks($0)
+                            } else {
+                                bookmarksVM.addToBookmarks($0)
+                            }
+                        },
+                        onViewed: bookmarksVM.view)
+                    
                 case .internship(let internship):
                     NavigationLink(value: internship) {
                         InternshipRowView(

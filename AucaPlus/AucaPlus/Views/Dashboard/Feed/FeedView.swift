@@ -39,8 +39,9 @@ struct FeedView: View {
                                             } else {
                                                 bookmarksVM.addToBookmarks($0)
                                             }
-                                        }
-                                    )
+                                        },
+                                        onViewed: bookmarksVM.view)
+                                    
                                 }
                                 
                                 Divider()

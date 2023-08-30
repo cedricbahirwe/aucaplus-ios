@@ -33,10 +33,6 @@ class AuthClient: APIClient, ObservableObject {
         }
     }
     
-    func deleteAccount() async {
-        fatalError()
-    }
-    
     func signOut() async throws {
         try await auth.signOut()
         await isUserAuthenticated()

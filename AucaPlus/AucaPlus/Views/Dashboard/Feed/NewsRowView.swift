@@ -11,15 +11,19 @@ struct NewsRowView: View {
     @StateObject private var itemVM: NewsItemViewModel
     @EnvironmentObject private var feedVM: FeedStore
 
-    init(_ news: News, isBookmarked: Bool, onBookmarked: @escaping (News) -> Void) {
+    init(_ news: News, isBookmarked: Bool,
+         onBookmarked: @escaping (News) -> Void,
+         onViewed: @escaping (News) async -> Void) {
         _itemVM = StateObject(wrappedValue: { NewsItemViewModel(news) }())
         self.isBookmarked = isBookmarked
         self.onBookmarked = onBookmarked
+        self.onViewed = onViewed
     }
     
     private var isBookmarked: Bool
     private var onBookmarked: (News) -> Void
     private var news: News { itemVM.item }
+    private var onViewed: (News) async -> Void
      
     var body: some View {
         VStack (alignment: .leading) {
@@ -40,7 +44,7 @@ struct NewsRowView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             itemVM.bookmark(!isBookmarked)
-                            onBookmarked(itemVM.item)
+                            onBookmarked(news)
                         }
                 }
             }
@@ -60,7 +64,8 @@ struct NewsRowView: View {
         }
         .padding()
         .task {
-            #warning("Send View event")
+            itemVM.view()
+            await onViewed(news)
         }
     }
 }
@@ -68,7 +73,10 @@ struct NewsRowView: View {
 #if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRowView(.news1, isBookmarked: false) { _ in }
+        NewsRowView(.news1,
+                    isBookmarked: false,
+                    onBookmarked: { _ in },
+                    onViewed: { _ in })
             .environmentObject(FeedStore())
             .previewLayout(.sizeThatFits)
     }

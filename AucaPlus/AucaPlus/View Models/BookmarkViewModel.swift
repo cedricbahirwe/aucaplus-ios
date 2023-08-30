@@ -54,10 +54,6 @@ extension BookmarkViewModel {
         bookmarks.contains(where: { $0.id == bookmark.id })
     }
     
-    func toggleBookmarking(_ bookmark: Bookmark) {
-        fatalError()
-    }
-    
     func addToBookmarks(_ internship: Internship) {
         let bookmark = Bookmark(type: .internship(internship))
         addNewBookmark(bookmark)
