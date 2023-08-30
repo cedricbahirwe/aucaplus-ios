@@ -8,7 +8,7 @@
 import Foundation
 
 struct Job: Opportunity {
-    static var database: DBTable = .jobs
+    static var database: DBTable { .jobs }
     var id: Int?
     
     var userID: UUID

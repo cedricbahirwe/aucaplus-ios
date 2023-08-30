@@ -8,7 +8,7 @@
 import Foundation
 
 struct Internship: Hashable, Opportunity, Sociable {
-    static var database: DBTable = .internships
+    static var database: DBTable { .internships }
     
     var id: Int?
     

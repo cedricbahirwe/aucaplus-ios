@@ -8,7 +8,7 @@
 import Foundation
 
 struct Announcement: FeedItem {
-    static var database: DBTable = .announcements
+    static var database: DBTable { .announcements }
     var id: Int?
     var title: String
     var subtitle: String?

@@ -8,7 +8,7 @@
 import Foundation
 
 struct RemoteResource: FeedItem, Codifiable {
-    static var database: DBTable = .resources
+    static var database: DBTable { .resources }
     var id: Int?
     var title: String
     var subtitle: String?
