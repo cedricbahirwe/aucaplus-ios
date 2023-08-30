@@ -152,11 +152,43 @@ extension AuthenticationViewModel {
         var email = ""
         var about = ""
         
-        func isValid() -> Bool {
-            guard username.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
-            guard firstName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
-            guard lastName.replacingOccurrences(of: " ", with: "").count > 3 else { return false }
-            guard email.isValidEmail() else { return false }
+        enum ValidationError: LocalizedError {
+            case username
+            case firstName
+            case lastName
+            case email
+            
+            var errorDescription: String? {
+                switch self {
+                case .username:
+                    return "The username should be at least 3 characters"
+                case .firstName:
+                    return "The first name should be at least 3 characters"
+                case .lastName:
+                    return "The last name should be at least 3 characters"
+                case .email:
+                    return "The email should have a valid format"
+                }
+            }
+        }
+        
+        func isValid() throws -> Bool {
+            
+            guard firstName.replacingOccurrences(of: " ", with: "").count >= 3 else {
+                throw ValidationError.firstName
+            }
+            
+            guard lastName.replacingOccurrences(of: " ", with: "").count >= 3 else {
+                throw ValidationError.lastName
+            }
+            
+            guard username.replacingOccurrences(of: " ", with: "").count >= 3 else {
+                throw ValidationError.username
+            }
+            
+            guard email.isEmpty || email.isValidEmail() else {
+                throw ValidationError.email
+            }
             return true
         }
     }

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-#warning("Needs validation")
 struct AuthInfoView: View {
     @ObservedObject var authVM: AuthenticationViewModel
     
@@ -20,8 +19,7 @@ struct AuthInfoView: View {
     @State private var showingValidationAlert = false
     @FocusState private var focusedField: FocusedField?
     
-    @AppStorage(StorageKeys.isLoggedIn)
-    private var isLoggedIn: Bool = false
+    @State private var alertItem: AlertItem?
     
     var body: some View {
         ZStack {
@@ -63,7 +61,7 @@ struct AuthInfoView: View {
                     .focused($focusedField, equals: .about)
                     .submitLabel(.next)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 0) {
                         HStack {
                             Text("Choose Account Type:")
                             Spacer()
@@ -90,6 +88,7 @@ struct AuthInfoView: View {
                     Spacer()
                     
                     Button {
+                        guard fieldsValid() else { return }
                         Task {
                             await authVM.saveUserInfo()
                         }
@@ -116,16 +115,25 @@ struct AuthInfoView: View {
                     focusedField = nil
                 }
         )
-        .alert("You entered the phone number:",
+        .alert("Validation Error",
                isPresented: $showingValidationAlert,
-               actions: {
-            Button("Cancel", role: .cancel) { }
-            Button("OK") {
+               presenting: alertItem, actions: { item in
+            Button("Got It!") {
                 
             }
-        }, message: {
-            Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
+        }, message: { item in
+            Text(item.message)
         })
+//        .alert("You entered the phone number:",
+//               isPresented: $showingValidationAlert,
+//               actions: {
+//            Button("Cancel", role: .cancel) { }
+//            Button("OK") {
+//
+//            }
+//        }, message: {
+//            Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
+//        })
         .onAppear() {
             DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.authFieldFocusTime) {
                 focusedField = .firstName
@@ -138,6 +146,21 @@ struct AuthInfoView: View {
                 }
             }
         }
+    }
+    
+    private func fieldsValid() -> Bool {
+        do {
+            return try authVM.regModel.isValid()
+        } catch {
+            self.alertItem = AlertItem(message: error.localizedDescription)
+            self.showingValidationAlert = true
+            return false
+        }
+    }
+    
+    struct AlertItem: Identifiable {
+        var id = UUID()
+        var message: String
     }
 }
 
