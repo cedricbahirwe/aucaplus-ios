@@ -11,7 +11,7 @@ final class BookmarkViewModel: ObservableObject {
     
     @Published private var bookmarks: [Bookmark] = TemporaryStorage.shared.retrieve(forKey: "bookmarks")
     
-    private let socialClient: SocialClient = AuthClient.shared
+    private let internshipSocial = SocialFeed<Internship>()
     
     var sortedBookmarks: [Bookmark] {
         bookmarks.sorted { $0.bookmarkDate > $1.bookmarkDate }
@@ -71,10 +71,9 @@ extension BookmarkViewModel {
         case let news as News:
             let bookmark = Bookmark(type: .news(news))
             addNewBookmark(bookmark)
-            #warning("Need to add to bookmarks on the database side")
-//            Task {
-//                await self.bookmark(news, isBookmarking: true)
-//            }
+            Task {
+                await self.bookmark(news, isBookmarking: true)
+            }
         default:
             break
         }
@@ -95,9 +94,9 @@ extension BookmarkViewModel {
             let bookmark = Bookmark(type: .news(news))
             removeBookmark(bookmark)
             #warning("Need to remove from bookmarks on the database side")
-//            Task {
-//                await self.bookmark(news, isBookmarking: false)
-//            }
+            Task {
+                await self.bookmark(news, isBookmarking: false)
+            }
         default:
             break
         }
@@ -110,30 +109,36 @@ extension BookmarkViewModel {
 
 // MARK: - Bookmarking
 extension BookmarkViewModel {
-    func view(internship: Internship) async {
-        guard let id = internship.id else {
-            print("❌Can not update \(internship)")
+    private func getBookmarker<Element: Sociable>(for item: Element) -> SocialFeed<Element> {
+        return SocialFeed<Element>()
+    }
+    
+    func view<T: Sociable>(_ item: T) async {
+        guard let id = item.id else {
+            print("❌Can not update \(item)")
             return
         }
         
         do {
-            try await socialClient.viewInternship(id)
+            try await internshipSocial.view(id)
         } catch {
             print("❌Error: \(error)")
         }
     }
     
-    func bookmark(_ internship: Internship, isBookmarking: Bool) async {
-        guard let id = internship.id else {
-            print("❌Can not update \(internship)")
+    func bookmark<T: Sociable>(_ item: T, isBookmarking: Bool) async {
+        guard item.id != nil else {
+            print("❌Can not update \(item)")
             return
         }
         
+        let bookmarker = getBookmarker(for: item)
+        
         do {
             if isBookmarking {
-                try await socialClient.bookmarkInternship(id)
+                try await bookmarker.bookmark(item.id)
             } else {
-                try await socialClient.unBookmarkIntership(id)
+                try await bookmarker.unBookmark(item.id)
             }
         } catch {
             print("❌Error: \(error.localizedDescription)")

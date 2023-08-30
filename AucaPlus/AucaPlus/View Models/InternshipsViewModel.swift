@@ -15,7 +15,7 @@ final class InternshipsViewModel: ObservableObject {
     
     @Published private(set) var isFetchingInternships = false
     
-    private let internshipClient: InternshipClient = APIClient()
+    private let internshipClient = FeedClient<Internship>()
     
     private let authClient: AuthClient = AuthClient.shared
 
@@ -27,16 +27,18 @@ final class InternshipsViewModel: ObservableObject {
 
 // MARK: - Database
 extension InternshipsViewModel {
+    
     func fetchInternships() async {
         if internships.isEmpty {
             isFetchingInternships = true
         }
         
         do {
-            let internships = try await internshipClient.fetchInternships()
+            let internships = try await internshipClient.fetchAll()
             isFetchingInternships = false
             TemporaryStorage.shared.save(object: internships, forKey: "internships")
             self.internships = internships
+            
         } catch {
             print("❌\(error.localizedDescription)")
             isFetchingInternships = false
@@ -53,7 +55,7 @@ extension InternshipsViewModel {
             internship.updatedDate = .now
             internship.userID = user.id
             
-            try await internshipClient.createInternship(internship)
+            try await internshipClient.create(internship)
             await fetchInternships()
             print("✅Created successfully")
         } catch {
@@ -63,7 +65,7 @@ extension InternshipsViewModel {
     
     func deleteInternship(withID id: News.ID) async {
         do {
-            try await internshipClient.deleteInternship(with: id)
+            try await internshipClient.delete(with: id)
         } catch {
             print("❌Error: \(error)")
         }

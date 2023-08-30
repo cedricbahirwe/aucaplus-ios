@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Internship: Hashable, Opportunity {
+struct Internship: Hashable, Opportunity, Sociable {
+    static var database: DBTable { .internships }
     
     var id: Int?
     
@@ -16,16 +17,21 @@ struct Internship: Hashable, Opportunity {
     var verified: Bool
     
     var userID: UUID
+    
     var source: InternshipSource
     
     var title: String
+    
     var description: String?
+    
     var postedDate: Date
+    
     var updatedDate: Date?
     
     var location: String
     
     var views: Int = 100
+    
     var bookmarks: Int = 12
 }
 
