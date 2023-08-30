@@ -59,16 +59,20 @@ protocol Sociable: Codifiable {
 protocol FeedItem: Sociable {
     associatedtype FeedContent: Codable
     var userID: UUID { get set }
+    
     var title: String { get set }
+    
     var subtitle: String? { get set }
     
     var link: URL? { get set }
     
     var source: FeedSource? { get set }
+    
     var type: FeedType { get }
     
     var content: FeedContent { get set }
 
     var postedDate: Date { get set }
+    
     var updatedDate: Date? { get }
 }

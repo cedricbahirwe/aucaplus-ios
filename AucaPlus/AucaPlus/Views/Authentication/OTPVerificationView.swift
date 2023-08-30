@@ -16,7 +16,7 @@ struct OTPVerificationView: View {
     @State private var elapsedTime: Int = 0
     
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    private let otpResendTime = 180 // seconds
+    private let otpResendTime = 180
     
     @FocusState private var focusedField: Bool
     

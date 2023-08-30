@@ -32,9 +32,11 @@ struct News: FeedItem {
 
     // Extras
     var images: [URL]
+    
     var tags: [String]?
     
     var bookmarks: Int
+    
     var views: Int
     
     enum CodingKeys: String, CodingKey {
