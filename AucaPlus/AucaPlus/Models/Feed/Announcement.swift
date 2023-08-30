@@ -1,8 +1,8 @@
 //
-//  Annoucement.swift
+//  Announcement.swift
 //  AucaPlus
 //
-//  Created by Cédric Bahirwe on 28/08/2023.
+//  Created by Cédric Bahirwe on 30/08/2023.
 //
 
 import Foundation
