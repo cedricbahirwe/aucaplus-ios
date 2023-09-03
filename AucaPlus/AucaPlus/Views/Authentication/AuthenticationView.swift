@@ -179,7 +179,11 @@ struct AuthenticationView_Previews: PreviewProvider {
 
 
 struct AuthHelpView: View {
-    var body: some View  {
-        Text("Show Helpful Message like how to's")
+    var body: some View {
+        VStack {
+            Text("Show Helpful Message like how to's")
+            EmptyView().inBeta()
+        }
+
     }
 }
