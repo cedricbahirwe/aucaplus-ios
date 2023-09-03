@@ -11,8 +11,6 @@ final class BookmarkViewModel: ObservableObject {
     
     @Published private var bookmarks: [Bookmark] = TemporaryStorage.shared.retrieve(forKey: "bookmarks")
     
-    private let internshipSocial = SocialFeed<Internship>()
-    
     var sortedBookmarks: [Bookmark] {
         bookmarks.sorted { $0.bookmarkDate > $1.bookmarkDate }
     }
@@ -110,13 +108,15 @@ extension BookmarkViewModel {
     }
     
     func view<T: Sociable>(_ item: T) async {
-        guard let id = item.id else {
-            Log.debug("Can not update \(item)")
+        guard item.id != nil else {
+            Log.debug("Can not view \(item)")
             return
         }
         
         do {
-            try await internshipSocial.view(id)
+            let bookmarker = getBookmarker(for: item)
+
+            try await bookmarker.view(item.id)
         } catch {
             Log.error("Viewing Item", error)
         }
@@ -124,7 +124,7 @@ extension BookmarkViewModel {
     
     func bookmark<T: Sociable>(_ item: T, isBookmarking: Bool) async {
         guard item.id != nil else {
-            Log.debug("Can not update \(item)")
+            Log.debug("Can not bookmark \(item)")
             return
         }
         

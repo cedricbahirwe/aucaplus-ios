@@ -30,7 +30,7 @@ extension FeedClient: SociableCRUD {
         guard let id = id as? URLQueryRepresentable else {
             throw APIError.invalidID
         }
-        
+                
         return try await client.database
             .from(T.database.rawValue)
             .select()

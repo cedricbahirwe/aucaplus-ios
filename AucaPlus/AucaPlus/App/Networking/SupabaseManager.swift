@@ -54,7 +54,7 @@ extension APIClient {
                 Log.debug("❌No Json Found")
             }
         } catch {
-            Log.debug("❌Error found during json printing:", error)
+            Log.debug("❌Json Logging:", error)
         }
     }
 }
