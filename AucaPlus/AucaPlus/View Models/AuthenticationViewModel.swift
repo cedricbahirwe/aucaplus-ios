@@ -52,7 +52,6 @@ extension AuthenticationViewModel {
             try await client.auth.signInWithOTP(phone: phone)
             isSendingOTP = false
             goToOTPView = true
-            print("OTP Sent", phone)
         } catch {
             Log.error("Authorizing", error)
             isSendingOTP = false
