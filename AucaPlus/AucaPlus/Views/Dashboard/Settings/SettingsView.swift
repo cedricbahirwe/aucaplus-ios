@@ -81,22 +81,23 @@ struct SettingsView: View {
                         FormLabel(.about)
                     }
 
+                
                     FormLabel(.rating, type: .external)
-                        .asLink(ExternalLinks.appStoreReview)
-                    
+                        .inBeta()
                     
                     NavigationLink {
                         BookmarksView()
                     } label: {
                         FormLabel(.appearance)
                     }
+                    .inBeta()
                     
                 } header: {
                     SectionHeaderText("Application")
                 }
                 
                 VersionLabel()
-                
+    
             }
             .task {
                 await settingsStore.getUser()
@@ -128,3 +129,36 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 #endif
+
+extension View {
+    func inBeta() -> some View {
+       ModifiedContent(content: self, modifier: BetaModifier())
+    }
+}
+
+struct BetaModifier: ViewModifier {
+    @State private var animate = false
+    func body(content: Content) -> some View {
+        HStack {
+            content
+                .disabled(true)
+            Spacer()
+            Text(animate ? "Work In Progess" : "WIP ⚙️")
+                .font(.caption)
+                .foregroundColor(.green)
+                .padding(8)
+                .background(Color.green.opacity(0.1))
+                .clipShape(Capsule())
+                .onTapGesture {
+                    withAnimation {
+                        animate = true
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1.5) {
+                        withAnimation {
+                            animate = false
+                        }
+                    }
+                }
+        }
+    }
+}

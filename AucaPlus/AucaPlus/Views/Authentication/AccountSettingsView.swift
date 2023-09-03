@@ -89,18 +89,21 @@ struct AccountSettingsView: View {
                 .listRowBackground(Color.clear)
             }
             .safeAreaInset(edge: .bottom) {
-                Button {
-                    Task {
-                        await AuthClient.shared.deleteAccount()
-                        StorageKeys.clearAll()
+                VStack {
+                    Button {
+                        Task {
+    //                        await AuthClient.shared.deleteAccount()
+                            StorageKeys.clearAll()
+                        }
+                    } label: {
+                        Text("Delete account")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .foregroundColor(.red)
                     }
-                } label: {
-                    Text("Delete account")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .foregroundColor(.red)
                 }
+                .background(.regularMaterial)
             }
             .toolbar {
                 if settingsStore.shouldUpdate {
@@ -117,8 +120,6 @@ struct AccountSettingsView: View {
         }
         .navigationTitle("Account settings")
         .navigationBarTitleDisplayMode(.inline)
-        
-       
     }
     
 }

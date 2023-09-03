@@ -37,6 +37,7 @@
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
 		CB1923D929FEEE9A008873F8 /* AuthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */; };
 		CB1923E129FF06D6008873F8 /* AppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923E029FF06D6008873F8 /* AppKeys.swift */; };
+		CB27603D2AA4C8D900399082 /* APDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27603C2AA4C8D900399082 /* APDialogView.swift */; };
 		CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB420F812A9A013400994599 /* ShareLinkView.swift */; };
 		CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */; };
 		CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827629F9938500F436C3 /* NewsItemViewModel.swift */; };
@@ -141,6 +142,7 @@
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfoView.swift; sourceTree = "<group>"; };
 		CB1923E029FF06D6008873F8 /* AppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeys.swift; sourceTree = "<group>"; };
+		CB27603C2AA4C8D900399082 /* APDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDialogView.swift; sourceTree = "<group>"; };
 		CB420F812A9A013400994599 /* ShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkView.swift; sourceTree = "<group>"; };
 		CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreationViewModel.swift; sourceTree = "<group>"; };
 		CB42827629F9938500F436C3 /* NewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewModel.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
 				CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */,
 				CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */,
+				CB27603C2AA4C8D900399082 /* APDialogView.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				CB42827B29F99B8600F436C3 /* ResourceRowView.swift in Sources */,
 				CB079D742A8EB718005C9654 /* Date+Extensions.swift in Sources */,
 				CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */,
+				CB27603D2AA4C8D900399082 /* APDialogView.swift in Sources */,
 				CBCC0C3C2A961F8100B9A34E /* TestingView.swift in Sources */,
 				CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */,
 				CB43EFA629F7199B000EE752 /* News.swift in Sources */,
