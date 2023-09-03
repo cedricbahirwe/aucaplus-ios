@@ -63,6 +63,11 @@ struct OTPVerificationView: View {
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
+        .alert(item: $authVM.alertItem) { item in
+            Alert(title: Text("OTP Error"),
+                  message: Text(item.message),
+                  dismissButton: .default(Text("Got It!")))
+        }
         .padding()
         .disabled(authVM.isValidatingOTP)
         .onAppear() {

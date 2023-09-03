@@ -55,7 +55,7 @@ struct AuthenticationView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
-                    .alert("Please enter your phone number.",
+                    .alert("Please enter your phone number correctly.",
                            isPresented: $showingValidationAlert,
                            actions: { })
                     
@@ -80,7 +80,6 @@ struct AuthenticationView: View {
             Button("OK") {
                 hideKeyboard()
                 Task {
-                    
                     await authVM.authorize()
                 }
             }

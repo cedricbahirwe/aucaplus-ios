@@ -27,6 +27,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     @Published var isSavingUserInfo = false
 
+    @Published var alertItem: AlertItem?
     
     @Published var regModel = RegisterModel()
     
@@ -48,10 +49,10 @@ extension AuthenticationViewModel {
     func authorize() async {
         do {
             isSendingOTP = true
-            try await client.auth.signInWithOTP(
-                phone: phone)
+            try await client.auth.signInWithOTP(phone: phone)
             isSendingOTP = false
             goToOTPView = true
+            print("OTP Sent", phone)
         } catch {
             Log.error("Authorizing", error)
             isSendingOTP = false
@@ -69,6 +70,7 @@ extension AuthenticationViewModel {
             await verifyExistingUser()
         } catch {
             isValidatingOTP = false
+            self.alertItem = AlertItem(message: error.localizedDescription)
             Log.error("Verify OTP:", error)
         }
     }
@@ -140,7 +142,7 @@ extension AuthenticationViewModel {
         
         func isValid() -> Bool {
             let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
-            let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count == 10
+            let isPhoneValid = phone.replacingOccurrences(of: " ", with: "").count == 9
             return isCountryValid && isPhoneValid
         }
     }
@@ -193,4 +195,9 @@ extension AuthenticationViewModel {
             return true
         }
     }
+}
+
+struct AlertItem: Identifiable {
+    var id = UUID()
+    var message: String
 }

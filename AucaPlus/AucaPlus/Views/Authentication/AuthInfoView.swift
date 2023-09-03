@@ -18,9 +18,7 @@ struct AuthInfoView: View {
     
     @State private var showingValidationAlert = false
     @FocusState private var focusedField: FocusedField?
-    
-    @State private var alertItem: AlertItem?
-    
+        
     var body: some View {
         ZStack {
             
@@ -117,23 +115,13 @@ struct AuthInfoView: View {
         )
         .alert("Validation Error",
                isPresented: $showingValidationAlert,
-               presenting: alertItem, actions: { item in
+               presenting: authVM.alertItem, actions: { item in
             Button("Got It!") {
                 
             }
         }, message: { item in
             Text(item.message)
         })
-//        .alert("You entered the phone number:",
-//               isPresented: $showingValidationAlert,
-//               actions: {
-//            Button("Cancel", role: .cancel) { }
-//            Button("OK") {
-//
-//            }
-//        }, message: {
-//            Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
-//        })
         .onAppear() {
             DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.authFieldFocusTime) {
                 focusedField = .firstName
@@ -152,15 +140,10 @@ struct AuthInfoView: View {
         do {
             return try authVM.regModel.isValid()
         } catch {
-            self.alertItem = AlertItem(message: error.localizedDescription)
+            self.authVM.alertItem = AlertItem(message: error.localizedDescription)
             self.showingValidationAlert = true
             return false
         }
-    }
-    
-    struct AlertItem: Identifiable {
-        var id = UUID()
-        var message: String
     }
 }
 
