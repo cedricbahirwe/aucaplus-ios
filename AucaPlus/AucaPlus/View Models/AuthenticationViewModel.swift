@@ -140,7 +140,7 @@ extension AuthenticationViewModel {
         
         func isValid() -> Bool {
             let isCountryValid = countryCode.trimmingCharacters(in: .whitespaces).count == 3
-            let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count >= 5
+            let isPhoneValid = phone.trimmingCharacters(in: .whitespaces).count == 10
             return isCountryValid && isPhoneValid
         }
     }
