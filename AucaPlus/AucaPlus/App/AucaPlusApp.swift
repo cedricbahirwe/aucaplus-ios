@@ -13,7 +13,7 @@ struct AucaPlusApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SettingsView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
