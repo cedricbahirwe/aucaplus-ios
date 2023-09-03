@@ -7,7 +7,6 @@
 
 import Foundation
 
-#if DEBUG
 class TemporaryStorage {
     static let shared = TemporaryStorage()
     
@@ -58,4 +57,3 @@ class TemporaryStorage {
         userDefaults.removeObject(forKey: key)
     }
 }
-#endif

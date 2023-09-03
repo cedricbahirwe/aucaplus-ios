@@ -58,22 +58,22 @@ final class FeedStore: ObservableObject {
         }
     }
     
-    func createNews() async {
-        do {
-            let user = try await authClient.auth.session.user
-
-            var newNews: News = items.last! as! News
-            newNews.id = nil
-            newNews.postedDate = .now
-            newNews.updatedDate = .now
-            newNews.userID = user.id
-            newNews.content = News.description2
-            
-            try await newsClient.create(newNews)
-        } catch {
-            Log.error("Creating news", error)
-        }
-    }
+//    func createNews() async {
+//        do {
+//            let user = try await authClient.auth.session.user
+//
+//            var newNews: News = items.last! as! News
+//            newNews.id = nil
+//            newNews.postedDate = .now
+//            newNews.updatedDate = .now
+//            newNews.userID = user.id
+//            newNews.content = News.description2
+//            
+//            try await newsClient.create(newNews)
+//        } catch {
+//            Log.error("Creating news", error)
+//        }
+//    }
     
     func deleteNews() async {
         do {

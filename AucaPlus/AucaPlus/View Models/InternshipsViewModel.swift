@@ -45,22 +45,22 @@ extension InternshipsViewModel {
         }
     }
     
-    func createInternship() async {
-        do {
-            let user = try await authClient.auth.session.user
-            
-            var internship = Internship.example
-            internship.id = nil
-            internship.postedDate = .now
-            internship.updatedDate = .now
-            internship.userID = user.id
-            
-            try await internshipClient.create(internship)
-            await fetchInternships()
-        } catch {
-            Log.error("Creating Internship", error)
-        }
-    }
+//    func createInternship() async {
+//        do {
+//            let user = try await authClient.auth.session.user
+//            
+//            var internship = Internship.example
+//            internship.id = nil
+//            internship.postedDate = .now
+//            internship.updatedDate = .now
+//            internship.userID = user.id
+//            
+//            try await internshipClient.create(internship)
+//            await fetchInternships()
+//        } catch {
+//            Log.error("Creating Internship", error)
+//        }
+//    }
     
     func deleteInternship(withID id: News.ID) async {
         do {
