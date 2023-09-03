@@ -66,50 +66,61 @@ struct AccountSettingsView: View {
                     
                 } header: {
                     SectionHeaderText("Your data")
+                        .inBeta()
+                        .textCase(nil)
                 }
                 
-                Button {
-                    Task {
-                        isSigningOut = true
-                        try await AuthClient.shared.signOut()
-                        isSigningOut = false
-                        StorageKeys.clearAll()
-                        isLoggedIn = false
-                    }
-                } label: {
-                    Text("Sign out")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 48)
-                        .background(.red.opacity(0.15))
-                        .cornerRadius(15)
-                        .foregroundColor(.red)
-                }
-                .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .listRowBackground(Color.clear)
+               
             }
             .safeAreaInset(edge: .bottom) {
                 VStack {
+                    
                     Button {
                         Task {
-    //                        await AuthClient.shared.deleteAccount()
+                            isSigningOut = true
+                            try await AuthClient.shared.signOut()
+                            isSigningOut = false
                             StorageKeys.clearAll()
+                            isLoggedIn = false
                         }
                     } label: {
-                        Text("Delete account")
+                        Text("Sign out")
                             .bold()
                             .frame(maxWidth: .infinity)
                             .frame(height: 48)
+                            .background(.red.opacity(0.15))
+                            .cornerRadius(15)
                             .foregroundColor(.red)
                     }
+//                    .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                    .listRowBackground(Color.clear)
+                    
+                    
+//                    Button {
+//                        Task {
+    //                        await AuthClient.shared.deleteAccount()
+//                            StorageKeys.clearAll()
+//                        }
+//                    } label: {
+//                        Text("Delete account")
+//                            .bold()
+//                            .frame(maxWidth: .infinity)
+//                            .frame(height: 48)
+//                            .background(.white)
+//                            .cornerRadius(15)
+//                            .foregroundColor(.red)
+//                    }
+//                    .disabled(true)
                 }
-                .background(.regularMaterial)
+                .padding()
+                .background(.ultraThinMaterial)
             }
             .toolbar {
                 if settingsStore.shouldUpdate {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Update") {}
                             .bold()
+                            .disabled(true)
                     }
                 }
             }

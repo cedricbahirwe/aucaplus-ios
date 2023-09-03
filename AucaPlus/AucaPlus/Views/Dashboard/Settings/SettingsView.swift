@@ -142,7 +142,6 @@ struct BetaModifier: ViewModifier {
         HStack {
             content
                 .disabled(true)
-            Spacer()
             Text(animate ? "Work In Progess" : "WIP ⚙️")
                 .font(.caption)
                 .foregroundColor(.green)
