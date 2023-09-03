@@ -52,7 +52,7 @@ extension AuthenticationViewModel {
             isSendingOTP = false
             goToOTPView = true
         } catch {
-            print("✅ Sign Up Error: \(error)")
+            Log.error("Authorizing", error)
             isSendingOTP = false
         }
     }
@@ -68,7 +68,7 @@ extension AuthenticationViewModel {
             await verifyExistingUser()
         } catch {
             isValidatingOTP = false
-            print("❌ Sign Up Error: \(error)")
+            Log.error("Verify OTP:", error)
         }
     }
     
@@ -88,7 +88,7 @@ extension AuthenticationViewModel {
         } catch {
             isValidatingOTP = false
             goToUserDetails = true
-            print("❌ Unable to verify existing user: \(error)")
+            Log.error("Unable to verify existing user", error)
         }
     }
     
@@ -112,12 +112,12 @@ extension AuthenticationViewModel {
                         
             let user = try await client.auth.update(user: attributes)
             
-            print("✅ Updated Info: \(user)")
+            Log.debug("✅ Updated Info: \(user)")
             isSavingUserInfo = false
             isLoggedIn = true
         } catch {
             isSavingUserInfo = false
-            print("❌ Sign Up Error: \(error)")
+            Log.error("Sign Up", error)
         }
     }
     

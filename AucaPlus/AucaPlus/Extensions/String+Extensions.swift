@@ -79,7 +79,7 @@ extension String {
 
             return urls
         } catch {
-            print("Error creating NSDataDetector: \(error)")
+            Log.debug("Error creating NSDataDetector: \(error)")
             return []
         }
     }

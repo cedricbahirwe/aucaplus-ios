@@ -49,12 +49,12 @@ extension APIClient {
                 .underlyingResponse.data
             
             if let json = try? JSONSerialization.jsonObject(with: data) {
-                print("Json Found is", json)
+                Log.debug("Json Found is", json)
             } else {
-                print("❌No Json Found")
+                Log.debug("❌No Json Found")
             }
         } catch {
-            print("❌Error found during json printing:", error)
+            Log.debug("❌Error found during json printing:", error)
         }
     }
 }

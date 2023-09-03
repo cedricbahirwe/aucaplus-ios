@@ -28,7 +28,7 @@ final class LinksPreviewModel: ObservableObject {
 
             return createLink(with: metadata, for: url.absoluteString)
         } catch {
-            print("❌Error fetching metadata: \(error.localizedDescription)")
+            Log.error("Fetching Link metadata", error)
             return nil
         }
     }
@@ -48,9 +48,9 @@ final class LinksPreviewModel: ObservableObject {
             let data = try NSKeyedArchiver.archivedData(withRootObject: links, requiringSecureCoding: true)
             guard let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
             try data.write(to: docDirURL.appendingPathComponent(linksPathComponent))
-            print("Saved Links at:", docDirURL.appendingPathComponent(linksPathComponent))
+            Log.debug("Saved Links at:", docDirURL.appendingPathComponent(linksPathComponent))
         } catch {
-            print(error.localizedDescription)
+            Log.error("Saving Links", error)
         }
     }
     
@@ -65,7 +65,7 @@ final class LinksPreviewModel: ObservableObject {
                 guard let unarchived = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [LinkPreview] else { return }
                 links = unarchived
             } catch {
-                print(error.localizedDescription)
+                Log.error("Loading links", error)
             }
         }
     }
@@ -77,12 +77,12 @@ final class LinksPreviewModel: ObservableObject {
             
             if FileManager.default.fileExists(atPath: linksURL.path) {
                 try FileManager.default.removeItem(at: linksURL)
-                print("Removed saved Links at:", linksURL)
+                Log.debug("Removed saved Links at:", linksURL)
             } else {
-                print("No saved Links file found.")
+                Log.debug("No saved Links file found.")
             }
         } catch {
-            print(error.localizedDescription)
+            Log.error("Removing saved links", error)
         }
     }
 }

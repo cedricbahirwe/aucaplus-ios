@@ -111,20 +111,20 @@ extension BookmarkViewModel {
     
     func view<T: Sociable>(_ item: T) async {
         guard let id = item.id else {
-            print("❌Can not update \(item)")
+            Log.debug("Can not update \(item)")
             return
         }
         
         do {
             try await internshipSocial.view(id)
         } catch {
-            print("❌Error: \(error)")
+            Log.error("Viewing Item", error)
         }
     }
     
     func bookmark<T: Sociable>(_ item: T, isBookmarking: Bool) async {
         guard item.id != nil else {
-            print("❌Can not update \(item)")
+            Log.debug("Can not update \(item)")
             return
         }
         
@@ -137,7 +137,7 @@ extension BookmarkViewModel {
                 try await bookmarker.unBookmark(item.id)
             }
         } catch {
-            print("❌Error: \(error.localizedDescription)")
+            Log.error("Bookmarking Item", error)
         }
     }
 }

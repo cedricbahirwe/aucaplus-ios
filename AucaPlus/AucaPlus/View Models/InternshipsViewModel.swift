@@ -40,7 +40,7 @@ extension InternshipsViewModel {
             self.internships = internships
             
         } catch {
-            print("❌\(error.localizedDescription)")
+            Log.error("Fetching internships", error)
             isFetchingInternships = false
         }
     }
@@ -57,9 +57,8 @@ extension InternshipsViewModel {
             
             try await internshipClient.create(internship)
             await fetchInternships()
-            print("✅Created successfully")
         } catch {
-            print("❌Error creating: \(error.localizedDescription)")
+            Log.error("Creating Internship", error)
         }
     }
     
@@ -67,7 +66,7 @@ extension InternshipsViewModel {
         do {
             try await internshipClient.delete(with: id)
         } catch {
-            print("❌Error: \(error)")
+            Log.error("Deleting internship", error)
         }
     }
 }
