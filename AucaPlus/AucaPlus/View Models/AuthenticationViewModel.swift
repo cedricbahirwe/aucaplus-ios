@@ -41,6 +41,7 @@ final class AuthenticationViewModel: ObservableObject {
 extension AuthenticationViewModel {
     var phone: String {
         //250725317954
+        //250789658198
         authModel.formattedPhone().replacingOccurrences(of: " ", with: "")
     }
     
