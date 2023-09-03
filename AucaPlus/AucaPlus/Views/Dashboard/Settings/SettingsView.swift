@@ -12,6 +12,11 @@ struct SettingsView: View {
     private var isLoggedIn: Bool = false
     @StateObject private var settingsStore = SettingsStore()
     
+    private let appIcons: [AppIcon] = AppIcon.all
+    
+    @AppStorage(StorageKeys.selectedAppIcon)
+    private var selectedAppIcon = "AppIcon 1"
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -92,20 +97,40 @@ struct SettingsView: View {
                     }
                     .inBeta()
                     
+                    
+                    NavigationLink {
+                        AppIconChangerView(defaultIcon: "AppIcon",
+                                           appIcons: appIcons,
+                                           selection: $selectedAppIcon)
+                    } label: {
+                        HStack {
+                            if let icon = AppIcon.getAssetFor(selectedAppIcon) {
+                                Image(icon)
+                                    .resizable()
+                                    .frame(width: 28, height: 28)
+                                    .cornerRadius(8)
+                                    .shadow(radius: 0.3)
+                            }
+                            
+                            Text("App Icon")
+                        }
+                    }
+                    
                 } header: {
                     SectionHeaderText("Application")
                 }
                 
                 VersionLabel()
-    
             }
             .task {
                 await settingsStore.getUser()
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+           
         }
     }
+    
 }
 
 extension SettingsView {
@@ -159,5 +184,77 @@ struct BetaModifier: ViewModifier {
                     }
                 }
         }
+    }
+}
+
+fileprivate extension SettingsView {
+    struct AppIconChangerView: View {
+        let defaultIcon: String
+        
+        let appIcons: [AppIcon]
+        @Binding var selection: String
+        
+        @Environment(\.dismiss)
+        private var dismiss
+        
+        var body: some View {
+            NavigationStack {
+                List {
+                    ForEach(appIcons, id: \.asset) { icon in
+                        HStack {
+                            Image(icon.asset)
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .cornerRadius(10)
+                                .shadow(radius: 0.3)
+                            
+                            
+                            Text(icon.displayName)
+                                .bold()
+                            
+                            Spacer()
+                            
+                            
+                            if icon.name == selection || (icon.name == defaultIcon && selection.isEmpty) {
+                                Image(systemName: "checkmark.seal.fill")
+                                    .resizable()
+                                    .frame(width: 28, height: 28)
+                                    .foregroundColor(Color.accentColor)
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            guard icon.name != selection else { return }
+                            handleAppIconChange(icon)
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        private func handleAppIconChange(_ newValue: AppIcon) {
+            selection = newValue.name
+            UIApplication.shared.setAlternateIconName(newValue.name) {
+                if $0 == nil {
+                    dismiss()
+                }
+            }
+        }
+    }
+    
+    struct AppIcon {
+        let name: String
+        let displayName: String
+        let asset: String
+        
+        static func getAssetFor(_ iconName: String) -> String? {
+            all.first { $0.name == iconName }?.asset
+        }
+        
+        static let all = [
+            AppIcon(name: "AppIcon 1", displayName: "Auca Plus Light", asset: "aucaplus-light"),
+            AppIcon(name: "AppIcon 2", displayName: "Auca Plus Dark", asset: "aucaplus-dark")
+        ]
     }
 }
