@@ -35,6 +35,8 @@ final class AuthenticationViewModel: ObservableObject {
     private let client = SupabaseClient(supabaseURL: AppSecrets.projectURL,
                                 supabaseKey: AppSecrets.apiKey)
     
+    // MARK: - Used by Apple Review Team
+    private let whitelistedPhone = "+250782628511"
 }
 
 
@@ -49,9 +51,15 @@ extension AuthenticationViewModel {
     func authorize() async {
         do {
             isSendingOTP = true
-            try await client.auth.signInWithOTP(phone: phone)
+            if phone == whitelistedPhone {
+                // Simulate 2 seconds of network request
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+            } else {
+                try await client.auth.signInWithOTP(phone: phone)
+            }
             isSendingOTP = false
             goToOTPView = true
+           
         } catch {
             Log.error("Authorizing", error)
             isSendingOTP = false
