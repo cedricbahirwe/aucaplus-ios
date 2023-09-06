@@ -13,10 +13,12 @@ struct ContentView: View {
     
     @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
-        
+    
+    
     var body: some View {
-        if isLoggedIn {
+        if  isLoggedIn || AuthClient.shared.isAuthenticated  {
             AppTabView()
+            
         } else {
             NavigationStack {
                 ZStack {
@@ -27,10 +29,10 @@ struct ContentView: View {
                             .opacity(animatingOnBoarding ? 1 : 0)
                             .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
                             .onAppear() {
-                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingAnimateDelay) {
+                                DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.onboardingAnimateDelay) {
                                     animatingOnBoarding = false
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: Delays.onboardingDisplayDelay) {
+                                DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.onboardingDisplayDelay) {
                                     showingOnBoarding = false
                                 }
                             }

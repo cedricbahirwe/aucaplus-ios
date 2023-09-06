@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol AucaUser: Identifiable, Codable {
-    var id: Int { get set }
+protocol AucaUser: Identifiable, Codable, Equatable {
+    var id: UUID? { get set }
     
     var firstName: String { get set }
     
@@ -16,12 +16,24 @@ protocol AucaUser: Identifiable, Codable {
     
     var phoneNumber: String { get set }
     
+    var email: String { get set }
+    
     var type: AucaUserType { get set }
     
     var about: String? { get set }
     
     var picture: URL? { get set }
     
+    var createdAt: Date { get set }
+    
+    var updatedAt: Date { get set }
+    
+}
+
+extension AucaUser {
+    var createdAt: Date { .now }
+    
+    var updatedAt: Date { .now }
 }
 
 extension AucaUser {

@@ -12,31 +12,36 @@ struct FeedView: View {
     
     @State private var overlay = OverlayModel<Announcement>()
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
-
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ScrollViewReader { proxy in
                     VStack(spacing: 0) {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
                                 if let announcement = item as? Announcement {
-                                    AnnouncementRowView(announcement: announcement)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                overlay.present(announcement)
-                                            }
-                                        }
-                                } else if let resource = item as? RemoteResource {
-                                    ResourceRowView(resource: resource)
+                                    //                                    AnnouncementRowView(announcement: announcement)
+                                    //                                        .onTapGesture {
+                                    //                                            withAnimation {
+                                    //                                                overlay.present(announcement)
+                                    //                                            }
+                                    //                                        }
+                                    //                                } else if let resource = item as? RemoteResource {
+                                    //                                    ResourceRowView(resource: resource)
                                 } else if let news = item as? News {
                                     NewsRowView(
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
                                         onBookmarked: {
-                                            bookmarksVM.toggleBookmarking(.init(type: .news($0)))
-                                        }
-                                    )
+                                            if bookmarksVM.isBookmarked(news) {
+                                                bookmarksVM.removeFromBookmarks($0)
+                                            } else {
+                                                bookmarksVM.addToBookmarks($0)
+                                            }
+                                        },
+                                        onViewed: bookmarksVM.view)
+                                    
                                 }
                                 
                                 Divider()
@@ -46,20 +51,34 @@ struct FeedView: View {
                     }
                 }
             }
+            .refreshable {
+                
+            }
+            .task {
+                await feedStore.fetchNews()
+            }
             .overlayListener(of: $overlay) { announcement in
-               AnnouncementRowView(announcement: announcement, isExpanded: true)
+                AnnouncementRowView(announcement: announcement, isExpanded: true)
                     .padding()
             }
             .navigationBarTitle("Feed")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    filterMenu                    
+                    filterButton
+                    //                    notificationButton
+                    //                        .hidden()
                 }
+            }
+        }
+        .overlay {
+            if feedStore.isFetchingNews {
+                SpinnerView()
             }
         }
     }
     
-    private var filterMenu: some View {
+    @ViewBuilder
+    private var filterButton: some View {
         Menu {
             ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
                 Button {
@@ -75,7 +94,14 @@ struct FeedView: View {
                 }
             }
         } label: {
-            Image(systemName: "line.3.horizontal.decrease.circle")
+            Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+        }
+    }
+    
+    private var notificationButton: some View {
+        Button {
+        } label: {
+            Label("Notifications", systemImage: "bell.badge")
         }
     }
 }
@@ -84,7 +110,7 @@ struct FeedView: View {
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
-            .previewLayout(SwiftUI.PreviewLayout.fixed(width: 416, height: 1000))
+            .environmentObject(BookmarkViewModel())
     }
 }
 #endif

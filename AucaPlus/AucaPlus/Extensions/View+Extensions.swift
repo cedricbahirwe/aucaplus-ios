@@ -35,3 +35,22 @@ extension View {
             }
     }
 }
+
+
+#if DEBUG
+extension View {
+    func displayViewSize() -> some View {
+        overlay {
+            GeometryReader { geo in
+                ZStack {
+                    Color.black.opacity(0.9)
+                    Text("Size: \(geo.size.debugDescription)")
+                        .bold()
+                        .foregroundColor(.white)
+                }
+                .frame(minWidth: 150, minHeight: 40)
+            }
+        }
+    }
+}
+#endif

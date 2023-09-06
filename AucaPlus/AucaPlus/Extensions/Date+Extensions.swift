@@ -10,9 +10,10 @@ import Foundation
 
 extension Date {
     var timeAgo: String {
+        guard self <= .now else { return formatted() }
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
         
-        return formatter.localizedString(for: self, relativeTo: Date.now)        
+        return formatter.localizedString(for: self, relativeTo: .now)
     }
 }

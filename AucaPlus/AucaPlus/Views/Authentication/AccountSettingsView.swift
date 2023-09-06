@@ -8,77 +8,129 @@
 import SwiftUI
 
 struct AccountSettingsView: View {
-    @State private var email = "qj897jjr5c@privaterelay.appleid.com"
     
     @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
-    @StateObject private var settingsStore = SettingsStore()
+    
+    @State private var isSigningOut: Bool = false
+    
+    @ObservedObject var settingsStore: SettingsStore
     
     var body: some View {
-        
-        Form {
-            Section {
-                
-                Group {
-                    HStack {
-                        TextField("Enter your email", text: $email)
-                            .textContentType(.emailAddress)
-                            .textInputAutocapitalization(.none)
+        ZStack {
+            Form {
+                Section {
+                    
+                    Group {
+                        HStack {
+                            TextField("Enter your phone", text: $settingsStore.currentUser.phoneNumber)
+                                .textContentType(.telephoneNumber)
+                                .textInputAutocapitalization(.none)
+                            
+                            
+                            if !settingsStore.currentUser.phoneNumber.isEmpty {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(Color(.white), .gray)
+                                    .onTapGesture {
+                                        settingsStore.currentUser.phoneNumber = ""
+                                    }
+                            }
+                        }
                         
-                        if !email.isEmpty {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(Color(.white), .gray)
-                                .onTapGesture {
-                                    email = ""
-                                }
+                        HStack {
+                            TextField("Enter your email", text: $settingsStore.currentUser.email)
+                                .textContentType(.emailAddress)
+                                .textInputAutocapitalization(.none)
+                            
+                          
+                            
+                            if !settingsStore.currentUser.email.isEmpty {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(Color(.white), .gray)
+                                    .onTapGesture {
+                                        settingsStore.currentUser.email = ""
+                                    }
+                            }
                         }
                     }
                     .padding(10)
                     .background(.thickMaterial)
                     .cornerRadius(12)
-                   
+                    
+                    HStack {
+                        Text("Auca Plus ID")
+                        Spacer()
+                        Text("#AC1200")
+                            .opacity(0.8)
+                    }
+                    
+                } header: {
+                    SectionHeaderText("Your data")
+                        .inBeta()
+                        .textCase(nil)
                 }
                 
-                HStack {
-                    Text("Auca Plus ID")
-                    Spacer()
-                    Text("#AC1200")
-                        .opacity(0.8)
+               
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack {
+                    
+                    Button {
+                        Task {
+                            isSigningOut = true
+                            try await AuthClient.shared.signOut()
+                            isSigningOut = false
+                            StorageKeys.clearAll()
+                            isLoggedIn = false
+                        }
+                    } label: {
+                        Text("Sign out")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(.red.opacity(0.15))
+                            .cornerRadius(15)
+                            .foregroundColor(.red)
+                    }
+//                    .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                    .listRowBackground(Color.clear)
+                    
+                    
+//                    Button {
+//                        Task {
+    //                        await AuthClient.shared.deleteAccount()
+//                            StorageKeys.clearAll()
+//                        }
+//                    } label: {
+//                        Text("Delete account")
+//                            .bold()
+//                            .frame(maxWidth: .infinity)
+//                            .frame(height: 48)
+//                            .background(.white)
+//                            .cornerRadius(15)
+//                            .foregroundColor(.red)
+//                    }
+//                    .disabled(true)
                 }
-             
-            } header: {
-                SectionHeaderText("Your data")
+                .padding()
+                .background(.ultraThinMaterial)
             }
-          
-            Button {
-                StorageKeys.clearAll()
-                isLoggedIn = false
-            } label: {
-                Text("Log out")
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(.red.opacity(0.15))
-                    .cornerRadius(15)
-                    .foregroundColor(.red)
+            .toolbar {
+                if settingsStore.shouldUpdate {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Update") {}
+                            .bold()
+                            .disabled(true)
+                    }
+                }
             }
-            .listRowInsets(EdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .listRowBackground(Color.clear)
+            
+            if isSigningOut {
+                SpinnerView()
+            }
         }
         .navigationTitle("Account settings")
         .navigationBarTitleDisplayMode(.inline)
-        .safeAreaInset(edge: .bottom) {
-            Button {
-                StorageKeys.clearAll()
-                isLoggedIn = false
-            } label: {
-                Text("Delete account")
-                    .bold()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .foregroundColor(.red)
-            }
-        }
     }
     
 }
@@ -86,6 +138,8 @@ struct AccountSettingsView: View {
 
 struct AccountSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountSettingsView()
+        NavigationStack {
+            AccountSettingsView(settingsStore: SettingsStore())
+        }
     }
 }

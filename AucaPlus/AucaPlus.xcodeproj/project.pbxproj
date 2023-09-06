@@ -36,21 +36,44 @@
 		CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */; };
 		CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19141329D78BD4007BC45C /* OTPVerificationView.swift */; };
 		CB1923D929FEEE9A008873F8 /* AuthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */; };
-		CB1923DE29FF04C3008873F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923DD29FF04C3008873F8 /* Constants.swift */; };
 		CB1923E129FF06D6008873F8 /* AppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1923E029FF06D6008873F8 /* AppKeys.swift */; };
+		CB1A2ED82AA4D125001C63A6 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A2ED72AA4D125001C63A6 /* AppLogger.swift */; };
+		CB27603D2AA4C8D900399082 /* APDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27603C2AA4C8D900399082 /* APDialogView.swift */; };
+		CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB420F812A9A013400994599 /* ShareLinkView.swift */; };
 		CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */; };
 		CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827629F9938500F436C3 /* NewsItemViewModel.swift */; };
 		CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827829F99B4C00F436C3 /* NewsRowView.swift */; };
 		CB42827B29F99B8600F436C3 /* ResourceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827A29F99B8600F436C3 /* ResourceRowView.swift */; };
 		CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB42827C29F99B9100F436C3 /* AnnouncementRowView.swift */; };
+		CB436CD72A9761F9000EE8C3 /* InternshipRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */; };
 		CB43EF9A29F70A52000EE752 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */; };
 		CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9B29F71287000EE752 /* View+Extensions.swift */; };
-		CB43EFA029F718BB000EE752 /* PostCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */; };
 		CB43EFA629F7199B000EE752 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA529F7199B000EE752 /* News.swift */; };
 		CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */; };
 		CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43EFA929F71CF2000EE752 /* BookmarksView.swift */; };
+		CB6DF69F2A9EAD480016E683 /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF69E2A9EAD480016E683 /* AuthClient.swift */; };
+		CB6DF6A12A9EAE320016E683 /* SocialFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */; };
+		CB6DF6A32A9EAE560016E683 /* FeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6DF6A22A9EAE560016E683 /* FeedClient.swift */; };
+		CB7363172A9C8B3E00A64E54 /* TemporaryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */; };
+		CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7363182A9CB6A700A64E54 /* RemoteResource.swift */; };
+		CB73631D2A9CB6D000A64E54 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73631C2A9CB6D000A64E54 /* FeedItem.swift */; };
+		CB8592DA2A93B9B2004D2B95 /* OnboardingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */; };
+		CB8592DD2A93BE45004D2B95 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = CB8592DC2A93BE45004D2B95 /* Supabase */; };
+		CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E02A93E15E004D2B95 /* AppSecrets.swift */; };
+		CB8592E52A93E733004D2B95 /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = CB8592E42A93E733004D2B95 /* csvjson.json */; };
+		CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E72A93FB57004D2B95 /* Internship.swift */; };
+		CB8592EA2A93FB7C004D2B95 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E92A93FB7C004D2B95 /* Opportunity.swift */; };
+		CB891CFF2A9F253400578C00 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB891CFE2A9F253400578C00 /* Announcement.swift */; };
+		CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */; };
+		CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */; };
+		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
+		CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */; };
+		CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED402A94BC6A00C69441 /* SpinnerView.swift */; };
+		CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */; };
+		CBCC0C3C2A961F8100B9A34E /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3B2A961F8100B9A34E /* TestingView.swift */; };
+		CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */; };
+		CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */; };
 		CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */; };
-		CBDC65CF2A92A5CA006074B3 /* UserDefaultsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */; };
 		CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */; };
 		CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */; };
 		CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDC65D82A92B1A6006074B3 /* AccountSettingsView.swift */; };
@@ -62,6 +85,10 @@
 		CBE0D14429DA0CA700AD2C58 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14329DA0CA700AD2C58 /* FeedView.swift */; };
 		CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14729DA0CC100AD2C58 /* JobsView.swift */; };
 		CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */; };
+		CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */; };
+		CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */; };
+		CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */; };
+		CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,21 +142,43 @@
 		CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		CB19141329D78BD4007BC45C /* OTPVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationView.swift; sourceTree = "<group>"; };
 		CB1923D829FEEE9A008873F8 /* AuthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfoView.swift; sourceTree = "<group>"; };
-		CB1923DD29FF04C3008873F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB1923E029FF06D6008873F8 /* AppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeys.swift; sourceTree = "<group>"; };
+		CB1A2ED72AA4D125001C63A6 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		CB27603C2AA4C8D900399082 /* APDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDialogView.swift; sourceTree = "<group>"; };
+		CB420F812A9A013400994599 /* ShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkView.swift; sourceTree = "<group>"; };
 		CB42827429F98BAA00F436C3 /* PostCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreationViewModel.swift; sourceTree = "<group>"; };
 		CB42827629F9938500F436C3 /* NewsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewModel.swift; sourceTree = "<group>"; };
 		CB42827829F99B4C00F436C3 /* NewsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRowView.swift; sourceTree = "<group>"; };
 		CB42827A29F99B8600F436C3 /* ResourceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRowView.swift; sourceTree = "<group>"; };
 		CB42827C29F99B9100F436C3 /* AnnouncementRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementRowView.swift; sourceTree = "<group>"; };
+		CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipRowView.swift; sourceTree = "<group>"; };
 		CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		CB43EF9B29F71287000EE752 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
-		CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreatorView.swift; sourceTree = "<group>"; };
 		CB43EFA529F7199B000EE752 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		CB43EFA729F719C1000EE752 /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
 		CB43EFA929F71CF2000EE752 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		CB6DF69E2A9EAD480016E683 /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
+		CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeed.swift; sourceTree = "<group>"; };
+		CB6DF6A22A9EAE560016E683 /* FeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClient.swift; sourceTree = "<group>"; };
+		CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryStorage.swift; sourceTree = "<group>"; };
+		CB7363182A9CB6A700A64E54 /* RemoteResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResource.swift; sourceTree = "<group>"; };
+		CB73631C2A9CB6D000A64E54 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConstants.swift; sourceTree = "<group>"; };
+		CB8592E02A93E15E004D2B95 /* AppSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecrets.swift; sourceTree = "<group>"; };
+		CB8592E42A93E733004D2B95 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
+		CB8592E72A93FB57004D2B95 /* Internship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internship.swift; sourceTree = "<group>"; };
+		CB8592E92A93FB7C004D2B95 /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
+		CB891CFE2A9F253400578C00 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipDetailView.swift; sourceTree = "<group>"; };
+		CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
+		CB8DED402A94BC6A00C69441 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		CBCC0C3B2A961F8100B9A34E /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
+		CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksPreviewModel.swift; sourceTree = "<group>"; };
+		CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewer.swift; sourceTree = "<group>"; };
 		CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreReview.swift; sourceTree = "<group>"; };
-		CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
 		CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinks.swift; sourceTree = "<group>"; };
 		CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
 		CBDC65D82A92B1A6006074B3 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
@@ -141,6 +190,10 @@
 		CBE0D14329DA0CA700AD2C58 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		CBE0D14729DA0CC100AD2C58 /* JobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsView.swift; sourceTree = "<group>"; };
 		CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFieldStack.swift; sourceTree = "<group>"; };
+		CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusImageView.swift; sourceTree = "<group>"; };
+		CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedItem+Preview.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8592DD2A93BE45004D2B95 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +231,8 @@
 				CB079D692A8E1782005C9654 /* InternshipsViewModel.swift */,
 				CB03EF5129EB3D72006EC539 /* SettingsViewModel.swift */,
 				CB43EF9929F70A52000EE752 /* AuthenticationViewModel.swift */,
+				CB8DED422A94C04E00C69441 /* BookmarkViewModel.swift */,
+				CBCC0C3D2A96376000B9A34E /* LinksPreviewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -184,7 +240,8 @@
 		CB03EF5529EB4073006EC539 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CB43EFA429F71994000EE752 /* Post */,
+				CB8592E62A93FB50004D2B95 /* Opportunity */,
+				CB43EFA429F71994000EE752 /* Feed */,
 				CB03EF5829EB41D9006EC539 /* AucaUser */,
 				CB079D752A8EB7D5005C9654 /* OverlayModel.swift */,
 				CBDC65D62A92B0D3006074B3 /* AppMetaData.swift */,
@@ -209,6 +266,8 @@
 			children = (
 				CBE0D14729DA0CC100AD2C58 /* JobsView.swift */,
 				CB079D6B2A8E1AA1005C9654 /* InternshipsView.swift */,
+				CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */,
+				CB436CD62A9761F9000EE8C3 /* InternshipRowView.swift */,
 			);
 			path = Internships;
 			sourceTree = "<group>";
@@ -216,6 +275,7 @@
 		CB079D682A8E16D7005C9654 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -263,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				CB1913E129D77CB7007BC45C /* Preview Assets.xcassets */,
+				CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -288,7 +349,14 @@
 			isa = PBXGroup;
 			children = (
 				CB079D6D2A8E3299005C9654 /* WebView.swift */,
+				CBCC0C3F2A963C9100B9A34E /* LinkPreviewer.swift */,
+				CB420F812A9A013400994599 /* ShareLinkView.swift */,
 				CB079D712A8EB702005C9654 /* DotView.swift */,
+				CBEA5BD82A9A08B9003B96BC /* VerifyView.swift */,
+				CB8DED402A94BC6A00C69441 /* SpinnerView.swift */,
+				CBEA5BDA2A9A71FA003B96BC /* ZFieldStack.swift */,
+				CBEA5BDC2A9A80FA003B96BC /* AucaPlusImageView.swift */,
+				CB27603C2AA4C8D900399082 /* APDialogView.swift */,
 			);
 			path = "Helper Views";
 			sourceTree = "<group>";
@@ -300,9 +368,9 @@
 				CB19140A29D77D6C007BC45C /* OnboardingView.swift */,
 				CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */,
 				CBDC65DA2A92B574006074B3 /* AboutView.swift */,
+				CB079D6F2A8EB6D1005C9654 /* CaughtUpView.swift */,
 				CBE0D13E29DA0C8800AD2C58 /* Dashboard */,
 				CB19141629D78BDD007BC45C /* Authentication */,
-				CB43EF9F29F718BB000EE752 /* PostCreatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,10 +389,10 @@
 		CB1923DA29FF04AE008873F8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				CB1923DD29FF04C3008873F8 /* Constants.swift */,
+				CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */,
 				CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */,
-				CBDC65CE2A92A5CA006074B3 /* UserDefaultsHandler.swift */,
 				CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */,
+				CB1A2ED72AA4D125001C63A6 /* AppLogger.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -332,8 +400,10 @@
 		CB1923DF29FF06C2008873F8 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				CB8592E42A93E733004D2B95 /* csvjson.json */,
 				CB1913E329D77CB7007BC45C /* Persistence.swift */,
 				CB1923E029FF06D6008873F8 /* AppKeys.swift */,
+				CB7363162A9C8B3E00A64E54 /* TemporaryStorage.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -352,12 +422,36 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		CB43EFA429F71994000EE752 /* Post */ = {
+		CB43EFA429F71994000EE752 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				CB73631C2A9CB6D000A64E54 /* FeedItem.swift */,
 				CB43EFA529F7199B000EE752 /* News.swift */,
+				CB7363182A9CB6A700A64E54 /* RemoteResource.swift */,
+				CB891CFE2A9F253400578C00 /* Announcement.swift */,
 			);
-			path = Post;
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CB8592E62A93FB50004D2B95 /* Opportunity */ = {
+			isa = PBXGroup;
+			children = (
+				CB8592E92A93FB7C004D2B95 /* Opportunity.swift */,
+				CB8592E72A93FB57004D2B95 /* Internship.swift */,
+				CB8DED392A94B24B00C69441 /* Job.swift */,
+			);
+			path = Opportunity;
+			sourceTree = "<group>";
+		};
+		CB8DED3B2A94B29B00C69441 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CB8DED3E2A94B2E400C69441 /* SupabaseManager.swift */,
+				CB6DF69E2A9EAD480016E683 /* AuthClient.swift */,
+				CB6DF6A02A9EAE310016E683 /* SocialFeed.swift */,
+				CB6DF6A22A9EAE560016E683 /* FeedClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		CBDC65DC2A92B759006074B3 /* Form views */ = {
@@ -375,6 +469,7 @@
 				CBE0D13C29DA09A800AD2C58 /* String+Extensions.swift */,
 				CB43EF9B29F71287000EE752 /* View+Extensions.swift */,
 				CB079D732A8EB718005C9654 /* Date+Extensions.swift */,
+				CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,11 +478,9 @@
 			isa = PBXGroup;
 			children = (
 				CBE0D13F29DA0C9D00AD2C58 /* AppTabView.swift */,
-				CB079D6F2A8EB6D1005C9654 /* CaughtUpView.swift */,
 				CB43EFA129F71960000EE752 /* Feed */,
 				CB079D672A8E16CF005C9654 /* Internships */,
 				CB079D682A8E16D7005C9654 /* Settings */,
-				CBE0D14B29DA26E100AD2C58 /* SettingsView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -397,6 +490,9 @@
 			children = (
 				CB1913DA29D77CB6007BC45C /* AucaPlusApp.swift */,
 				CB1913DC29D77CB6007BC45C /* ContentView.swift */,
+				CBCC0C3B2A961F8100B9A34E /* TestingView.swift */,
+				CB8592E02A93E15E004D2B95 /* AppSecrets.swift */,
+				CB8DED3B2A94B29B00C69441 /* Networking */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -417,6 +513,9 @@
 			dependencies = (
 			);
 			name = AucaPlus;
+			packageProductDependencies = (
+				CB8592DC2A93BE45004D2B95 /* Supabase */,
+			);
 			productName = AucaPlus;
 			productReference = CB1913D729D77CB6007BC45C /* AucaPlus.app */;
 			productType = "com.apple.product-type.application";
@@ -489,6 +588,9 @@
 				Base,
 			);
 			mainGroup = CB1913CE29D77CB6007BC45C;
+			packageReferences = (
+				CB8592DB2A93BE45004D2B95 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = CB1913D829D77CB6007BC45C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -507,6 +609,7 @@
 			files = (
 				CB1913E229D77CB7007BC45C /* Preview Assets.xcassets in Resources */,
 				CB1913DF29D77CB7007BC45C /* Assets.xcassets in Resources */,
+				CB8592E52A93E733004D2B95 /* csvjson.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,32 +635,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB03EF6229EB4209006EC539 /* AucaStaff.swift in Sources */,
+				CB6DF6A32A9EAE560016E683 /* FeedClient.swift in Sources */,
 				CB079D702A8EB6D1005C9654 /* CaughtUpView.swift in Sources */,
 				CB1923E129FF06D6008873F8 /* AppKeys.swift in Sources */,
 				CBE0D14C29DA26E100AD2C58 /* SettingsView.swift in Sources */,
+				CB8592DA2A93B9B2004D2B95 /* OnboardingConstants.swift in Sources */,
 				CB1913E429D77CB7007BC45C /* Persistence.swift in Sources */,
-				CB43EFA029F718BB000EE752 /* PostCreatorView.swift in Sources */,
+				CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */,
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
+				CB436CD72A9761F9000EE8C3 /* InternshipRowView.swift in Sources */,
 				CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */,
 				CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */,
 				CB03EF5C29EB41E8006EC539 /* AucaUserType.swift in Sources */,
 				CBDC65DE2A92B764006074B3 /* SectionHeaderText.swift in Sources */,
 				CBDC65E02A92B773006074B3 /* FormLabel.swift in Sources */,
+				CBEA5BDD2A9A80FA003B96BC /* AucaPlusImageView.swift in Sources */,
+				CBCC0C402A963C9100B9A34E /* LinkPreviewer.swift in Sources */,
 				CB03EF5A29EB41E1006EC539 /* AucaUser.swift in Sources */,
+				CB6DF6A12A9EAE320016E683 /* SocialFeed.swift in Sources */,
 				CBDC65D72A92B0D4006074B3 /* AppMetaData.swift in Sources */,
 				CB42827729F9938500F436C3 /* NewsItemViewModel.swift in Sources */,
 				CB42827529F98BAA00F436C3 /* PostCreationViewModel.swift in Sources */,
 				CB079D6E2A8E3299005C9654 /* WebView.swift in Sources */,
+				CB7363172A9C8B3E00A64E54 /* TemporaryStorage.swift in Sources */,
+				CBEA5BD92A9A08B9003B96BC /* VerifyView.swift in Sources */,
+				CB8592E12A93E15E004D2B95 /* AppSecrets.swift in Sources */,
 				CBDC65DB2A92B574006074B3 /* AboutView.swift in Sources */,
 				CBDC65D12A92A5E7006074B3 /* ExternalLinks.swift in Sources */,
+				CB8592EA2A93FB7C004D2B95 /* Opportunity.swift in Sources */,
 				CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */,
 				CB1913DB29D77CB6007BC45C /* AucaPlusApp.swift in Sources */,
 				CB43EF9A29F70A52000EE752 /* AuthenticationViewModel.swift in Sources */,
 				CB079D6A2A8E1782005C9654 /* InternshipsViewModel.swift in Sources */,
+				CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */,
 				CB43EF9C29F71287000EE752 /* View+Extensions.swift in Sources */,
+				CBEA5BDB2A9A71FA003B96BC /* ZFieldStack.swift in Sources */,
 				CB03EF5229EB3D72006EC539 /* SettingsViewModel.swift in Sources */,
+				CB8DED3F2A94B2E400C69441 /* SupabaseManager.swift in Sources */,
+				CB8DED412A94BC6A00C69441 /* SpinnerView.swift in Sources */,
+				CBCC0C3E2A96376000B9A34E /* LinksPreviewModel.swift in Sources */,
 				CB43EFAA29F71CF2000EE752 /* BookmarksView.swift in Sources */,
+				CBEA5BDF2A9A9B55003B96BC /* FeedItem+Preview.swift in Sources */,
 				CBDC65D92A92B1A6006074B3 /* AccountSettingsView.swift in Sources */,
 				CB079D6C2A8E1AA1005C9654 /* InternshipsView.swift in Sources */,
 				CB03EF5E29EB41F5006EC539 /* AucaStudent.swift in Sources */,
@@ -566,6 +685,8 @@
 				CB42827B29F99B8600F436C3 /* ResourceRowView.swift in Sources */,
 				CB079D742A8EB718005C9654 /* Date+Extensions.swift in Sources */,
 				CBDC65CD2A92A5B5006074B3 /* AppstoreReview.swift in Sources */,
+				CB27603D2AA4C8D900399082 /* APDialogView.swift in Sources */,
+				CBCC0C3C2A961F8100B9A34E /* TestingView.swift in Sources */,
 				CB43EFA829F719C1000EE752 /* FeedItemViewModel.swift in Sources */,
 				CB43EFA629F7199B000EE752 /* News.swift in Sources */,
 				CB42827929F99B4C00F436C3 /* NewsRowView.swift in Sources */,
@@ -573,14 +694,21 @@
 				CBE0D14029DA0C9D00AD2C58 /* AppTabView.swift in Sources */,
 				CB03EF6029EB41FC006EC539 /* AucaLecturer.swift in Sources */,
 				CBE0D13D29DA09A800AD2C58 /* String+Extensions.swift in Sources */,
+				CB891CFF2A9F253400578C00 /* Announcement.swift in Sources */,
 				CB079D722A8EB702005C9654 /* DotView.swift in Sources */,
+				CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */,
+				CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
+				CB6DF69F2A9EAD480016E683 /* AuthClient.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
+				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
+				CB7363192A9CB6A700A64E54 /* RemoteResource.swift in Sources */,
 				CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */,
-				CB1923DE29FF04C3008873F8 /* Constants.swift in Sources */,
-				CBDC65CF2A92A5CA006074B3 /* UserDefaultsHandler.swift in Sources */,
 				CB079D762A8EB7D5005C9654 /* OverlayModel.swift in Sources */,
+				CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */,
+				CB73631D2A9CB6D000A64E54 /* FeedItem.swift in Sources */,
 				CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */,
+				CB1A2ED82AA4D125001C63A6 /* AppLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,19 +862,24 @@
 		CB19140229D77CB7007BC45C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon 1 AppIcon 2";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AucaPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V9B6LUW22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AucaPlus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Auca Plus";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,28 +887,36 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abc.incs.cedricbahirwe.AucaPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		CB19140329D77CB7007BC45C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon 1 AppIcon 2";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AucaPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = 6V9B6LUW22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AucaPlus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Auca Plus";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -783,9 +924,12 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abc.incs.cedricbahirwe.AucaPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -905,6 +1049,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB8592DB2A93BE45004D2B95 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB8592DC2A93BE45004D2B95 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB8592DB2A93BE45004D2B95 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CB1913E529D77CB7007BC45C /* AucaPlus.xcdatamodeld */ = {

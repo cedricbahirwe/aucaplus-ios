@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OTPVerificationView: View {
     @ObservedObject var authVM: AuthenticationViewModel
-    @State private var isLoggingIn = false
     @State private var goToUserInfo = false
     
     @State private var otp = ""
@@ -17,7 +16,7 @@ struct OTPVerificationView: View {
     @State private var elapsedTime: Int = 0
     
     private let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    private let otpResendTime = 180 // seconds
+    private let otpResendTime = 180
     
     @FocusState private var focusedField: Bool
     
@@ -47,8 +46,6 @@ struct OTPVerificationView: View {
                 Text("Enter 6-digit code")
                     .foregroundColor(.secondary)
                 
-                
-                
                 Button("Did not receive code?") {
                     
                 }
@@ -59,21 +56,26 @@ struct OTPVerificationView: View {
                 
             }
             
-            if isLoggingIn {
+            if authVM.isValidatingOTP {
                 ProgressView()
                     .tint(.accentColor)
             }
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
+        .alert(item: $authVM.alertItem) { item in
+            Alert(title: Text("OTP Error"),
+                  message: Text(item.message),
+                  dismissButton: .default(Text("Got It!")))
+        }
         .padding()
-        .disabled(isLoggingIn)
+        .disabled(authVM.isValidatingOTP)
         .onAppear() {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.05) {
                 focusedField = true
             }
         }
-        .navigationDestination(isPresented: $goToUserInfo) {
+        .navigationDestination(isPresented: $authVM.goToUserDetails) {
             AuthInfoView(authVM: authVM)
         }
         .onReceive(timer) { _ in
@@ -84,14 +86,21 @@ struct OTPVerificationView: View {
     private func login() {
         otp = previousOtp
         hideKeyboard()
-        isLoggingIn = true
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            isLoggingIn = false
-            goToUserInfo = true
+
+        let cleanOTP = otp.replacingOccurrences(of: " ", with: "")
+        
+        guard cleanOTP.count == 6 else { return }
+        Task {
+            await authVM.verifyOTP(cleanOTP)
         }
     }
     
     private func handleOTP(_ newOTP: String) {
+        if previousOtp.count == 0 && newOTP.count == 6 {
+            previousOtp = newOTP
+            login()
+            return
+        }
         // Make sure they are not equal
         guard previousOtp != newOTP else { return }
         

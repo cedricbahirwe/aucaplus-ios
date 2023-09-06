@@ -12,6 +12,7 @@ struct AppTabView: View {
     private var selection: AppTab = .home
     
     @StateObject private var bookmarksVM = BookmarkViewModel()
+    @StateObject private var linksVM = LinksPreviewModel()
     
     var body: some View {
         TabView(selection: $selection) {
@@ -34,6 +35,7 @@ struct AppTabView: View {
                 .tag(AppTab.settings)
         }
         .environmentObject(bookmarksVM)
+        .environmentObject(linksVM)
     }
 }
 

@@ -19,7 +19,6 @@ struct DotView: View {
     }
 }
 
-
 struct DotView_Previews: PreviewProvider {
     static var previews: some View {
         DotView()
