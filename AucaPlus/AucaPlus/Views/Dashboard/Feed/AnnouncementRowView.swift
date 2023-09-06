@@ -9,25 +9,29 @@ import SwiftUI
 
 struct AnnouncementRowView: View {
     let announcement: Announcement
-    
+
     var isExpanded: Bool = false
-    
+
     @State private var animate: Bool = false
-    
+
     var body: some View {
         VStack(alignment: .leading) {
-            
+
             HStack {
-                ProfileImageView(announcement.author.imageURL)
-                
+                if let source = announcement.source {
+                    AucaPlusImageView(source.profile!)
+                }
+
                 if isExpanded {
                     Group {
-                        Text(announcement.author.name)
-                            .font(.title3)
-                        
+                        if let source = announcement.source {
+                            Text(source.name)
+                                .font(.title3)
+                        }
+
                         Spacer()
-                        
-                        Text(announcement.createdDate.formatted(date:.long, time:.omitted))
+
+                        Text(announcement.postedDate.formatted(date:.long, time:.omitted))
                     }.opacity(0.8)
 
                 } else {
@@ -35,17 +39,17 @@ struct AnnouncementRowView: View {
 //                        .font(.title3)
                         .lineLimit(2)
                 }
-                
-                
+
+
             }
-                        
+
             if isExpanded {
                 Divider()
-                
+
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Office party change")
                         .font(.title2)
-                    
+
                     contentView("Hey folks.\n\nWe're moving our light winter celebration to the office patio on Thursday due to the recent uptick in COVID cases. We'll have heatlamps so you stay warm. Masks will still be required for this.")
                         .font(.title3)
                 }
@@ -70,7 +74,7 @@ struct AnnouncementRowView: View {
             }
         }
     }
-    
+
     private func contentView(_ content: String) -> some View {
         Text(content)
     }

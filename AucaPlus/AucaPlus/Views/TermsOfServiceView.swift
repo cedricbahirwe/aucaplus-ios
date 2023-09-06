@@ -14,13 +14,17 @@ struct TermsOfServiceView: View {
         VStack {
             Spacer()
             
-            Image("auca.logo")
+            Image("app.logo.transparent")
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(.accentColor)
                 .scaledToFit()
                 .padding(30)
-                .frame(maxHeight: 380)
+                .frame(maxHeight: 300)
+                .overlay {
+                    Circle()
+                        .stroke(Color.accentColor, lineWidth: 10)
+                }
             
             VStack(spacing: 20) {
                 Text("Welcome to AUCA+")

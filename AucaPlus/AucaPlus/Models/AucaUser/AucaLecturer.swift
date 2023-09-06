@@ -8,11 +8,16 @@
 import Foundation
 
 struct AucaLecturer: AucaUser {
-    var id: Int
+    var id: UUID?
     var firstName: String
     var lastName: String
     var phoneNumber: String
+    var email: String
     var type: AucaUserType
     var about: String?
     var picture: URL?
+    
+    var createdAt: Date = .now
+    
+    var updatedAt: Date = .now
 }

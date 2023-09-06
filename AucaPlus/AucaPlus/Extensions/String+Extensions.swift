@@ -64,4 +64,23 @@ extension String {
         
         return newString
     }
+    
+    func extractURLs() -> [String] {
+        do {
+            let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            let matches = detector.matches(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count))
+
+            let urls = matches.compactMap { match -> String? in
+                guard let range = Range(match.range, in: self) else {
+                    return nil
+                }
+                return String(self[range])
+            }
+
+            return urls
+        } catch {
+            Log.debug("Error creating NSDataDetector: \(error)")
+            return []
+        }
+    }
 }

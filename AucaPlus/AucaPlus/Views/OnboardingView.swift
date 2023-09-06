@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image("onboard-1")
+            Image("onboard")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea(.all)

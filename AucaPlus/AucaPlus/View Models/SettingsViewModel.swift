@@ -7,6 +7,21 @@
 
 import Foundation
 
+@MainActor
 final class SettingsStore: ObservableObject {
-    @Published var currentUser: (any AucaUser)? = AucaStudent.example1
+    @Published var currentUser = AucaStudent.example1
+    
+    private var fetchedUser: AucaStudent?
+    
+    var shouldUpdate: Bool {
+        guard let fetchedUser else { return false }
+        return fetchedUser != currentUser
+    }
+    
+    func getUser() async {
+        guard let user  = try? await AuthClient.shared.auth.session.user else { return }
+        
+        currentUser = user.toAucaStudent()
+        fetchedUser = currentUser
+    }
 }

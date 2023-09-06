@@ -43,7 +43,7 @@ extension JobsView  {
         var body: some View {
             VStack(alignment: .leading) {
                
-                HStackLayout(alignment: .top) {
+                HStack(alignment: .top) {
                     Text(job.title)
                         .font(.callout)
                         .fontWeight(.medium)
@@ -67,8 +67,7 @@ extension JobsView  {
                 
                 if job.verified {
                     HStack(spacing: 2) {
-                        Image("verify")
-                        Text("Verified")
+                        VerifyView()
                     }
                     .font(.caption)
                     .foregroundColor(.green)

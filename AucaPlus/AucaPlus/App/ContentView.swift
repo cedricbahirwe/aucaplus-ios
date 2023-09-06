@@ -13,10 +13,12 @@ struct ContentView: View {
     
     @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
-        
+    
+    
     var body: some View {
-        if isLoggedIn {
+        if  isLoggedIn || AuthClient.shared.isAuthenticated  {
             AppTabView()
+            
         } else {
             NavigationStack {
                 ZStack {

@@ -15,53 +15,58 @@ struct AuthenticationView: View {
     }
     @State private var showingConfirmationAlert = false
     @State private var showingValidationAlert = false
-    @State private var goToOTPView = false
     @FocusState private var focusedField: FocusedField?
     
     @AppStorage(StorageKeys.isLoggedIn)
     private var isLoggedIn: Bool = false
     
     var body: some View {
-        VStack {
-            TitleView(title: "Enter your phone number")
-            
-            VStack(spacing: 20) {
-                Text("AUCA+ will need to verify your phone number.")
-                    .multilineTextAlignment(.center)
-                    .fixedSize()
-                    .padding(.top)
-                
-                phoneFieldContainer
-                
-                Text("Carrier charges may apply")
-                    .foregroundColor(.secondary)
-            }
-            .onSubmit(handleSubmission)
-            
+        ZStack {
             VStack {
-                Spacer()
+                TitleView(title: "Enter your phone number")
                 
-                Button {
-                    if authVM.authModel.isValid() {
-                        showingConfirmationAlert.toggle()
-                    } else {
-                        showingValidationAlert.toggle()
-                    }
-                } label: {
-                    Text("Next")
-                        .bold()
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
+                VStack(spacing: 20) {
+                    Text("AUCA+ will need to verify your phone number.")
+                        .multilineTextAlignment(.center)
+                        .fixedSize()
+                        .padding(.top)
+                    
+                    phoneFieldContainer
+                    
+                    Text("Carrier charges may apply")
+                        .foregroundColor(.secondary)
                 }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .alert("Please enter your phone number.",
-                       isPresented: $showingValidationAlert,
-                       actions: { })
+                .onSubmit(handleSubmission)
                 
+                VStack {
+                    Spacer()
+                    
+                    Button {
+                        if authVM.authModel.isValid() {
+                            showingConfirmationAlert.toggle()
+                        } else {
+                            showingValidationAlert.toggle()
+                        }
+                    } label: {
+                        Text("Next")
+                            .bold()
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                    .alert("Please enter your phone number correctly.",
+                           isPresented: $showingValidationAlert,
+                           actions: { })
+                    
+                }
+            }
+            .padding(.horizontal, 25)
+            
+            if authVM.isSendingOTP {
+                SpinnerView()
             }
         }
-        .padding(.horizontal, 25)
         .background(
             Color(.systemBackground)
                 .onTapGesture {
@@ -73,7 +78,10 @@ struct AuthenticationView: View {
                actions: {
             Button("Edit") { }
             Button("OK") {
-                goToOTPView.toggle()
+                hideKeyboard()
+                Task {
+                    await authVM.authorize()
+                }
             }
         }, message: {
             Text("**\(authVM.authModel.formattedPhone())** \n Is this OK, or would you like to edit the number?")
@@ -83,7 +91,7 @@ struct AuthenticationView: View {
                 focusedField = .phone
             }
         }
-        .navigationDestination(isPresented: $goToOTPView) {
+        .navigationDestination(isPresented: $authVM.goToOTPView) {
             OTPVerificationView(authVM: authVM)
         }
         .toolbar {
@@ -170,7 +178,11 @@ struct AuthenticationView_Previews: PreviewProvider {
 
 
 struct AuthHelpView: View {
-    var body: some View  {
-        Text("Show Helpful Message like how to's")
+    var body: some View {
+        VStack {
+            Text("Show Helpful Message like how to's")
+            EmptyView().inBeta()
+        }
+
     }
 }

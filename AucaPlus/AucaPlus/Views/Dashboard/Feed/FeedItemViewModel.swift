@@ -14,16 +14,16 @@ final class FeedItemViewModel: ObservableObject {
         self.item = item
     }
     
-    func bookmark(_ isActive: Bool) {
-        if isActive {
-            item.bookmarks += 1
-        } else {
-            guard item.bookmarks != 0 else { return }
-            item.bookmarks -= 1
-        }
-    }
+//    func bookmark(_ isActive: Bool) {
+//        if isActive {
+//            item.bookmarks += 1
+//        } else {
+//            guard item.bookmarks != 0 else { return }
+//            item.bookmarks -= 1
+//        }
+//    }
     
     func view() {
-        item.views += 0
+        item.views += 1
     }
 }
