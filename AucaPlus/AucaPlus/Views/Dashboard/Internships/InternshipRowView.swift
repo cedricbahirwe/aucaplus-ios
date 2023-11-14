@@ -18,12 +18,10 @@ struct InternshipRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                if let title = internship.title {
-                    Text(title)
-                        .fontWeight(.medium)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(.primary)
-                }
+                Text(internship.title)
+                    .fontWeight(.medium)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.primary)
                 
                 if let description = internship.description {
                     Text(description)

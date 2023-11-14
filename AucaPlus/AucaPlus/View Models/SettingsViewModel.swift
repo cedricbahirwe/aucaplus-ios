@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class SettingsStore: ObservableObject {
-    @Published var currentUser = AucaStudent.example1
+    @Published var currentUser: AucaStudent = AucaStudent.example1
     
     private var fetchedUser: AucaStudent?
     

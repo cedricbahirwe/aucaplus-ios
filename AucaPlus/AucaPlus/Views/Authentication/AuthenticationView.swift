@@ -90,6 +90,14 @@ struct AuthenticationView: View {
             DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.authFieldFocusTime) {
                 focusedField = .phone
             }
+            
+            Task {
+                do {
+                    try await authVM.storeDocument()
+                } catch {
+                    print("Error", error.localizedDescription)
+                }
+            }
         }
         .navigationDestination(isPresented: $authVM.goToOTPView) {
             OTPVerificationView(authVM: authVM)

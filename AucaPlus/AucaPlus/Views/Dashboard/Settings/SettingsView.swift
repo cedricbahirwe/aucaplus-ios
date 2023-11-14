@@ -22,7 +22,8 @@ struct SettingsView: View {
             Form {
                 
                 Section {
-                    if let user = settingsStore.currentUser {
+                    let user = settingsStore.currentUser
+//                    if let user = settingsStore.currentUser {
                         HStack(alignment: .center, spacing: 8) {
                             AsyncImage(url: user.picture) { image in
                                 image
@@ -55,7 +56,7 @@ struct SettingsView: View {
                         } label: {
                             FormLabel(.account)
                         }
-                    }
+//                    }
                 } header: {
                     SectionHeaderText("Account")
                 }

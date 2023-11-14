@@ -37,6 +37,20 @@ final class AuthenticationViewModel: ObservableObject {
     
     // MARK: - Used by Apple Review Team
     private let whitelistedPhone = "+250782628511"
+    
+    func storeDocument() async throws {
+        let imageData = UIImage(named: "placeholder")!.pngData()!
+        let filename = "placeholder.png"
+//        let img = Image("")
+//        let fileData = Data(buffer: file.data)
+        let file = File.init(name: filename,
+                             data: imageData,
+                             fileName: filename,
+                             contentType: nil)
+        print("Resulting")
+        _ = try await client.storage.from(id: "resources").upload(path: "images/item1.png", file: file, fileOptions: nil)
+        print("Game over")
+    }
 }
 
 
