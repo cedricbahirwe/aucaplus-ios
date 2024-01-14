@@ -38,28 +38,27 @@ extension News {
     }()
 }
 
-extension RemoteResource {
-    static let example  = RemoteResource(id: 3121,
-                                         title: "Remote Resourece",
-                                         userID: UUID(),
-                                         link: URL(string: "https://example.com/remote-resource")!,
-                                         source: .person,
-                                         postedDate: .now,
-                                         content: .example)
-}
+//extension RemoteResource {
+//    static let example  = RemoteResource(id: 3121,
+//                                         title: "Remote Resourece",
+//                                         userID: UUID(),
+//                                         link: URL(string: "https://example.com/remote-resource")!,
+//                                         source: .person,
+//                                         postedDate: .now,
+//                                         content: .example)
+//}
 
+
+//extension RemoteResource.Metadata {
+//    static let example = .init(type: .pdf,
+//                                   size: 1024,
+//                                   owner: "John Doe")
+//}
 extension Announcement {
     static let example = Announcement(title: "Exams timetable is updated",
                                       userID: UUID(), source: .person,
                                       postedDate: .now,
                                       content: AttributedString())
-}
-
-
-extension RemoteResource.Metadata {
-    static let example = Self.init(type: .pdf,
-                                   size: 1024,
-                                   owner: "John Doe")
 }
 
 extension FeedItem {

@@ -10,7 +10,6 @@ import SwiftUI
 struct FeedView: View {
     @StateObject private var feedStore = FeedStore()
     
-    @State private var overlay = OverlayModel<Announcement>()
     @EnvironmentObject private var bookmarksVM: BookmarkViewModel
     
     var body: some View {
@@ -20,16 +19,7 @@ struct FeedView: View {
                     VStack(spacing: 0) {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
-                                if let announcement = item as? Announcement {
-                                                                        AnnouncementRowView(announcement: announcement)
-                                    //                                        .onTapGesture {
-                                    //                                            withAnimation {
-                                    //                                                overlay.present(announcement)
-                                    //                                            }
-                                    //                                        }
-                                    //                                } else if let resource = item as? RemoteResource {
-                                    //                                    ResourceRowView(resource: resource)
-                                } else if let news = item as? News {
+                                if let news = item as? News {
                                     NewsRowView(
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
@@ -41,7 +31,6 @@ struct FeedView: View {
                                             }
                                         },
                                         onViewed: bookmarksVM.view)
-                                    
                                 }
                                 
                                 Divider()
@@ -57,18 +46,12 @@ struct FeedView: View {
             .task {
                 await feedStore.fetchNews()
             }
-            .overlayListener(of: $overlay) { announcement in
-                AnnouncementRowView(announcement: announcement, isExpanded: true)
-                    .padding()
-            }
             .navigationBarTitle("Feed")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    filterButton
-                    //                    notificationButton
-                    //                        .hidden()
-                }
-            }
+//            .toolbar {
+//                ToolbarItemGroup(placement: .navigationBarTrailing) {
+//                    filterButton
+//                }
+//            }
         }
         .overlay {
             if feedStore.isFetchingNews {
@@ -95,13 +78,6 @@ struct FeedView: View {
             }
         } label: {
             Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
-        }
-    }
-    
-    private var notificationButton: some View {
-        Button {
-        } label: {
-            Label("Notifications", systemImage: "bell.badge")
         }
     }
 }

@@ -70,7 +70,6 @@ struct NewsRowView: View {
     }
 }
 
-#if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
         NewsRowView(.news1,
@@ -81,9 +80,8 @@ struct NewsRowView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
-#endif
 
-fileprivate extension NewsRowView {
+private extension NewsRowView {
     struct ProfileInfoView: View {
         let imageURL: URL?
         let title: String
