@@ -19,7 +19,7 @@ struct AnnouncementRowView: View {
 
             HStack {
                 if let source = announcement.source {
-                    AucaPlusImageView(source.profile!)
+                    AucaPlusImageView(source.profile!, .square(50))
                 }
 
                 if isExpanded {
@@ -80,10 +80,9 @@ struct AnnouncementRowView: View {
     }
 }
 
-#if DEBUG
 struct AnnouncementRowView_Previews: PreviewProvider {
     static var previews: some View {
         AnnouncementRowView(announcement: .example, isExpanded: false)
+            .previewLayout(.sizeThatFits)
     }
 }
-#endif

@@ -141,6 +141,7 @@ private extension AuthenticationView {
                 .overlay(alignment: .bottom) {
                     Color.accentColor.frame(height: 1)
                 }
+                .fixedSize()
                 .onChange(of: authVM.authModel.phone, perform: handlePhoneChange)
         }
         .padding(.horizontal, 40)

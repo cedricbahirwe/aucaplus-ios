@@ -40,6 +40,7 @@ struct OTPVerificationView: View {
                     .multilineTextAlignment(.center)
                     .font(.title)
                     .opacity(0.9)
+                    .frame(maxWidth: 150)
                     .onChange(of: otp, perform: handleOTP)
                 
                 

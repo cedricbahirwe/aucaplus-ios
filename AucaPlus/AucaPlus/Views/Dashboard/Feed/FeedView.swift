@@ -21,7 +21,7 @@ struct FeedView: View {
                         ForEach(feedStore.sortedItems, id: \.id) { item in
                             VStack(spacing: 3) {
                                 if let announcement = item as? Announcement {
-                                    //                                    AnnouncementRowView(announcement: announcement)
+                                                                        AnnouncementRowView(announcement: announcement)
                                     //                                        .onTapGesture {
                                     //                                            withAnimation {
                                     //                                                overlay.present(announcement)

@@ -27,7 +27,7 @@ struct ContentView: View {
                     if showingOnBoarding {
                         OnboardingView()
                             .opacity(animatingOnBoarding ? 1 : 0)
-                            .animation(.easeInOut(duration: 0.5), value: animatingOnBoarding)
+                            .animation(.easeInOut, value: animatingOnBoarding)
                             .onAppear() {
                                 DispatchQueue.main.asyncAfter(deadline: OnboardingConstants.onboardingAnimateDelay) {
                                     animatingOnBoarding = false
