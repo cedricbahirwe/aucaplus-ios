@@ -37,6 +37,7 @@ struct AucaPlusImageView: View {
     var body: some View {
         AsyncImage(url: imageURL,
                    scale: 1) {
+            // Cache Image here if not cached
             $0.resizable()
         } placeholder: {
             placeholderImage

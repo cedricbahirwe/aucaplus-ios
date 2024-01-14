@@ -41,17 +41,12 @@ struct FeedView: View {
                 }
             }
             .refreshable {
-                
+                await feedStore.fetchNews()
             }
             .task {
                 await feedStore.fetchNews()
             }
             .navigationBarTitle("Feed")
-//            .toolbar {
-//                ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                    filterButton
-//                }
-//            }
         }
         .overlay {
             if feedStore.isFetchingNews {

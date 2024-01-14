@@ -32,8 +32,7 @@ struct NewsRowView: View {
                 HStack(alignment: .firstTextBaseline) {
                     ProfileInfoView(imageURL: source.profile,
                                     title: source.name,
-                                    subtitle: source.headline,
-                                    postedDate: news.postedDate)
+                                    subtitle: source.headline)
                     
                     Image(isBookmarked ? "bookmark.fill" : "bookmark")
                         .renderingMode(.template)
@@ -55,11 +54,33 @@ struct NewsRowView: View {
                         .font(.callout)
                 }
                 
-                AucaPlusImageView(news.images.first!, placeholderImage: Image("placeholder"))
-                    .scaledToFit()
-                    .background(.gray)
-                    .cornerRadius(15)
-                    .frame(maxWidth: .infinity)
+                if let image = news.images.first {
+                    AucaPlusImageView(image, placeholderImage: Image("placeholder"))
+                        .scaledToFit()
+                        .background(.gray)
+                        .cornerRadius(15)
+                        .frame(maxWidth: .infinity)
+                        .onTapGesture {
+                            // Get image from cache and display
+                            // if not in cache load image
+                        }
+                }
+                
+                HStack(spacing: 3) {
+                    Text(news.postedDate.formatted(date: .numeric, time: .omitted))
+                        .opacity(0.8)
+                    
+                    Text("·")
+                    
+                    Text(news.postedDate.formatted(date: .omitted, time: .shortened))
+                    
+                    Text("·")
+
+                    Text("\(Text("\(news.views)").bold().foregroundColor(.primary)) View\(news.views > 1 ? "s" : "")")
+                }
+                .font(.callout)
+                .foregroundColor(.secondary)
+                .padding(.top, 8)
             }
         }
         .padding()
@@ -78,6 +99,7 @@ struct NewsRowView_Previews: PreviewProvider {
                     onViewed: { _ in })
             .environmentObject(FeedStore())
             .previewLayout(.sizeThatFits)
+//            .preferredColorScheme(.dark)
     }
 }
 
@@ -86,7 +108,6 @@ private extension NewsRowView {
         let imageURL: URL?
         let title: String
         let subtitle: String?
-        let postedDate: Date
         
         var body: some View {
             
@@ -94,28 +115,15 @@ private extension NewsRowView {
                 AucaPlusImageView(imageURL!, .square(40))
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text(title)
-                            .font(.headline)
-                        
-                        if subtitle != nil {
-                            Text("·").fontWeight(.black)
-                            Text(postedDate.formatted(date: .long, time: .omitted))
-                                .font(.callout)
-                                .opacity(0.8)
-                        }
-                    }
-                    .lineLimit(1)
+                    Text(title)
+                        .font(.headline)
+                        .lineLimit(1)
                     
-                    Group {
-                        if let subtitle {
-                            Text(subtitle)
-                        } else {
-                            Text(postedDate.formatted(date: .long, time: .omitted))
-                        }
+                    if let subtitle {
+                        Text(subtitle)
+                            .font(.caption)
+                            .opacity(0.8)
                     }
-                    .font(.caption)
-                    .opacity(0.8)
                 }
             }
             .padding(.bottom, 8)
