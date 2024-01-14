@@ -33,11 +33,11 @@ struct OTPVerificationView: View {
                     .keyboardType(.numberPad)
                     .textContentType(.oneTimeCode)
                     .focused($focusedField)
-                    .frame(width: 150)
+                    .fixedSize()
                     .overlay(alignment: .bottom) {
                         Color.accentColor.frame(height: 1)
                     }
-                    .multilineTextAlignment(otp.isEmpty ? .center : .leading)
+                    .multilineTextAlignment(.center)
                     .font(.title)
                     .opacity(0.9)
                     .onChange(of: otp, perform: handleOTP)
@@ -47,13 +47,11 @@ struct OTPVerificationView: View {
                     .foregroundColor(.secondary)
                 
                 Button("Did not receive code?") {
-                    
+                    // Should redirect to help center
                 }
                 .bold()
                 
                 Text("You may request a new code in **\(counterMessage())**")
-                
-                
             }
             
             if authVM.isValidatingOTP {
@@ -64,9 +62,16 @@ struct OTPVerificationView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .alert(item: $authVM.alertItem) { item in
-            Alert(title: Text("OTP Error"),
-                  message: Text(item.message),
-                  dismissButton: .default(Text("Got It!")))
+            Alert(
+                title: Text("OTP Error"),
+                message: Text(item.message),
+                dismissButton: .default(
+                    Text("Got It!"),
+                    action: {
+                        otp = ""
+                    }
+                )
+            )
         }
         .padding()
         .disabled(authVM.isValidatingOTP)
@@ -142,10 +147,9 @@ struct OTPVerificationView: View {
     }
 }
 
-#if DEBUG
+
 struct OTPVerificationView_Previews: PreviewProvider {
     static var previews: some View {
         OTPVerificationView(authVM: AuthenticationViewModel())
     }
 }
-#endif

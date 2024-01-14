@@ -29,8 +29,6 @@
 		CB1913E429D77CB7007BC45C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913E329D77CB7007BC45C /* Persistence.swift */; };
 		CB1913E729D77CB7007BC45C /* AucaPlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB1913E529D77CB7007BC45C /* AucaPlus.xcdatamodeld */; };
 		CB1913F229D77CB7007BC45C /* AucaPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913F129D77CB7007BC45C /* AucaPlusTests.swift */; };
-		CB1913FC29D77CB7007BC45C /* AucaPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913FB29D77CB7007BC45C /* AucaPlusUITests.swift */; };
-		CB1913FE29D77CB7007BC45C /* AucaPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1913FD29D77CB7007BC45C /* AucaPlusUITestsLaunchTests.swift */; };
 		CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140A29D77D6C007BC45C /* OnboardingView.swift */; };
 		CB19140D29D77DCC007BC45C /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140C29D77DCC007BC45C /* AuthenticationView.swift */; };
 		CB19140F29D77EE1007BC45C /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19140E29D77EE1007BC45C /* TermsOfServiceView.swift */; };
@@ -99,13 +97,6 @@
 			remoteGlobalIDString = CB1913D629D77CB6007BC45C;
 			remoteInfo = AucaPlus;
 		};
-		CB1913F829D77CB7007BC45C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB1913CF29D77CB6007BC45C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CB1913D629D77CB6007BC45C;
-			remoteInfo = AucaPlus;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -134,7 +125,6 @@
 		CB1913E829D77CB7007BC45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB1913ED29D77CB7007BC45C /* AucaPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AucaPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1913F129D77CB7007BC45C /* AucaPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusTests.swift; sourceTree = "<group>"; };
-		CB1913F729D77CB7007BC45C /* AucaPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AucaPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1913FB29D77CB7007BC45C /* AucaPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusUITests.swift; sourceTree = "<group>"; };
 		CB1913FD29D77CB7007BC45C /* AucaPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AucaPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CB19140A29D77D6C007BC45C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -206,13 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CB1913EA29D77CB7007BC45C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB1913F429D77CB7007BC45C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,7 +278,6 @@
 			children = (
 				CB1913D729D77CB6007BC45C /* AucaPlus.app */,
 				CB1913ED29D77CB7007BC45C /* AucaPlusTests.xctest */,
-				CB1913F729D77CB7007BC45C /* AucaPlusUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -538,24 +520,6 @@
 			productReference = CB1913ED29D77CB7007BC45C /* AucaPlusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CB1913F629D77CB7007BC45C /* AucaPlusUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CB19140729D77CB7007BC45C /* Build configuration list for PBXNativeTarget "AucaPlusUITests" */;
-			buildPhases = (
-				CB1913F329D77CB7007BC45C /* Sources */,
-				CB1913F429D77CB7007BC45C /* Frameworks */,
-				CB1913F529D77CB7007BC45C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CB1913F929D77CB7007BC45C /* PBXTargetDependency */,
-			);
-			name = AucaPlusUITests;
-			productName = AucaPlusUITests;
-			productReference = CB1913F729D77CB7007BC45C /* AucaPlusUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -570,10 +534,6 @@
 						CreatedOnToolsVersion = 14.2;
 					};
 					CB1913EC29D77CB7007BC45C = {
-						CreatedOnToolsVersion = 14.2;
-						TestTargetID = CB1913D629D77CB6007BC45C;
-					};
-					CB1913F629D77CB7007BC45C = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = CB1913D629D77CB6007BC45C;
 					};
@@ -597,7 +557,6 @@
 			targets = (
 				CB1913D629D77CB6007BC45C /* AucaPlus */,
 				CB1913EC29D77CB7007BC45C /* AucaPlusTests */,
-				CB1913F629D77CB7007BC45C /* AucaPlusUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -614,13 +573,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CB1913EB29D77CB7007BC45C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB1913F529D77CB7007BC45C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -720,15 +672,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB1913F329D77CB7007BC45C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CB1913FE29D77CB7007BC45C /* AucaPlusUITestsLaunchTests.swift in Sources */,
-				CB1913FC29D77CB7007BC45C /* AucaPlusUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -736,11 +679,6 @@
 			isa = PBXTargetDependency;
 			target = CB1913D629D77CB6007BC45C /* AucaPlus */;
 			targetProxy = CB1913EE29D77CB7007BC45C /* PBXContainerItemProxy */;
-		};
-		CB1913F929D77CB7007BC45C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CB1913D629D77CB6007BC45C /* AucaPlus */;
-			targetProxy = CB1913F829D77CB7007BC45C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -973,42 +911,6 @@
 			};
 			name = Release;
 		};
-		CB19140829D77CB7007BC45C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V9B6LUW22;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.abc.incs.cedricbahirwe.AucaPlusUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AucaPlus;
-			};
-			name = Debug;
-		};
-		CB19140929D77CB7007BC45C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V9B6LUW22;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.abc.incs.cedricbahirwe.AucaPlusUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AucaPlus;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1035,15 +937,6 @@
 			buildConfigurations = (
 				CB19140529D77CB7007BC45C /* Debug */,
 				CB19140629D77CB7007BC45C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CB19140729D77CB7007BC45C /* Build configuration list for PBXNativeTarget "AucaPlusUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CB19140829D77CB7007BC45C /* Debug */,
-				CB19140929D77CB7007BC45C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,7 +7,7 @@
 
 import CoreData
 
-struct PersistenceController {
+private struct PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {

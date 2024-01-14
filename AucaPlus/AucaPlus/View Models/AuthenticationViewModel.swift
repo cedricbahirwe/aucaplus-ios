@@ -154,7 +154,6 @@ extension AuthenticationViewModel {
     struct AuthModel {
         var countryCode = "250"
         var phone = ""
-        
         var email = ""
                 
         func formattedPhone() -> String {

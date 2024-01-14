@@ -165,10 +165,8 @@ private extension AuthInfoView {
     }
 }
 
-#if DEBUG
 struct AuthInfoView_Previews: PreviewProvider {
     static var previews: some View {
         AuthInfoView(authVM: AuthenticationViewModel())
     }
 }
-#endif

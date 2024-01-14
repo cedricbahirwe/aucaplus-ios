@@ -78,7 +78,7 @@ struct AuthenticationView: View {
                actions: {
             Button("Edit") { }
             Button("OK") {
-                hideKeyboard()
+                focusedField = nil
                 Task {
                     await authVM.authorize()
                 }
@@ -176,14 +176,11 @@ extension AuthenticationView {
     }
 }
 
-#if DEBUG
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationView()
     }
 }
-#endif
-
 
 struct AuthHelpView: View {
     var body: some View {
