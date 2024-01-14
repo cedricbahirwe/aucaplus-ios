@@ -14,7 +14,6 @@ final class FeedStore: ObservableObject {
     var sortedItems: [any FeedItem] {
         items.sorted { $0.postedDate > $1.postedDate }
     }
-    @Published var filter: FeedFilter = .all
     
     @Published private(set) var isFetchingNews = false
     
@@ -24,23 +23,9 @@ final class FeedStore: ObservableObject {
     private let authClient: AuthClient = AuthClient.shared
     
     init() {
-        $filter.sink { [weak self] newFilter in
-            guard let self = self else { return }
-            self.getFeed(for: newFilter)
-        }
-        .store(in: &cancellables)
         
 //        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
 //        items = news
-    }
-    
-    func setFilter(_ newFilter: FeedFilter) {
-        guard filter != newFilter else { return }
-        filter = newFilter
-    }
-    
-    private func getFeed(for filter: FeedFilter) {
-        #warning("Perform a filter")
     }
     
     func fetchNews() async {

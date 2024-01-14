@@ -46,10 +46,8 @@ struct AucaPlusImageView: View {
     }
 }
 
-#if DEBUG
 struct AucaPlusImageView_Previews: PreviewProvider {
     static var previews: some View {
         AucaPlusImageView(URL(string: "www.google.com")!)
     }
 }
-#endif

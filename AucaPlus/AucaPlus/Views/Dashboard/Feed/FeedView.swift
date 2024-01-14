@@ -59,34 +59,11 @@ struct FeedView: View {
             }
         }
     }
-    
-    @ViewBuilder
-    private var filterButton: some View {
-        Menu {
-            ForEach(FeedStore.FeedFilter.allCases, id: \.self) { filter in
-                Button {
-                    feedStore.setFilter(filter)
-                } label: {
-                    Label {
-                        Text(filter.rawValue.capitalized)
-                    } icon: {
-                        if filter == feedStore.filter {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
-            }
-        } label: {
-            Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
-        }
-    }
 }
 
-#if DEBUG
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         FeedView()
             .environmentObject(BookmarkViewModel())
     }
 }
-#endif

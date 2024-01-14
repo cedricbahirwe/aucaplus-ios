@@ -77,11 +77,10 @@ extension JobsView  {
     }
 }
 
-#if DEBUG
+
 struct JobsView_Previews: PreviewProvider {
     static var previews: some View {
         JobsView()
             .preferredColorScheme(.dark)
     }
 }
-#endif

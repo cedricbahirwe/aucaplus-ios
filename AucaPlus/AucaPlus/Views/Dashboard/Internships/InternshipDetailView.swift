@@ -46,7 +46,7 @@ struct InternshipDetailView: View {
     }
 }
 
-#if DEBUG
+
 struct InternshipDetailView_Previews: PreviewProvider {
     static var previews: some View {
         InternshipDetailView(internship: .example)
@@ -54,4 +54,3 @@ struct InternshipDetailView_Previews: PreviewProvider {
             .environmentObject(LinksPreviewModel())
     }
 }
-#endif

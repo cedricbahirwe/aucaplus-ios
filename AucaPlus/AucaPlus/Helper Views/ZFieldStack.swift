@@ -65,10 +65,8 @@ struct ZFieldStack: View {
     }
 }
 
-#if DEBUG
 struct ZFieldStack_Previews: PreviewProvider {
     static var previews: some View {
         ZFieldStack("Placholder", text: .constant(""))
     }
 }
-#endif

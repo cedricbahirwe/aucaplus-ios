@@ -148,13 +148,13 @@ extension SettingsView {
     }
 }
 
-#if DEBUG
+
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
     }
 }
-#endif
+
 
 extension View {
     func inBeta() -> some View {

@@ -120,7 +120,7 @@ struct InternshipRowView: View {
     }
 }
 
-#if DEBUG
+
 struct InternshipRowView_Previews: PreviewProvider {
     static var previews: some View {
         InternshipRowView(internship: .example,
@@ -133,4 +133,3 @@ struct InternshipRowView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
-#endif
