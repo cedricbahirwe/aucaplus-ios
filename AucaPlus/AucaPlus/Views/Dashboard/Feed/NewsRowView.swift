@@ -68,7 +68,6 @@ struct NewsRowView: View {
                 
                 HStack(spacing: 3) {
                     Text(news.postedDate.formatted(date: .numeric, time: .omitted))
-                        .opacity(0.8)
                     
                     Text("·")
                     
@@ -79,7 +78,7 @@ struct NewsRowView: View {
                     Text("\(Text("\(news.views)").bold().foregroundColor(.primary)) View\(news.views > 1 ? "s" : "")")
                 }
                 .font(.callout)
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondary.opacity(0.8))
                 .padding(.top, 8)
             }
         }
