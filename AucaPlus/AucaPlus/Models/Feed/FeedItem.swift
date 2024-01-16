@@ -48,6 +48,10 @@ enum FeedType: String, Codable {
     case news, resource, announcement
 }
 
+enum FeedFileType: String, Codable {
+    case image, pdf, link, video
+}
+
 protocol Sociable: Codifiable {
     var id: Int?  { get set }
     var bookmarks: Int { get set }

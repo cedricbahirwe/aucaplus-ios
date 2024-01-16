@@ -15,8 +15,9 @@ extension News {
         userID: UUID(),
         source: FeedSource.person,
         postedDate: .now,
-        content: News.description1,
-        images: [URL(string: "https://example.com/image2.jpg")!],
+        content: News.description3,
+        files: [URL(string: "https://example.com/image2.jpg")!],
+        fileType: .image,
         tags: ["football", "league", "fun"],
         views: 100
     )
@@ -36,6 +37,24 @@ extension News {
        
         return "VC Prof Kelvin Onongha hands over a token of appreciation to Dr Zeno L. Charles-Marcel.  Zeno is the Assoc. Director of Adventist Health Ministry at the Headquarters of the SDA World Church. He has been very instrumental in the establishment of AUCA's Medical School " + str
     }()
+    
+    static var description3: AttributedString = {
+        var str = AttributedString(" https://dr0krcbe81m.typeform.com/to/YxTXmLWR")
+        str.link = URL(string: "https://dr0krcbe81m.typeform.com/to/YxTXmLWR")
+        str.foregroundColor = .accentColor
+        
+        return """
+To kickstart 2024, we are excited to share a fantastic opportunity with you. CODEXTREME, with the support from GIZ, ALU, CcHub, and many more presents the largest and most disruptive student hackathon happening for 4 days in Kigali from January 24th to 27th, 2024, at the African Leadership University.
+
+This event provides an invaluable opportunity for 200+ student developers, junior developers, tech enthusiasts, and student entrepreneurs in Kigali to come together for 4 days to learn, collaborate, and create innovative tech solutions to real-world problems.
+
+There will be 5000$ worth of prizes, including 2500$ in cash and a mentorship program for winning teams after the hackathon.
+
+Register your interest now and embark on a journey full of creativity and innovation. We believe your work and contribution will positively impact Rwanda's tech ecosystem and beyond.
+
+For registration, fill out this form, and our team will follow up with you:
+""" + str
+    }()
 }
 
 //extension RemoteResource {
@@ -54,12 +73,12 @@ extension News {
 //                                   size: 1024,
 //                                   owner: "John Doe")
 //}
-extension Announcement {
-    static let example = Announcement(title: "Exams timetable is updated",
-                                      userID: UUID(), source: .person,
-                                      postedDate: .now,
-                                      content: AttributedString())
-}
+//extension Announcement {
+//    static let example = Announcement(title: "Exams timetable is updated",
+//                                      userID: UUID(), source: .person,
+//                                      postedDate: .now,
+//                                      content: AttributedString())
+//}
 
 extension FeedItem {
     func replicate(_ count: Int) -> [Self] {

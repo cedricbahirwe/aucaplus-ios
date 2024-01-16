@@ -24,6 +24,8 @@ struct NewsRowView: View {
     private var onBookmarked: (News) -> Void
     private var news: News { itemVM.item }
     private var onViewed: (News) async -> Void
+    
+    @State private var showAllText = false
      
     var body: some View {
         VStack (alignment: .leading) {
@@ -52,9 +54,16 @@ struct NewsRowView: View {
                 if let content = news.content {
                     Text(content)
                         .font(.callout)
+//                        .lineLimit(PartialRangeThrough.init(5))
+//                        .lineLimit(PartialRangeFrom(3))
+                        .lineLimit(showAllText ? nil : 5)
+                        .onTapGesture {
+                            showAllText.toggle()
+                        }
                 }
                 
-                if let image = news.images.first {
+                if news.fileType == .image,
+                   let image = news.files?.first {
                     AucaPlusImageView(image, placeholderImage: Image("placeholder"))
                         .scaledToFit()
                         .background(.gray)

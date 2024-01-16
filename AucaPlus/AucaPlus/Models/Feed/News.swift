@@ -31,7 +31,9 @@ struct News: FeedItem {
     var content: AttributedString?
 
     // Extras
-    var images: [URL]
+    var files: [URL]?
+    
+    var fileType: FeedFileType?
     
     var tags: [String]?
     
@@ -46,23 +48,25 @@ struct News: FeedItem {
         case postedDate = "posted_at"
         case updatedDate = "updated_at"
         case content
-        case images
+        case files, fileType
         case tags, bookmarks, views
         case userID = "user_id"
     }
     
-    init(id: Int? = nil, title: String, subtitle: String? = nil, userID: UUID, link: URL? = nil, source: FeedSource? = nil, postedDate: Date, updatedDate: Date? = nil, content: AttributedString, images: [URL], tags: [String]? = nil, bookmarks: Int = 0, views: Int = 0) {
+    
+    init(id: Int? = nil, title: String, subtitle: String? = nil, userID: UUID, link: URL? = nil, source: FeedSource? = nil, type: FeedType = .news, postedDate: Date, updatedDate: Date? = nil, content: AttributedString? = nil, files: [URL]? = nil, fileType: FeedFileType, tags: [String]? = nil, bookmarks: Int = 0, views: Int = 0) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.link = link
         self.userID = userID
+        self.link = link
         self.source = source
-        self.type = .news
+        self.type = type
         self.postedDate = postedDate
         self.updatedDate = updatedDate
         self.content = content
-        self.images = images
+        self.files = files
+        self.fileType = fileType
         self.tags = tags
         self.bookmarks = bookmarks
         self.views = views
@@ -86,7 +90,9 @@ struct News: FeedItem {
             self.content = stringData
         }
         
-        self.images = try container.decode([URL].self, forKey: .images)
+        self.files = try container.decodeIfPresent([URL].self, forKey: .files)
+        self.fileType = try container.decodeIfPresent(FeedFileType.self, forKey: .fileType)
+        
         self.tags = try container.decodeIfPresent([String].self, forKey: .tags)
         self.bookmarks = try container.decode(Int.self, forKey: .bookmarks)
         self.views = try container.decode(Int.self, forKey: .views)
@@ -109,7 +115,8 @@ struct News: FeedItem {
         let jData = try JSONEncoder().encode(content)
         try container.encode(jData, forKey: .content)
         
-        try container.encode(images, forKey: .images)
+        try container.encode(files, forKey: .files)
+        try container.encodeIfPresent(fileType, forKey: .fileType)
         
         try container.encodeIfPresent(tags, forKey: .tags)
         try container.encodeIfPresent(bookmarks, forKey: .bookmarks)
