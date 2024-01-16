@@ -22,8 +22,8 @@ final class FeedStore: ObservableObject {
     
     init() {
         
-//        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
-//        items = news
+        let news: [News] = TemporaryStorage.shared.retrieve(forKey: "news")
+        items = news
     }
     
     func fetchNews() async {
