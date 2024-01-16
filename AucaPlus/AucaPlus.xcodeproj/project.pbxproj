@@ -62,6 +62,7 @@
 		CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E72A93FB57004D2B95 /* Internship.swift */; };
 		CB8592EA2A93FB7C004D2B95 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E92A93FB7C004D2B95 /* Opportunity.swift */; };
 		CB891CFF2A9F253400578C00 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB891CFE2A9F253400578C00 /* Announcement.swift */; };
+		CB8A17812B56A708007D819C /* PlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A17802B56A708007D819C /* PlaceHolderView.swift */; };
 		CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */; };
 		CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */; };
 		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
@@ -159,6 +160,7 @@
 		CB8592E72A93FB57004D2B95 /* Internship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Internship.swift; sourceTree = "<group>"; };
 		CB8592E92A93FB7C004D2B95 /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
 		CB891CFE2A9F253400578C00 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		CB8A17802B56A708007D819C /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
 		CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipDetailView.swift; sourceTree = "<group>"; };
 		CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				CB8592D92A93B9B2004D2B95 /* OnboardingConstants.swift */,
 				CBDC65CC2A92A5B5006074B3 /* AppstoreReview.swift */,
+				CB8A17802B56A708007D819C /* PlaceHolderView.swift */,
 				CBDC65D02A92A5E7006074B3 /* ExternalLinks.swift */,
 				CB1A2ED72AA4D125001C63A6 /* AppLogger.swift */,
 			);
@@ -596,6 +599,7 @@
 				CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */,
 				CB1913DD29D77CB6007BC45C /* ContentView.swift in Sources */,
 				CBE0D14829DA0CC100AD2C58 /* JobsView.swift in Sources */,
+				CB8A17812B56A708007D819C /* PlaceHolderView.swift in Sources */,
 				CB436CD72A9761F9000EE8C3 /* InternshipRowView.swift in Sources */,
 				CB42827D29F99B9100F436C3 /* AnnouncementRowView.swift in Sources */,
 				CB03EF4E29EB3CD7006EC539 /* FeedViewModel.swift in Sources */,

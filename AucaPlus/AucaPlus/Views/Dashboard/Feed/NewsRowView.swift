@@ -63,15 +63,17 @@ struct NewsRowView: View {
                 }
                 
                 if let image = news.files?.first {
-                    AucaPlusImageView(image, placeholderImage: Image("placeholder"))
-                        .scaledToFit()
-                        .background(.gray)
-                        .cornerRadius(15)
-                        .frame(maxWidth: .infinity)
-                        .onTapGesture {
-                            // Get image from cache and display
-                            // if not in cache load image
-                        }
+                    AucaPlusImageView(image, placeholder: {
+                        PlaceHolderView()
+                    })
+                    .scaledToFit()
+                    .background(.gray)
+                    .cornerRadius(15)
+                    .frame(maxWidth: .infinity)
+                    .onTapGesture {
+                        // Get image from cache and display
+                        // if not in cache load image
+                    }
                 }
                 
                 HStack(spacing: 3) {
