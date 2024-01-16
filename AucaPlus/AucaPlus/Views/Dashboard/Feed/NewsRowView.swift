@@ -62,8 +62,7 @@ struct NewsRowView: View {
                         }
                 }
                 
-                if news.fileType == .image,
-                   let image = news.files?.first {
+                if let image = news.files?.first {
                     AucaPlusImageView(image, placeholderImage: Image("placeholder"))
                         .scaledToFit()
                         .background(.gray)
