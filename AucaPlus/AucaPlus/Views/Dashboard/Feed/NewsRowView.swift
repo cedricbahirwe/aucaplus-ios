@@ -54,11 +54,11 @@ struct NewsRowView: View {
                 if let content = news.content {
                     Text(content)
                         .font(.callout)
-//                        .lineLimit(PartialRangeThrough.init(5))
-//                        .lineLimit(PartialRangeFrom(3))
                         .lineLimit(showAllText ? nil : 5)
                         .onTapGesture {
-                            showAllText.toggle()
+                            withAnimation {
+                                showAllText.toggle()
+                            }
                         }
                 }
                 
@@ -121,6 +121,7 @@ private extension NewsRowView {
             
             HStack {
                 AucaPlusImageView(imageURL!, .square(40))
+                    .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)

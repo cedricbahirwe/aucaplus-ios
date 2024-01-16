@@ -44,6 +44,7 @@ struct AucaPlusImageView: View {
                 .resizable()
         }
         .frame(width: layout.dimensions?.width, height: layout.dimensions?.height)
+        
     }
 }
 
