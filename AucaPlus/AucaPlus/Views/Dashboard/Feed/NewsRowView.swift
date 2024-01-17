@@ -100,6 +100,7 @@ struct NewsRowView: View {
     }
 }
 
+#if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
         NewsRowView(.news1,
@@ -111,6 +112,7 @@ struct NewsRowView_Previews: PreviewProvider {
 //            .preferredColorScheme(.dark)
     }
 }
+#endif
 
 private extension NewsRowView {
     struct ProfileInfoView: View {

@@ -63,6 +63,7 @@
 		CB8592EA2A93FB7C004D2B95 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8592E92A93FB7C004D2B95 /* Opportunity.swift */; };
 		CB891CFF2A9F253400578C00 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB891CFE2A9F253400578C00 /* Announcement.swift */; };
 		CB8A17812B56A708007D819C /* PlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A17802B56A708007D819C /* PlaceHolderView.swift */; };
+		CB8A17832B56ABAB007D819C /* Internship+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A17822B56ABAB007D819C /* Internship+Preview.swift */; };
 		CB8B4A382A98DC4500B145CA /* InternshipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */; };
 		CB8DED382A94B22F00C69441 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */; };
 		CB8DED3A2A94B24B00C69441 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8DED392A94B24B00C69441 /* Job.swift */; };
@@ -161,6 +162,7 @@
 		CB8592E92A93FB7C004D2B95 /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
 		CB891CFE2A9F253400578C00 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		CB8A17802B56A708007D819C /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
+		CB8A17822B56ABAB007D819C /* Internship+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Internship+Preview.swift"; sourceTree = "<group>"; };
 		CB8B4A372A98DC4500B145CA /* InternshipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternshipDetailView.swift; sourceTree = "<group>"; };
 		CB8DED372A94B22F00C69441 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		CB8DED392A94B24B00C69441 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			children = (
 				CB1913E129D77CB7007BC45C /* Preview Assets.xcassets */,
 				CBEA5BDE2A9A9B55003B96BC /* FeedItem+Preview.swift */,
+				CB8A17822B56ABAB007D819C /* Internship+Preview.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				CB8592E82A93FB57004D2B95 /* Internship.swift in Sources */,
 				CB420F822A9A013400994599 /* ShareLinkView.swift in Sources */,
 				CB19140B29D77D6C007BC45C /* OnboardingView.swift in Sources */,
+				CB8A17832B56ABAB007D819C /* Internship+Preview.swift in Sources */,
 				CB6DF69F2A9EAD480016E683 /* AuthClient.swift in Sources */,
 				CB19141429D78BD4007BC45C /* OTPVerificationView.swift in Sources */,
 				CB8DED432A94C04E00C69441 /* BookmarkViewModel.swift in Sources */,
