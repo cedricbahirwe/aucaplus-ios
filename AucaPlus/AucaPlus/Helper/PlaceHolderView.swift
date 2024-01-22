@@ -1,14 +1,13 @@
 //
-//  TestingView.swift
+//  PlaceHolderView.swift
 //  AucaPlus
 //
-//  Created by Cédric Bahirwe on 23/08/2023.
+//  Created by Cédric Bahirwe on 16/01/2024.
 //
 
 import SwiftUI
 
-struct TestingView: View {
-    
+struct PlaceHolderView: View {
     var body: some View {
         VStack {
             Image("app.logo.transparent")
@@ -18,13 +17,17 @@ struct TestingView: View {
                 .frame(width: 100)
                 .foregroundColor(.white)
         }
-        .frame(width: 390, height: 280)
+        .frame(maxWidth: .infinity)
+        .frame(height: 280)
         .background(Color.init(red: 206/255, green: 206/255, blue: 206/255))
+    }
+    
+    static var Auca: some View {
+        Image("auca.logo")
+            .resizable()
     }
 }
 
-struct TestingView_Previews: PreviewProvider {
-    static var previews: some View {
-        TestingView()
-    }
+#Preview {
+    PlaceHolderView()
 }

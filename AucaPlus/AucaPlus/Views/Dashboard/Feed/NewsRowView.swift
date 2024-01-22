@@ -54,25 +54,26 @@ struct NewsRowView: View {
                 if let content = news.content {
                     Text(content)
                         .font(.callout)
-//                        .lineLimit(PartialRangeThrough.init(5))
-//                        .lineLimit(PartialRangeFrom(3))
                         .lineLimit(showAllText ? nil : 5)
                         .onTapGesture {
-                            showAllText.toggle()
+                            withAnimation {
+                                showAllText.toggle()
+                            }
                         }
                 }
                 
-                if news.fileType == .image,
-                   let image = news.files?.first {
-                    AucaPlusImageView(image, placeholderImage: Image("placeholder"))
-                        .scaledToFit()
-                        .background(.gray)
-                        .cornerRadius(15)
-                        .frame(maxWidth: .infinity)
-                        .onTapGesture {
-                            // Get image from cache and display
-                            // if not in cache load image
-                        }
+                if let image = news.files?.first {
+                    AucaPlusImageView(image, placeholder: {
+                        PlaceHolderView()
+                    })
+                    .scaledToFit()
+                    .background(.gray)
+                    .cornerRadius(15)
+                    .frame(maxWidth: .infinity)
+                    .onTapGesture {
+                        // Get image from cache and display
+                        // if not in cache load image
+                    }
                 }
                 
                 HStack(spacing: 3) {
@@ -99,6 +100,7 @@ struct NewsRowView: View {
     }
 }
 
+#if DEBUG
 struct NewsRowView_Previews: PreviewProvider {
     static var previews: some View {
         NewsRowView(.news1,
@@ -110,6 +112,7 @@ struct NewsRowView_Previews: PreviewProvider {
 //            .preferredColorScheme(.dark)
     }
 }
+#endif
 
 private extension NewsRowView {
     struct ProfileInfoView: View {
@@ -121,6 +124,7 @@ private extension NewsRowView {
             
             HStack {
                 AucaPlusImageView(imageURL!, .square(40))
+                    .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)

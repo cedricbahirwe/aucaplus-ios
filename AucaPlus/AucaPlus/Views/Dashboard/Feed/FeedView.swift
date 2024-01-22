@@ -23,15 +23,12 @@ struct FeedView: View {
                                     NewsRowView(
                                         news,
                                         isBookmarked: bookmarksVM.isBookmarked(news),
-                                        onBookmarked: {_ in 
-                                            Task {
-                                                await feedStore.createNews()
+                                        onBookmarked: {
+                                            if bookmarksVM.isBookmarked(news) {
+                                                bookmarksVM.removeFromBookmarks($0)
+                                            } else {
+                                                bookmarksVM.addToBookmarks($0)
                                             }
-//                                            if bookmarksVM.isBookmarked(news) {
-//                                                bookmarksVM.removeFromBookmarks($0)
-//                                            } else {
-//                                                bookmarksVM.addToBookmarks($0)
-//                                            }
                                         },
                                         onViewed: bookmarksVM.view)
                                 }

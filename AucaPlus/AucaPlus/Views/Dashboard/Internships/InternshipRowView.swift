@@ -14,7 +14,7 @@ struct InternshipRowView: View {
     @EnvironmentObject var linkVM: LinksPreviewModel
     
     @State private var linkPreview: LinkPreview?
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
@@ -46,7 +46,7 @@ struct InternshipRowView: View {
                 
                 Text(internship.postedDate.timeAgo)
                     .opacity(0.6)
-
+                
                 if internship.views != 0 {
                     DotView()
                     
@@ -121,15 +121,15 @@ struct InternshipRowView: View {
 }
 
 
-struct InternshipRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        InternshipRowView(internship: .example,
-                          isBookmarked: true,
-                          onBookmarking: { _ in })
-        .environmentObject(LinksPreviewModel())
-        .padding()
-        
-        .frame(height: 400)
-        .previewLayout(.sizeThatFits)
-    }
+#if DEBUG
+#Preview {
+    InternshipRowView(internship: .example,
+                      isBookmarked: true,
+                      onBookmarking: { _ in })
+    .environmentObject(LinksPreviewModel())
+    .padding()
+    
+    .frame(height: 400)
+    .previewLayout(.sizeThatFits)
 }
+#endif

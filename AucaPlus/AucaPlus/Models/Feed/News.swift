@@ -84,7 +84,7 @@ struct News: FeedItem {
         self.postedDate = try container.decode(Date.self, forKey: .postedDate)
         self.updatedDate = try container.decodeIfPresent(Date.self, forKey: .updatedDate)
 
-        if let contentData = try container.decodeIfPresent(Data.self, forKey: .content) {
+        if let contentData = try? container.decodeIfPresent(Data.self, forKey: .content) {
             self.content = try JSONDecoder().decode(AttributedString.self, from: contentData)
         } else if let stringData = try container.decodeIfPresent(AttributedString.self, forKey: .content) {
             self.content = stringData
